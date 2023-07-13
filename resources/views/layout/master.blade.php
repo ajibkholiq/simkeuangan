@@ -18,12 +18,10 @@
 <body class="fixed-sidebar no-skin-config full-height-layout">
     <div id="wrapper">
         @include('layout.sidebar')
-        <div id="page-wrapper" class="gray-bg">
+        <div id="page-wrapper" class="gray-bg" style="height:auto" >
             @include('layout.topbar')
             @include('layout.breadcrumb')
-            <div>
-                 @yield('main')
-            </div>
+            @yield('main')
             @include('layout.footer')
         </div>
     </div>

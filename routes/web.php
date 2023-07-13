@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdmMenuController;
+use App\Models\adm_menu;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layout.master');
+    $menu = adm_menu::select('kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
+    return view('layout.master',compact('menu'));
+    // return $menu;
 });
 Route::get('/ajib' , function (){
     return view('page.home');
 });
+Route::resource('adm-menu', AdmMenuController::class);
+Route::get('menu/{$id}',[AdmMenuController::class ,'getEdit'])->name('edit');
+

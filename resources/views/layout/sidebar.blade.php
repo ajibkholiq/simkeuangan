@@ -31,6 +31,25 @@
                         <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
                     </ul>
                 </li>
+                @foreach ($menu as $item)
+                <li>
+                    <a href="/{{$item->route}}"><i class="fa fa-th-large"></i> <span class="nav-label">{{$item->kode_menu}}. {{$item->nama_menu}}</span><span class ="{{$item->route ? : 'fa arrow' }}"></span></a>
+                    @if ($item->route == "")
+                        <ul class="nav nav-second-level collapse">
+                        <li><a href="index.html">Dashboard v.1</a></li>
+                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
+                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
+                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
+                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                    </ul>
+                    @endif
+                    
+                </li>
+                @endforeach
+
+                <li>
+                    <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Adm Menu</span></span></a>
+                </li>
                 
             </ul>
 
