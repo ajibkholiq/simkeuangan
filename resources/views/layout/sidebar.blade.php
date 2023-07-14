@@ -30,6 +30,10 @@
                         <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
                         <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
                     </ul>
+                  
+                </li>
+                <li>
+                    <a href="adm_role"><i class="fa fa-diamond"></i> <span class="nav-label">Adm_role</span></a>
                 </li>
                 
             </ul>
