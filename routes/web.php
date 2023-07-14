@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layout.master');
 });
-Route::get('/ajib' , function (){
+
+Route::get('/page', function () {
     return view('page.home');
 });
+
+Route :: resource('adm_role',Adm_RoleController::class);
