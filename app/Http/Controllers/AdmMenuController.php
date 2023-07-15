@@ -9,7 +9,7 @@ class AdmMenuController extends Controller
 {
 
     function getHeadMenu (){
-        return adm_menu::select('kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
+        return adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
     
     }
 
@@ -78,11 +78,17 @@ class AdmMenuController extends Controller
                 ]
             );
         }else{
-        return redirect('adm-menu')->with('success','Menu Behasil Diedit');
+        return redirect('adm-menu')->with('success','Menu Berhasil diedit');
         }
     }
     function destroy($id){
-        $data = adm_menu::where('uuid',$id)->delete();
+        $data = adm_menu::where('uuid',$id)->first();
+
+        if ( $data->induk == 'head' )
+        {
+            adm_menu::where('induk', $data->nama_menu)->delete();
+        }
+        $data->delete();
         if($data){
             return redirect()->back()->with('success','Menu Behasil dihapus');
         }else{
