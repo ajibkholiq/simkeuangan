@@ -13,7 +13,7 @@
             </div> 
           @endif
           
-        <div class="col-md-12">
+            <div class="col-md-12">
                 <a data-toggle="modal"href="#add-form" class="btn btn-primary" style="justify-items: end"><i class="fa fa-plus"></i> Add Menu</a>
             </div>
 
@@ -69,7 +69,7 @@
 
                         </div>
                     </div>
-                </div>
+            </div>
         </div>
         <div id="add-form" class="modal in" aria-hidden="true">
                                 <div class="modal-dialog">
