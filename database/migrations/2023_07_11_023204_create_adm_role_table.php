@@ -16,8 +16,8 @@ return new class extends Migration
             $table->char('uuid',100);
             $table->string("nama_role",);
             $table->string("remark",20);
-            $table->string("create_by",20);
-            $table->string("update_by",20);
+            $table->string("create_by",20)->nullable();
+            $table->string("update_by",20)->nullable();
             $table->timestamps();
         });
     }

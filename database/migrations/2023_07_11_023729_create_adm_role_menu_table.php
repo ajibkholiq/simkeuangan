@@ -10,14 +10,14 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   
         Schema::create('adm_role_menu', function (Blueprint $table) {
             $table->id();
             $table->char('uuid',100);
             $table->unsignedBigInteger("role_id");
             $table->unsignedBigInteger("menu_id");
-            $table->string("create_by",20);
-            $table->string("update_by",20);
+            $table->string("create_by",20)->nullable();
+            $table->string("update_by",20)->nullable();
             $table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('adm_role')->onDelete('cascade')->onUpdate('cascade');
