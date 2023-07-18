@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmMenuController;
 use App\Models\adm_menu;
+use App\Http\Controllers\Adm_RoleController;
 use App\Models\adm_role;
-use Illuminate\Database\Eloquent\Model;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,8 @@ Route::get('/', function () {
 Route::get('/page', function () {
     return view('page.home');
 });
-<<<<<<< HEAD
+
 
 Route :: resource('adm_role',Adm_RoleController::class);
-=======
 Route::resource('adm-menu', AdmMenuController::class);
 Route::get('menu/{$id}',[AdmMenuController::class ,'getEdit'])->name('edit');

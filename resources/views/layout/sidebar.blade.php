@@ -33,7 +33,7 @@
                   
                 </li>
                 <li>
-                    <a href="adm_role"><i class="fa fa-diamond"></i> <span class="nav-label">Adm_role</span></a>
+                    <a href="{{URL::route('adm_role.index')}}"><i class="fa fa-diamond"></i> <span class="nav-label">Adm_role</span></a>
                 </li>
                 @foreach ($menu as $item)
                 <li>
@@ -54,6 +54,7 @@
                 <li>
                     <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Adm Menu</span></span></a>
                 </li>
+
                 
             </ul>
 

@@ -2,18 +2,15 @@
 @section('main')
 <div class="ibox float-e-margins">
     <div class="ibox-content">
-        <h2>Edit Role</h2>
-
-        <form action="{{ route('adm_role.update', $adm_role->id) }}, $adm_role->id) }}" method="POST">
+        
+        @if ($adm_role)
+        <form action="{{ route('adm_role.update', $adm_role->uuid) }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="form-group">
-                <label for="uuid">UUID:</label>
-                <input type="text" name="uuid" class="form-control" value="{{ $adm_role->uuid }}">
-            </div>
+           
             <div class="form-group">
                 <label for="nama_role">Nama Role:</label>
-                <input type="text" name="nama_role" class="form-control" value="{{ $adm_role->nama_Role }}">
+                <input type="text" name="nama_role" class="form-control" value="{{ $adm_role->nama_role }}">
             </div>
             <div class="form-group">
                 <label for="remark">Remark:</label>
@@ -24,5 +21,6 @@
         </form>
     </div>
 </div>
+@endif
 
 @endsection 

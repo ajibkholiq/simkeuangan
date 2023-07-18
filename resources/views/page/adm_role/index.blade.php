@@ -1,20 +1,16 @@
 @extends('layout.master')
 
 @section('main')
-@if ($errors->any())
-<div class="pt-3">
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $item)
-                <li>
-                    {{ $item }}
-                </li>
-            @endforeach
-        </ul>
-    </div>
+<div class="row" style="margin-top:10px">
+    @if ( session('success'))
+         <div class="col-lg-12">
+          <div class="alert alert-success alert-dismissable">
+                          <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                          <a class="alert-link" href="#">Berhasil.! </a>, {{session('success')}} 
+          </div>
+      </div> 
+    @endif
 </div>
-@endif
-
 <a href="{{ route('adm_role.create') }}" class="btn btn-primary float-right" style="margin-top: 10px" data-toggle="modal" data-target="#addRoleModal"><i class="fa fa-plus"></i> Add Role</a>
 
 <!-- Modal -->
@@ -31,10 +27,7 @@
                 <!-- Formulir tambah role -->
                 <form action="{{ route('adm_role.store') }}" method="POST">
                     @csrf
-                    <div class="form-group">
-                        <label for="uuid">UUID:</label>
-                        <input type="text" name="uuid" class="form-control">
-                    </div>
+                    
                     <div class="form-group">
                         <label for="nama_role">Nama Role:</label>
                         <input type="text" name="nama_role" class="form-control">
@@ -65,27 +58,33 @@
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
+                    <style>
+                        th {
+                            text-align: center;
+                        }
+                    </style>
                     <tr>
-                        <th>ID</th>
-                        <th>UUID</th>
                         <th>Nama Role</th>
                         <th>Remark</th>
+                        <th>Create_by</th>
+                        <th>Update_by</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody align="center">
                     @foreach ($adm_roles as $adm_role)
                         <tr>
-                            <td>{{ $adm_role->id }}</td>
-                            <td>{{ $adm_role->uuid }}</td>
-                            <td>{{ $adm_role->nama_Role }}</td>
+                            <td>{{ $adm_role->nama_role }}</td>
                             <td>{{ $adm_role->remark }}</td>
+                            <td>{{ $adm_role->create_by }}</td>
+                            <td>{{ $adm_role->update_by }}</td>
+                           
                             <td>
-                                <a href="{{ route('adm_role.edit', $adm_role->id) }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                                <form action="{{ route('adm_role.destroy', $adm_role->id) }}" method="POST" style="display: inline-block">
+                                <a href="{{ route('adm_role.edit', $adm_role->uuid) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                <form action="{{ route('adm_role.destroy', $adm_role->uuid) }}" method="POST" style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button>
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button>
                                 </form>
                             </td>
                         </tr>
