@@ -106,9 +106,5 @@
 </div>
 @endsection @push('js') 
 <script>
-
-$(document).ready(() => {$.ajax({ url:
-'http://127.0.0.1:8000/api/menu/64afba6ba589b', method: 'GET', dataType: 'json',
-success: function(data) { console.log(data) }, }); } )
 </script>
 @endpush

@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {   
         Schema::create('adm_role_menu', function (Blueprint $table) {
             $table->id();
             $table->char('uuid',100);

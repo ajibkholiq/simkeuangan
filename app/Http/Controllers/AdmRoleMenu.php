@@ -27,7 +27,7 @@ class AdmRoleMenu extends Controller
         // return $tesr;
     }
     function store(Request $request){
-    if ( $request != null){
+    if ( $request->idRole != null && $request->idMenu != null){
         foreach ($request->idRole as $role) {
             adm_role_menu::where('role_id' ,$role)->delete();
             foreach ( $request->idMenu as $menu) {
@@ -41,6 +41,9 @@ class AdmRoleMenu extends Controller
             }
         }
         return redirect()->back()->with(['success' => 'menu untuk role telah dibuat!']);
+    }
+    else{
+        return redirect()->back()->with(['fail' => 'pilih minimal satu role dan satu menu!']);
     }
     }
 

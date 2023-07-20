@@ -52,7 +52,6 @@
                                             <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a>
                                         {{-- <a data-toggle="modal"href="#edit" data-menu="$(menu)"class="btn btn-warning fa fa-pencil" ></a> --}}
                                             
-                                            {{-- <button type="button" class="dropdown-item edit-item-btn btn-edit" data-buku="${menu}"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</button> --}}
                                             <form action="{{route("adm-menu.destroy",$data->uuid)}}" method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');">
                                                 @csrf
                                                 @method("DELETE")
@@ -79,8 +78,31 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>      
+                            </div>     
 @endsection
-{{-- @push('js')
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 
-@endpush --}}
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script>
+  $('body').on('click', '#btn-edit', function () {
+
+        let post_id = $(this).data('id');
+        console.log(post_id);
+        //fetch detail post with ajax
+        $.ajax({
+            url: "/api/menu/"+post_id,
+            type: "GET",
+            success:function(data){
+                $('#kode').val(data.kode_menu);
+                $('#nama').val(data.nama_menu);
+                $('#route').val(data.route);
+                $('#remark').val(data.remark);
+
+                $('#edit-modal').modal
+               
+            }
+        });
+    });
+    </script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>  --}}
+@endpush

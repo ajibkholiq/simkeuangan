@@ -20,7 +20,7 @@
                     <div class="logo-element">
                         IN+
                     </div>
-                </li>
+
                 @foreach ($menu as $item)
                 <li>
                     @if ($item->induk == "head")
@@ -42,9 +42,14 @@
                 <li>
                     <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM MENU</span></span></a>
                 </li>
+                 <li>
+                    <a href="{{URL::route('adm-role.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE</span></span></a>
+                </li>
+
                 <li>
                     <a href="{{URL::route('adm-role-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE MENU</span></span></a>
                 </li>
+        
                 
             </ul>
 

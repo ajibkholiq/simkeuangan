@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('main')
     <h1>
-        xxxx
+        ajib abdul kholiq
     </h1>
 @endsection

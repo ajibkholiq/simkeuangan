@@ -56,7 +56,7 @@ class AdmMenuController extends Controller
 
     function show($id){
         $data = adm_menu::where('uuid',$id)->get();
-        return $data;
+        return response()->json($data, 200, $headers);
         // return adm_menu::findOrFail($id);
 
     }
@@ -96,4 +96,3 @@ class AdmMenuController extends Controller
         }
     }
 }
-
