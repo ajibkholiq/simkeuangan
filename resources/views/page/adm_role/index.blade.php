@@ -13,7 +13,7 @@
     @endif
 </div>
 <div class="col-md-12">
-<a href="{{ route('adm-role.create') }}" class="btn btn-primary float-right" style="margin-top: 10px" data-toggle="modal" data-target="#addRoleModal"><i class="fa fa-plus"></i> Add Role</a>
+<a href="#" class="btn btn-primary float-right" style="margin-top: 10px" data-toggle="modal" data-target="#addRoleModal"><i class="fa fa-plus"></i> Add Role</a>
 </div>
 <!-- Modal -->
 
@@ -77,11 +77,11 @@
                     
                     <div class="form-group">
                         <label for="nama_role">Nama Role:</label>
-                        <input type="text" name="nama_role" class="form-control">
+                        <input type="text" name="nama_role" required class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="remark">Remark:</label>
-                        <input type="text" name="remark" class="form-control">
+                        <input type="text" name="remark" required class="form-control">
                     </div>
                     <!-- Tambahkan elemen input lainnya sesuai dengan kebutuhan Anda -->
                     <button type="submit" class="btn btn-primary"> <i class="fa fa-plus"></i> Add</button>

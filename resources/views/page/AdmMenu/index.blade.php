@@ -49,9 +49,9 @@
                                         <td>{{$data->remark}}</td>
 
                                         <td style="display: flex; justify-content:center; gap: 10px" >
-                                            <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a>
+                                            {{-- <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a> --}}
                                         {{-- <a data-toggle="modal"href="#edit" data-menu="$(menu)"class="btn btn-warning fa fa-pencil" ></a> --}}
-                                            
+                                            <button class="btn btn-warning fa fa-pencil" data-id="{{$data->uuid}}" id="btn-edit"></button>
                                             <form action="{{route("adm-menu.destroy",$data->uuid)}}" method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');">
                                                 @csrf
                                                 @method("DELETE")
@@ -59,13 +59,10 @@
                                             </form>
                                         </td>
                                          </tr> 
-                                        @endforeach
-                                    
-                                    
+                                        @endforeach                                    
                                     </tbody>
                                 </table>
                             </div>
-
                         </div>
                     </div>
             </div>
@@ -78,7 +75,16 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>     
+                            </div>  
+                             <div id="edit-form" class="modal in" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                          @include('page.AdmMenu.edit')
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>        
 @endsection
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -87,22 +93,47 @@
   $('body').on('click', '#btn-edit', function () {
 
         let post_id = $(this).data('id');
-        console.log(post_id);
         //fetch detail post with ajax
         $.ajax({
             url: "/api/menu/"+post_id,
             type: "GET",
             success:function(data){
-                $('#kode').val(data.kode_menu);
-                $('#nama').val(data.nama_menu);
-                $('#route').val(data.route);
-                $('#remark').val(data.remark);
-
-                $('#edit-modal').modal
-               
+                $('#uuid').val(data.uuid)
+                $('#induk').val(data.induk)
+                $('#kode').val(data.kode_menu)
+                $('#nama').val(data.nama_menu)
+                $('#route').val(data.route)
+                $('#remark').val(data.remark)
+                $('#edit-form').modal('show')               
             }
         });
     });
+
+    $('#edit').on('click', function(){
+        $.ajax({
+            url: 'adm-menu/'+$('#uuid').val(),
+            type : 'PUT',
+            data : {
+                'induk'     :   $('#induk').val(),
+                'kode'      :   $('#kode').val(),
+                'nama'      :   $('#nama').val(),
+                'route'     :   $('#route').val(),
+                'remark'    :   $('#remark').val(),
+                '_token'    :   $("input[name='_token']").val(),
+                '_method'   :   'PUT',
+            },
+            success : function (response){
+                console.log(response);
+                $('#edit-form').modal('hide');
+                alert('berhasil diubah');
+                setTimeout(function() { 
+                    location.reload();
+                    }, 100);
+            }
+        })
+
+
+    })
     </script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>  --}}
 @endpush

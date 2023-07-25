@@ -4,17 +4,15 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="{{ URL:: asset ('assets/img/profile_small.jpg')}}" />
+                            <img alt="image" class="img-circle" src="{{ URL:: asset ('assets/img/')}}/{{session()->get('photo')? : 'profile_small.jpg' }}" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold text-capitalize">{{session('nama')}}</strong>
+                             </span> <span class="text-muted text-xs block text-uppercase" >{{session('role')}} <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             <li><a href="profile.html">Profile</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="mailbox.html">Mailbox</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="{{route('logout')}}">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
@@ -38,19 +36,21 @@
                     
                 </li>
                 @endforeach
-
+@if (session()->get('role') == 'admin')
+                <li>
+                    <a href="{{URL::route('adm-user.index')}}"><i class="fa fa-user-circle"></i> <span class="nav-label ">ADM USER</span></span></a>
+                </li>
                 <li>
                     <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM MENU</span></span></a>
                 </li>
                  <li>
-                    <a href="{{URL::route('adm-role.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE</span></span></a>
+                    <a href="{{URL::route('adm-role.index')}}"><i class="fa fa-id-card"></i> <span class="nav-label ">ADM ROLE</span></span></a>
                 </li>
 
                 <li>
-                    <a href="{{URL::route('adm-role-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE MENU</span></span></a>
+                    <a href="{{URL::route('adm-role-menu.index')}}"><i class="fa fa-id-badge"></i> <span class="nav-label ">ADM ROLE MENU</span></span></a>
                 </li>
-        
-                
+@endif
             </ul>
 
         </div>

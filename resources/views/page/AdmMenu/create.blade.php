@@ -7,7 +7,7 @@
                                 <div class="form-group"><label class="col-sm-2 control-label">Induk</label>
 
                                     <div class="col-sm-10">
-                                        <select name="induk" id="induk" class="form-control">
+                                        <select name="induk"  class="form-control">
                                             <option value="head">Head</option>
                                             @foreach ($menu as $item)
                                             @if ($item->induk == 'head' &&  $item->route =="")
@@ -19,21 +19,21 @@
                                         </select>
                                     </div>
                                  </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Kode</label>
+                                 <div class="form-group"><label class="col-sm-2 control-label" >Kode</label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Kode Menu" name="kode" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Kode Menu" required name="kode" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Nama</label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Nama Menu" name="nama" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Nama Menu" required name="nama"  class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Route </label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Route" name="route" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Route" name="route"  class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Remark</label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Remark" name="remark" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Remark" name="remark"  required class="form-control"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
 

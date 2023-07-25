@@ -2,10 +2,9 @@
 <html>
 
 <head>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSPINIA | Code mirror</title>
+    <title>{{Request::segment(count(Request::segments()))? : "Welcome"}} | SIM keuangan</title>
     @stack('css')
     <link href="{{ URL::asset ('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset ('assets/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -22,6 +21,12 @@
         <div id="page-wrapper" class="gray-bg" style="height:auto" >
             @include('layout.topbar')
             @include('layout.breadcrumb')
+            @if (session('fail'))
+                <div class="alert alert-warning alert-block" style="margin : 10px 0">
+                <button type="button" class="close" data-dismiss="alert">×</button>	
+                <strong>{{ session('fail')}}</strong>
+                </div>
+             @endif
             @yield('main')
             @include('layout.footer')
         </div>

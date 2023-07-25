@@ -10,11 +10,11 @@
            
             <div class="form-group">
                 <label for="nama_role">Nama Role:</label>
-                <input type="text" name="nama_role" class="form-control" value="{{ $adm_role->nama_role }}">
+                <input type="text" name="nama_role" required class="form-control" value="{{ $adm_role->nama_role }}">
             </div>
             <div class="form-group">
                 <label for="remark">Remark:</label>
-                <input type="text" name="remark" class="form-control" value="{{ $adm_role->remark }}">
+                <input type="text" name="remark" required class="form-control" value="{{ $adm_role->remark }}">
             </div>
          
             <button type="submit" class="btn btn-primary">Update</button>

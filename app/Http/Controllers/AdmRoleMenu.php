@@ -35,7 +35,7 @@ class AdmRoleMenu extends Controller
                     "uuid" => uniqid(),
                     'role_id' => $role,
                     'menu_id' => $menu,
-                    'create_by' => '',
+                    'create_by' => $request->session()->get('nama')
                 ] );
                 
             }
@@ -47,8 +47,4 @@ class AdmRoleMenu extends Controller
     }
     }
 
-    function show($id){
-        return $id;
-
-    }
 }

@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmMenuController;
 use App\Http\Controllers\AdmRoleMenu;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\loginController;
 use App\Models\adm_menu;
+use App\Models\User;
 use App\Http\Controllers\Adm_RoleController;
+use App\Http\Controllers\AdmUserController;
 use App\Models\adm_role;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 /*
@@ -20,13 +24,39 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', function () {
-    $menu = adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
-    return view('layout.master',compact('menu'));
-    // return $menu;
+Route::get('/login', [loginController::class , 'index' ])->name('login');
+Route::get('/logout', [loginController::class , 'logout' ])->name('logout');
+Route::post('/validate', [loginController::class , 'validasi' ])->name('validate');
+Route::middleware('checklogin')->group(function () {
+    Route::get('/profile',function(){
+     $id = Session::get('role');
+    if ($id != 'admin'){
+        $menu = DB::select("select induk,kode_menu,nama_menu,route FROM `adm_menu`,`adm_role_menu`,`adm_role` WHERE `adm_menu`.`id`=`adm_role_menu`.`menu_id` AND `adm_role`.`id`=`adm_role_menu`.`role_id` and adm_role.nama_role = '$id'");
+        }
+    else{
+        $menu = adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
+        } 
+    $data = User::where('uuid', Session::get('uuid'))->first();
+        return view('page.user.profile',compact('menu','data'));
+    
+    });
+    Route::get('/', function () {
+    $id = Session::get('role');
+    if ($id != 'admin'){
+        $menu = DB::select("select induk,kode_menu,nama_menu,route FROM `adm_menu`,`adm_role_menu`,`adm_role` WHERE `adm_menu`.`id`=`adm_role_menu`.`menu_id` AND `adm_role`.`id`=`adm_role_menu`.`role_id` and adm_role.nama_role = '$id'");
+        return view('layout.master',compact('menu'));
+        }
+    else{
+        $menu = adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
+        return view('layout.master',compact('menu'));
+        }
+    });
+    Route::middleware('role:admin')->group(function () {
+    Route::resource('adm-menu', AdmMenuController::class)->except(['create','show']);
+    Route::resource('adm-role', Adm_roleController::class)->except(['create','show']);
+    Route::resource('adm-role-menu', AdmRoleMenu::class)->only(['index','store']);
+    Route::resource('adm-user', AdmUserController::class);
+    });
 });
-Route::resource('adm-menu', AdmMenuController::class);
-Route::resource('adm-role', Adm_roleController::class);
-Route::resource('adm-role-menu', AdmRoleMenu::class);
 
 
