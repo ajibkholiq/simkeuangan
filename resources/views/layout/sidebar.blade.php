@@ -30,21 +30,19 @@
                         <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
                         <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
                     </ul>
-                  
-                </li>
-                <li>
-                    <a href="{{URL::route('adm_role.index')}}"><i class="fa fa-diamond"></i> <span class="nav-label">Adm_role</span></a>
                 </li>
                 @foreach ($menu as $item)
                 <li>
-                    <a href="/{{$item->route}}"><i class="fa fa-th-large"></i> <span class="nav-label">{{$item->kode_menu}}. {{$item->nama_menu}}</span><span class ="{{$item->route ? : 'fa arrow' }}"></span></a>
+                    @if ($item->induk == "head")
+                    <a href="/{{$item->route}}"><i class="fa fa-th-large"></i> <span class="nav-label text-uppercase">{{$item->kode_menu}}. {{$item->nama_menu}}</span><span class ="{{$item->route ? : 'fa arrow' }}"></span></a>
+                    @endif
                     @if ($item->route == "")
-                        <ul class="nav nav-second-level collapse">
-                        <li><a href="index.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                    <ul class="nav nav-second-level collapse">
+                        @foreach($menu as $sm)
+                        @if ( $sm->induk == $item->nama_menu )
+                            <li><a href="{{$sm->route}}" class="text-capitalize">{{$sm->kode_menu}}. {{$sm->nama_menu}}</a></li>
+                        @endif
+                        @endforeach
                     </ul>
                     @endif
                     
@@ -52,7 +50,13 @@
                 @endforeach
 
                 <li>
-                    <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Adm Menu</span></span></a>
+                    <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM MENU</span></span></a>
+                </li>
+                <li>
+                    <a href="{{URL::route('adm-role-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE MENU</span></span></a>
+                </li>
+                <li>
+                    <a href="{{URL::route('adm_role.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE </span></span></a>
                 </li>
 
                 

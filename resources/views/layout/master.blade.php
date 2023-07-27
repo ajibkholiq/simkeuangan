@@ -25,7 +25,10 @@
             @include('layout.footer')
         </div>
     </div>
-    @stack('js')
+
+        @stack('js')
+    
+    
     <script src="{{ URL::asset ('assets/js/jquery-3.1.1.min.js')}}"></script>
     <script src="{{ URL::asset ('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ URL::asset ('assets/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>

@@ -8,7 +8,7 @@
                <div class="col-lg-12">
                 <div class="alert alert-success alert-dismissable">
                                 <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                                <a class="alert-link" href="#">Berhasil.! </a>, {{session('success')}} 
+                                <a class="alert-link" href="#">Berhasil.! </a>{{session('success')}} 
                 </div>
             </div> 
           @endif
@@ -17,7 +17,7 @@
                 <a data-toggle="modal"href="#add-form" class="btn btn-primary" style="justify-items: end"><i class="fa fa-plus"></i> Add Menu</a>
             </div>
 
-            <div class="col-lg-12 " style="margin-top: 10px">
+            <div class="col-lg-12 " style="margin-top: 10px ;margin-bottom: 30px" >
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <div class="table-responsive">
@@ -33,7 +33,6 @@
                                         <th>Nama</th>
                                         <th>Route</th>
                                         <th>Remark</th>
-                                        <th>Urut</th>
                                         <th>Action</th>
 
                                     </tr>
@@ -48,10 +47,12 @@
                                         <td>{{$data->nama_menu}}</td>
                                         <td>{{$data->route}}</td>
                                         <td>{{$data->remark}}</td>
-                                        <td>{{$data->urut}}</td>
 
                                         <td style="display: flex; justify-content:center; gap: 10px" >
                                             <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a>
+                                        {{-- <a data-toggle="modal"href="#edit" data-menu="$(menu)"class="btn btn-warning fa fa-pencil" ></a> --}}
+                                            
+                                            {{-- <button type="button" class="dropdown-item edit-item-btn btn-edit" data-buku="${menu}"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</button> --}}
                                             <form action="{{route("adm-menu.destroy",$data->uuid)}}" method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');">
                                                 @csrf
                                                 @method("DELETE")
@@ -78,7 +79,7 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>      
 @endsection
 {{-- @push('js')
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> 

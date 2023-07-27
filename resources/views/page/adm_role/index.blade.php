@@ -11,7 +11,7 @@
       </div> 
     @endif
 </div>
-<a href="{{ route('adm_role.create') }}" class="btn btn-primary float-right" style="margin-top: 10px" data-toggle="modal" data-target="#addRoleModal"><i class="fa fa-plus"></i> Add Role</a>
+<a href="{{ route('adm_role.create') }}" class="btn btn-primary float-right" style="margin-top: 5px" data-toggle="modal" data-target="#addRoleModal"><i class="fa fa-plus"></i> Add Role</a>
 
 <!-- Modal -->
 <div class="modal fade" id="addRoleModal" tabindex="-1" role="dialog" aria-labelledby="addRoleModalLabel" aria-hidden="true">
@@ -44,23 +44,27 @@
                         <label for="update_by">Update_by:</label>
                         <input type="text" name="update_by" class="form-control">
                     </div>
-                    <!-- Tambahkan elemen input lainnya sesuai dengan kebutuhan Anda -->
+                  
                     <button type="submit" class="btn btn-primary"> <i class="fa fa-plus"></i> Add</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
 <div class="ibox float-e-margins">
     <div class="ibox-content" style="margin-top: 10px">
         <div class="table-responsive">
-            <table class="table table-striped">
+            <table class="table table-striped" style="margin-top: -1px">
                 <thead>
                     <style>
                         th {
                             text-align: center;
+                            font-size: 13px;
+                        }
+
+                        tr {
+                            font-size:13px;
+                            text-align:center;
                         }
                     </style>
                     <tr>
@@ -95,18 +99,4 @@
     </div>
 </div>
 @endsection
-<script>
-    $(document).ready(function() {
-        setTimeout(function() {
-            toastr.options = {
-                closeButton: true,
-                progressBar: true,
-                showMethod: 'slideDown',
-                timeOut: 4000
-            };
-            toastr.success('Role created successfully', 'Notification');
-        }, 1300);    
-        });
-        
-    </script>
 
