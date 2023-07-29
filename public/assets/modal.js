@@ -157,5 +157,54 @@ $(document).on("click", "#bt-hapus", function () {
         },
     });
 });
+var uuid;
+$("body").on("click", "#bt-edit", function () {
+    $("#edit-alamat").hide();
+    $.ajax({
+        url: "/siswa/" + $(this).data("uuid"),
+        type: "GET",
+        success: (data) => {
+            uuid = data.uuid;
+            $("#nama").val(data.nama);
+            $("#ayah").val(data.nama_ayah);
+            $("#ibu").val(data.nama_ibu);
+            $("#nohp").val(data.no_hp);
+            $("#alamat").val(data.alamat_detail);
+            $("#remark").val(data.remark);
+            $("#edit-siswa").modal("show");
+        },
+    });
+});
+$("#show-alamat").click(function () {
+    $("#edit-alamat").show();
+});
+$("#ubahsiswa").click(function () {
+    $.ajax({
+        url: "/siswa/" + uuid,
+        type: "PUT",
+        data: {
+            nama: $("#nama").val(),
+            ayah: $("#ayah").val(),
+            ibu: $("#ibu").val(),
+            nohp: $("#nohp").val(),
+            alamat: $("#alamat").val(),
+            kelas: $("#kelasEdit").val(),
+            provinsi: $("#provinsiEdit").val(),
+            kabupaten: $("#kabupatenEdit").val(),
+            kecamatan: $("#kecamatanEdit").val(),
+            kelurahan: $("#kelurahanEdit").val(),
+            remark: $("#remark").val(),
+            _token: $("input[name='_token']").val(),
+            _method: "PUT",
+        },
+        success: (response) => {
+            $("#edit-siswa").modal("hide");
+            console.log(response);
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+        },
+    });
+});
 
 
