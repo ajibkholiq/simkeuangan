@@ -51,11 +51,11 @@
                                         <td style="display: flex; justify-content:center; gap: 10px" >
                                             {{-- <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a> --}}
                                         {{-- <a data-toggle="modal"href="#edit" data-menu="$(menu)"class="btn btn-warning fa fa-pencil" ></a> --}}
-                                            <button class="btn btn-warning fa fa-pencil" data-id="{{$data->uuid}}" id="btn-edit"></button>
+                                            <button class="btn btn-warning btn-outline  fa fa-pencil" data-id="{{$data->uuid}}" id="btn-edit"></button>
                                             <form action="{{route("adm-menu.destroy",$data->uuid)}}" method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');">
                                                 @csrf
                                                 @method("DELETE")
-                                                <button type="submit" class="btn btn-danger fa fa-trash-o"></button>
+                                                <button type="submit" class="btn btn-outline btn-danger fa fa-trash-o"></button>
                                             </form>
                                         </td>
                                          </tr> 

@@ -21,20 +21,11 @@
         <div id="page-wrapper" class="gray-bg" style="height:auto" >
             @include('layout.topbar')
             @include('layout.breadcrumb')
-            @if (session('fail'))
-                <div class="alert alert-warning alert-block" style="margin : 10px 0">
-                <button type="button" class="close" data-dismiss="alert">×</button>	
-                <strong>{{ session('fail')}}</strong>
-                </div>
-             @endif
             @yield('main')
             @include('layout.footer')
         </div>
     </div>
-
-        @stack('js')
-    
-    
+    @stack('js')
     <script src="{{ URL::asset ('assets/js/jquery-3.1.1.min.js')}}"></script>
     <script src="{{ URL::asset ('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{ URL::asset ('assets/js/plugins/metisMenu/jquery.metisMenu.js')}}"></script>

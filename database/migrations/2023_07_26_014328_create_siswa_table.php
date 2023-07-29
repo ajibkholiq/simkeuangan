@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('nama_ibu');
             $table->string('no_hp');
             $table->string('remark',20);
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
 
             $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade')->onUpdate('cascade');

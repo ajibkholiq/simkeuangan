@@ -25,7 +25,7 @@ class loginController extends Controller
 
         $user = User::where('username',$request->username)->first();
         if( $user != null){
-        if($user->password == $request->password){
+        if($user->password == md5($request->password)){
             Session::put('uuid', $user->uuid);
             Session::put('role', $user->role);
             Session::put('nama', $user->nama);

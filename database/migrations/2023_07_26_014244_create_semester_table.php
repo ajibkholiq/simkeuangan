@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('semester',5);
             $table->enum('status', ['AKTIF','TIDAK']);
             $table->string('remark',20);
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

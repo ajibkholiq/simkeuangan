@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('kelas',20);
             $table->enum('tingkat', ['1','2','3','4','5','6','7','8','9','10','11','12']);
             $table->string('remark',20);
-            $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('created_by')->nullable();
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

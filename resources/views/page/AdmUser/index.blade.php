@@ -50,11 +50,11 @@
                                         <td style="display: flex; justify-content:center; gap: 10px" >
                                             @if ($data->role != 'admin')
                                                 {{-- <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a> --}}
-                                                <a data-toggle="modal" class="btn btn-warning fa fa-pencil" id="btn-edit" data-id="{{$data->uuid}}"></a>
+                                                <a data-toggle="modal" class="btn btn-outline btn-warning fa fa-pencil" id="btn-edit" data-id="{{$data->uuid}}"></a>
                                                 <form action="{{route("adm-user.destroy",$data->uuid)}}" method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');">
                                                     @csrf
                                                     @method("DELETE")
-                                                    <button type="submit" class="btn btn-danger fa fa-trash-o"></button>
+                                                    <button type="submit" class="btn btn-outline btn-danger fa fa-trash-o"></button>
                                                 </form>
                                             @endif
                                         </td>

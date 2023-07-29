@@ -47,11 +47,11 @@
                             <td>{{ $adm_role->update_by }}</td>
                            
                             <td>
-                                <a href="{{ route('adm-role.edit', $adm_role->uuid) }}" class="btn btn-warning"><i class="fa fa-pencil"></i></a>
+                                <a href="{{ route('adm-role.edit', $adm_role->uuid) }}" class="btn btn-outline btn-warning"><i class="fa fa-pencil"></i></a>
                                 <form action="{{ route('adm-role.destroy', $adm_role->uuid) }}" method="POST" style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button>
+                                    <button type="submit" class="btn btn-outline btn-danger" onclick="return confirm('Are you sure?')"><i class="fa fa-trash-o"></i></button>
                                 </form>
                             </td>
                         </tr>
@@ -84,7 +84,7 @@
                         <input type="text" name="remark" required class="form-control">
                     </div>
                     <!-- Tambahkan elemen input lainnya sesuai dengan kebutuhan Anda -->
-                    <button type="submit" class="btn btn-primary"> <i class="fa fa-plus"></i> Add</button>
+                    <button type="submit" class="btn  btn-primary"> <i class="fa fa-plus"></i> Add</button>
                 </form>
             </div>
         </div>
