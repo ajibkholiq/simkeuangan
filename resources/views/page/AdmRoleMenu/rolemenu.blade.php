@@ -8,7 +8,15 @@
                                 <a class="alert-link" href="#">Berhasil.! </a>{{session('success')}} 
                 </div>
             </div> 
-          @endif
+     @endif
+    @if(session('fail'))
+            <div class="col-lg-12">
+                <div class="alert alert-danger alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                <a class="alert-link" href="#">Gagal! </a>{{session('fail')}} 
+                </div>
+            </div>
+        @endif
           <div class="col-lg-12 " >
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">

@@ -1,6 +1,7 @@
 <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-12 " >
-            <h2 class="text-capitalize"> {{Request::segment(count(Request::segments()))? : "Home"}} </h2>
+           
+            <h2 class="text-capitalize"> {{Request::segment(count(Request::segments()))?  : "Welcome"}} </h2>
                 <ol class="breadcrumb">
                     <li>
                         @for ($i = 0; $i < count(Request::segments()); $i++)
