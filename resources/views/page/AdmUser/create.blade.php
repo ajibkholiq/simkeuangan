@@ -4,24 +4,24 @@
                                 <div class="hr-line-dashed"></div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Nama</label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Nama" name="nama" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Nama" name="nama" required class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Username </label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Username" name="username" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Username" required name="username" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Password</label>
 
-                                    <div class="col-sm-10"><input type="password" placeholder="Password" name="password" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="password" placeholder="Password" required  name="password" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10"><input type="email" placeholder="Email" name="email" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="email" placeholder="Email" name="email" required class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">No HP</label>
-                                    <div class="col-sm-10"><input type="text" placeholder="HP" name="nohp" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="HP" name="nohp" required class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Alamat</label>
-                                    <div class="col-sm-10"><input type="text" placeholder="Alamat" name="alamat" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Alamat" required name="alamat" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Role</label>
                                      <div class="col-sm-10">

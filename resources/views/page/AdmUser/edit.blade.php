@@ -7,20 +7,20 @@
                                 <input type="hidden" id="id">
                                  <div class="form-group"><label class="col-sm-2 control-label">Nama</label>
 
-                                     <div class="col-sm-10"><input type="text" placeholder="Nama" name="nama" id="nama" class="form-control"></div>
+                                     <div class="col-sm-10"><input type="text" placeholder="Nama" required name="nama" id="nama" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Username </label>
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Username" name="username" id="username" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Username" required name="username" id="username" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10"><input type="email" placeholder="Email" name="email" id="email" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="email" placeholder="Email" name="email" required id="email" class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">No HP</label>
-                                    <div class="col-sm-10"><input type="text" placeholder="HP" name="nohp" id="nohp" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="HP" name="nohp" id="nohp" required class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Alamat</label>
-                                    <div class="col-sm-10"><input type="text" placeholder="Alamat" name="alamat" id="alamat" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" placeholder="Alamat" name="alamat" id="alamat" required class="form-control"></div>
                                 </div>
                                  <div class="form-group"><label class="col-sm-2 control-label">Role</label>
                                      <div class="col-sm-10">
