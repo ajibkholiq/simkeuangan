@@ -75,16 +75,7 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>  
-                             <div id="edit-form" class="modal in" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                          @include('page.AdmMenu.edit')
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>        
+                            </div>
 @endsection
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

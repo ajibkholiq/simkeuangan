@@ -1,44 +1,142 @@
 @extends('layout.master')
+
+
+
 @section('main')
-<div class="row m-b-lg m-t-lg ">
-                <div class="col-md-4 center ">
-                    
-                </div>
-                    <div class="col-lg-12 " style="margin-bottom: 30px">
-                        <div class="ibox float-e-margins" style="margin: 20px 0">
-                            <div class="ibox-content">
-                           <form method="post" action="{{URL::Route('adm-user.store')}}"class="form-horizontal">
-                                @csrf
-                                <div class="hr-line-dashed"></div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Nama</label>
+   {{-- membuat profile tampilan  --}}
+   <div class="wrapper wrapper-content">
+    <div class="row animated fadeInRight">
+        <div class="col-md-3">
+            <div class="ibox float-e-margins" style="border: 2px solid #1AB394; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); border-radius:2px " >
+              <style>
+                /* Untuk layar dengan lebar 768 piksel atau kurang (misalnya tampilan ponsel) */
+                @media screen and (max-width: 788px) {
+                  .image {
+                    width: 100px; /* Sesuaikan lebar gambar sesuai kebutuhan */
+                    height: 100px; /* Sesuaikan tinggi gambar sesuai kebutuhan */
+                    border-radius: 50%;
+                    padding:10px;
+                    display: block; /* Atur elemen menjadi blok agar dapat menggunakan margin */
+                    margin-left: auto; /* Pusatkan gambar secara horizontal */
+      margin-right: auto; /* Pusatkan gambar secara horizontal */
+                  }
+                }
+              
+                /* Untuk layar dengan lebar lebih dari 768 piksel (misalnya tampilan desktop) */
+                @media screen and (min-width: 769px) {
+                  .image {
+                    width: 150px; /* Sesuaikan lebar gambar sesuai kebutuhan */
+                    height: 150px; /* Sesuaikan tinggi gambar sesuai kebutuhan */
+                    border-radius: 50%;
+                    padding: 10px;
+                    display: block; /* Atur elemen menjadi blok agar dapat menggunakan margin */
+      margin-left: auto; /* Pusatkan gambar secara horizontal */
+      margin-right: auto; /* Pusatkan gambar secara horizontal */
+                  }
+                }
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Nama" name="nama" class="form-control"></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Username </label>
+                .form-control{
+                  border-radius: 8px;
+                }
 
-                                    <div class="col-sm-10"><input type="text" placeholder="Username" name="username" class="form-control"></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Password</label>
+                @media screen and (max-width: 788px) {
+                  .buttom{
+                    width: 100px; /* Sesuaikan lebar gambar sesuai kebutuhan */
+                    height: 100px; /* Sesuaikan tinggi gambar sesuai kebutuhan */
+                    border-radius: 50%;
+                    display: block; /* Atur elemen menjadi blok agar dapat menggunakan margin */
+                    margin-left: auto; /* Pusatkan gambar secara horizontal */
+                    margin-right: auto; /* Pusatkan gambar secara horizontal */
+                  }
 
-                                    <div class="col-sm-10"><input type="password" placeholder="Password" name="password" class="form-control"></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10"><input type="email" placeholder="Email" name="email" class="form-control"></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">No HP</label>
-                                    <div class="col-sm-10"><input type="text" placeholder="HP" name="nohp" class="form-control"></div>
-                                </div>
-                                 <div class="form-group"><label class="col-sm-2 control-label">Alamat</label>
-                                    <div class="col-sm-10"><input type="text" placeholder="Alamat" name="alamat" class="form-control"></div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-sm-10 col-sm-offset-2" style="text-align: end">
-                                        <button class="btn btn-primary" type="submit">Save</button>
-                                    </div>
-                                </div>
-                            </form>
-    </div></div>
+                }
+              </style>
+              
+                <div>
+                  <div class="ibox-content no-padding border-left-right">
+                    <img src="{{ URL:: asset ('assets/img/user/')}}/{{session()->get('photo')? : 'profile_small.jpg' }}" class="image" style="cursor: pointer;" alt="profile">
+
+                    <!-- Modal untuk mengganti foto -->
+               
+                  
+                    <div class="modal fade" id="changePhotoModal" tabindex="-1" role="dialog" aria-labelledby="changePhotoModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="changePhotoModalLabel">Change Photo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <!-- Input file untuk mengganti foto -->
+                            <form action="{{ route('updatePhoto', $data->uuid) }}" method="POST"method="POST" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
+                              <div class="form-group">
+                                  <label for="photoInput">Upload Photo:</label>
+                                  <input type="file" id="photoInput" name="photo" class="form-control">
+                              </div>
+                          
+                              <button type="submit" class="btn btn-primary">Upload</button>
+                          </form>
+                          </div>                          
+                          
+                        </div>
+                      </div>
                     </div>
+                    
+                    
+                    <script>
+                      // Tangkap elemen gambar dengan kelas "image"
+                      var image = document.querySelector('.image');
+                    
+                      // Tambahkan event listener untuk aksi klik pada gambar
+                      image.addEventListener('click', function() {
+                        // Munculkan modal ketika gambar di klik
+                        $('#changePhotoModal').modal('show');
+                      });
+                    </script>
                 </div>
+            
+                    <div class="ibox-content profile-content">
+                        <h4 style="text-align: center"><strong>{{session('nama')}}</strong></h4>
+                        <p style="text-align: center"><i class="fa fa-user-circle-o"></i> {{session('role')}}</p>
+                        <div class="user-button">
+                            <div class="row">
+                              <label class="btn btn-primary btn-rounded" style="margin-right: 20px; margin-left: 20px; display: block; align-items: center; cursor: pointer; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);" data-toggle="modal" data-target="#changePasswordModal">
+                                <i class="fa fa-info-circle"></i> Password
+                              </label>
+                              <img id="previewImage" src="#" alt="Preview" style="display: none; max-width: 200px; margin: 20px;">
+                                {{-- <div class="col-md-6">
+                                    <button type="button" class="btn btn-default btn-sm btn-block"><i class="fa fa-coffee"></i> Buy a coffee</button>
+                                </div> --}}
+                            </div>
+                        </div>
+                    </div>
+                  @include('page.user.password')
+            </div>
+        </div>
+            </div>
+        <div class="col-md-8">
+            <div class="ibox float-e-margins" style="border:2px dashed #1AB394; border-radius:2px">
+           @include('page.user.update')
+            
+                    
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 @endsection
+   
+  
+  
+
+
+
+
+    
+

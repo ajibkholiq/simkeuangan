@@ -23,11 +23,19 @@ class Adm_RoleController extends Controller
     
 public function index()
 {
-    $menu = adm_menu::select('induk','kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
+    $menu = adm_menu::select('kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
     $adm_roles = adm_role::get();
     return view('page.adm_role.index', compact('adm_roles','menu'));
     // return $adm_roles;
 }
+
+
+
+
+    public function create()
+    {
+        return view('page.adm_role.create');
+    }
 
     public function store(Request $request)
     {
@@ -43,8 +51,8 @@ public function index()
             'uuid' => uniqid(),
             'nama_role' => $request->nama_role,
             'remark' => $request->remark,
-            'create_by' => $request->session()->get('nama')
-            // 'update_by' => $request->update_by
+            'create_by' => $request->create_by,
+            'update_by' => $request->update_by
         ]);
         
         if (!$data){
@@ -60,9 +68,9 @@ public function index()
 
     function edit($id)
     {
-        $menu = adm_menu::select('induk','kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
-        $adm_role = adm_role::where('uuid', $id)->first();
-        return view('page.adm_role.edit', compact('adm_role','menu'));
+        $menu = adm_menu::select('kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
+    $adm_role = adm_role::where('uuid', $id)->first();
+    return view('page.adm_role.edit', compact('adm_role','menu'));
     }
 
     public function update(Request $request, $adm_role) 
@@ -72,7 +80,7 @@ public function index()
         'nama_role' => $request->nama_role,
         'remark' => $request->remark,
         // 'create_by' => $request->create_by,
-        'update_by' =>  $request->session()->get('nama')
+        // 'update_by' => $request->update_by 
     ]);
 
     if (!$data) {
@@ -81,7 +89,7 @@ public function index()
            'data' => $data
         ]);
     } else {
-        return redirect('adm-role')->with('success', 'Menu Behasil Diedit');
+        return redirect('adm_role')->with('success', 'Menu Behasil Diedit');
     }
 }
 

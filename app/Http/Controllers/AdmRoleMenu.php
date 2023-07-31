@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\adm_role;
 use App\Models\adm_menu;
-use App\Models\adm_role_menu;
 use Illuminate\Support\Facades\DB;
+use App\Models\adm_role_menu;
 
 
 class AdmRoleMenu extends Controller

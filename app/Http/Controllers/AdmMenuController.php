@@ -57,7 +57,7 @@ class AdmMenuController extends Controller
 
     function show($id){
         $data = adm_menu::where('uuid',$id)->get();
-        return response()->json($data, 200, $headers);
+        return response()->json($data, 200);
         // return adm_menu::findOrFail($id);
 
     }
@@ -78,6 +78,8 @@ class AdmMenuController extends Controller
                 'data' => $data
                 ]
             );
+        }else{
+        return redirect('adm-menu')->with('success','Menu Behasil Diedit');
         }
          return response()->json([
                 "mesage" => "berhasil diedit",
