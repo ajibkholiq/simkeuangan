@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\adm_menu;
+use Illuminate\Support\Facades\Session;
+
 
 class AdmMenuController extends Controller
 {
@@ -30,9 +32,9 @@ class AdmMenuController extends Controller
             'urut' => "",
             'nama_menu' => $request->nama,
             'route' => $request->route,
-            'remark' => $request->remark
+            'remark' => $request->remark,
             // 'update_by'=> Auth::user()->id,
-            // create_by => Auth::user()->id
+            'create_by' => session::get('nama')
         ]);
 
         if (!$data){
@@ -49,14 +51,13 @@ class AdmMenuController extends Controller
     function edit ($id){
         $data = adm_menu::where('uuid',$id)->first();
         $menu = $this->getHeadMenu();
-
         return view('page.AdmMenu.edit',compact('data','menu'));
 
     }
 
     function show($id){
         $data = adm_menu::where('uuid',$id)->get();
-        return $data;
+        return response()->json($data, 200);
         // return adm_menu::findOrFail($id);
 
     }
@@ -66,8 +67,8 @@ class AdmMenuController extends Controller
             'kode_menu' => $request->kode,
             'nama_menu' => $request->nama,
             'route' => $request->route,
-            'remark' => $request->remark
-            // 'update_by'=> Auth::user()->id
+            'remark' => $request->remark,
+            'update_by'=> session::get('nama')
             ]
         );
 
@@ -78,8 +79,13 @@ class AdmMenuController extends Controller
                 ]
             );
         }else{
-        return redirect('adm-menu')->with('success','Menu Berhasil diedit');
+        return redirect('adm-menu')->with('success','Menu Behasil Diedit');
         }
+         return response()->json([
+                "mesage" => "berhasil diedit",
+                'data' => $data
+                ]
+            );
     }
     function destroy($id){
         $data = adm_menu::where('uuid',$id)->first();

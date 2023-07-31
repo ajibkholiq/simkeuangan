@@ -1,6 +1,7 @@
 @extends('layout.master')
 
 @section('main')
+
 {{-- membuat landing page selamat datang --}}
 <style>
   
@@ -50,3 +51,7 @@
         <img alt="image" class=""style="height: 300px; margin-right: 100px; margin-top:50px " src="{{ URL:: asset ('assets/img/line-graph.png')}}" />
 </div>
 @endsection
+=======
+
+@endsection
+>>>>>>> 6aba703e698547ad503f7b151e0738ffd07a9914

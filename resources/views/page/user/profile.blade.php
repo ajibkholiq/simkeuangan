@@ -1,12 +1,13 @@
 @extends('layout.master')
 
 
+
 @section('main')
    {{-- membuat profile tampilan  --}}
    <div class="wrapper wrapper-content">
     <div class="row animated fadeInRight">
         <div class="col-md-3">
-            <div class="ibox float-e-margins" style="border: 2px solid #1AB394; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); " >
+            <div class="ibox float-e-margins" style="border: 2px solid #1AB394; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); border-radius:2px " >
               <style>
                 /* Untuk layar dengan lebar 768 piksel atau kurang (misalnya tampilan ponsel) */
                 @media screen and (max-width: 788px) {
@@ -45,7 +46,7 @@
                     border-radius: 50%;
                     display: block; /* Atur elemen menjadi blok agar dapat menggunakan margin */
                     margin-left: auto; /* Pusatkan gambar secara horizontal */
-      margin-right: auto; /* Pusatkan gambar secara horizontal */
+                    margin-right: auto; /* Pusatkan gambar secara horizontal */
                   }
 
                 }
@@ -53,9 +54,11 @@
               
                 <div>
                   <div class="ibox-content no-padding border-left-right">
-                    <img src="{{ asset('assets/img/a4.jpg') }}" class="image" style="cursor: pointer;" alt="profile">
+                    <img src="{{ URL:: asset ('assets/img/user/')}}/{{session()->get('photo')? : 'profile_small.jpg' }}" class="image" style="cursor: pointer;" alt="profile">
 
                     <!-- Modal untuk mengganti foto -->
+               
+                  
                     <div class="modal fade" id="changePhotoModal" tabindex="-1" role="dialog" aria-labelledby="changePhotoModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
@@ -67,15 +70,18 @@
                           </div>
                           <div class="modal-body">
                             <!-- Input file untuk mengganti foto -->
-                            <input type="file" id="photoInput" style="display: none; margin-right: 20px; margin-left: 20px;">
-                            <label class="btn btn-primary" for="photoInput">
-                              <i class="fa fa-upload"></i> Upload New Photo
-                            </label>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <!-- Tombol simpan jika diperlukan -->
-                          </div>
+                            <form action="{{ route('updatePhoto', $data->uuid) }}" method="POST"method="POST" enctype="multipart/form-data">
+                              @csrf
+                              @method('PUT')
+                              <div class="form-group">
+                                  <label for="photoInput">Upload Photo:</label>
+                                  <input type="file" id="photoInput" name="photo" class="form-control">
+                              </div>
+                          
+                              <button type="submit" class="btn btn-primary">Upload</button>
+                          </form>
+                          </div>                          
+                          
                         </div>
                       </div>
                     </div>
@@ -94,8 +100,8 @@
                 </div>
             
                     <div class="ibox-content profile-content">
-                        <h4 style="text-align: center"><strong>Ricky Darmawan</strong></h4>
-                        <p style="text-align: center"><i class="fa fa-map-marker"></i>Admin</p>
+                        <h4 style="text-align: center"><strong>{{session('nama')}}</strong></h4>
+                        <p style="text-align: center"><i class="fa fa-user-circle-o"></i> {{session('role')}}</p>
                         <div class="user-button">
                             <div class="row">
                               <label class="btn btn-primary btn-rounded" style="margin-right: 20px; margin-left: 20px; display: block; align-items: center; cursor: pointer; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);" data-toggle="modal" data-target="#changePasswordModal">
@@ -108,68 +114,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                          <div class="modal-body">
-                            <!-- Form untuk mengganti password -->
-                            <form>
-                              <div class="form-group">
-                                <label for="currentPassword">Current Password</label>
-                                <input type="password" class="form-control" id="currentPassword" placeholder="Enter current password" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="newPassword">New Password</label>
-                                <input type="password" class="form-control" id="newPassword" placeholder="Enter new password" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="confirmPassword">Confirm New Password</label>
-                                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password" required>
-                              </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save Changes</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  @include('page.user.password')
             </div>
         </div>
             </div>
         <div class="col-md-8">
-            <div class="ibox float-e-margins" style="border:2px dashed #1AB394">
-                
-                <div class="ibox-content" style="box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);">
-                  <div class="form-group">    
-                    <label for="nama_role">Nama:</label>
-                    <input type="text" name="name" class="form-control" value="">
-                </div>
-                <div class="form-group">    
-                  <label for="nama_role">email:</label>
-                  <input type="email" name="email" class="form-control" value="">
-              </div>
-              <div class="form-group">    
-                <label for="nama_role">Username:</label>
-                <input type="text" name="name" class="form-control" value="">
-            </div>
-            <div class="form-group">    
-              <label for="nama_role">No HP:</label>
-              <input type="number" name="number" class="form-control" value="">
-          </div>
-          <div class="form-group">    
-            <label for="nama_role">alamat:</label>
-            <input type="text" name="name" class="form-control" value="">
-        </div>
-        <button type="submit" class="btn btn-primary" class="buttom" style="border-radius: 25px">Update</button>
-
+            <div class="ibox float-e-margins" style="border:2px dashed #1AB394; border-radius:2px">
+           @include('page.user.update')
+            
                     
 
                 </div>
@@ -178,6 +130,7 @@
         </div>
     </div>
 </div>
+@endsection
    
   
   
@@ -186,4 +139,4 @@
 
 
     
-@endsection
+
