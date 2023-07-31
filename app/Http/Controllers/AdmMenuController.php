@@ -96,4 +96,3 @@ class AdmMenuController extends Controller
         }
     }
 }
-

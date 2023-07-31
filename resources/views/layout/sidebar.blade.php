@@ -45,6 +45,7 @@
                 <li>
                     <a href="{{URL::route('adm-role-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE MENU</span></span></a>
                 </li>
+
                 
             </ul>
 

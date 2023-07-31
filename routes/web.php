@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmMenuController;
 use App\Http\Controllers\AdmRoleMenu;
 use App\Models\adm_menu;
+use App\Http\Controllers\Adm_RoleController;
+use App\Models\adm_role;
 
 
 /*
@@ -22,7 +24,9 @@ Route::get('/', function () {
     return view('layout.master',compact('menu'));
     // return $menu;
 });
-Route::resource('adm-menu', AdmMenuController::class)->except('show');
-Route::resource('adm-role-menu', AdmRoleMenu::class);
-
+Route::get('/ajib' , function (){
+    return view('page.home');
+});
+Route::resource('adm-menu', AdmMenuController::class);
+Route::get('menu/{$id}',[AdmMenuController::class ,'getEdit'])->name('edit');
 
