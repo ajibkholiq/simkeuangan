@@ -3,6 +3,13 @@
 @section('main')
 <div class="row" style="margin-top:10px">
     <div class="col-md-12">
+        @if (session('success'))
+            <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissable">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <a class="alert-link" href="#">Berhasil.! </a>, {{ session('success') }}
+                </div>
+
             </div>
         @endif
     </div>

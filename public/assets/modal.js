@@ -142,7 +142,6 @@ $("#kecamatanEdit").change(() => {$.ajax({url: "/api/getkelurahan/" + $("#kecama
 $("#btn-add").click(() => {$('#add-siswa').modal('show');});
 $(document).on("click", "#bt-hapus", function () {
     let uuid = $(this).data("id");
-    console.log(uuid);
     $.ajax({
         url: "/siswa/" + uuid,
         type: "DELETE",

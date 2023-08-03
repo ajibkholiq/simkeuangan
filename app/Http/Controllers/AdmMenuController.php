@@ -4,20 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\adm_menu;
+use App\Helper\menu;
 use Illuminate\Support\Facades\Session;
 
 
 class AdmMenuController extends Controller
 {
 
-    function getHeadMenu (){
-        return adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
     
-    }
 
     function index (){
         $data = adm_menu::all();
-        $menu = $this->getHeadMenu();
+        $menu = menu::getMenu(Session::get('role'));
         return view('page.AdmMenu.index',compact('data','menu'));
         // return $menu;
 

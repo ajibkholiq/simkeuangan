@@ -51,14 +51,10 @@
 
                 }
               </style>
-              
                 <div>
                   <div class="ibox-content no-padding border-left-right">
-                    <img src="{{ URL:: asset ('assets/img/user/')}}/{{session()->get('photo')? : 'profile_small.jpg' }}" class="image" style="cursor: pointer;" alt="profile">
-
+                    <img src="{{ URL:: asset ('assets/img/user/')}}/{{$data->foto ? : 'profile_small.png' }}" class="image" style="cursor: pointer;" alt="profile">
                     <!-- Modal untuk mengganti foto -->
-               
-                  
                     <div class="modal fade" id="changePhotoModal" tabindex="-1" role="dialog" aria-labelledby="changePhotoModalLabel" aria-hidden="true">
                       <div class="modal-dialog modal-sm" role="document">
                         <div class="modal-content">
@@ -121,15 +117,11 @@
         <div class="col-md-8">
             <div class="ibox float-e-margins" style="border:2px dashed #1AB394; border-radius:2px">
            @include('page.user.update')
-            
-                    
-
                 </div>
             </div>
 
         </div>
     </div>
-</div>
 @endsection
    
   
