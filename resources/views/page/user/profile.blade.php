@@ -3,9 +3,18 @@
 
 
 @section('main')
+
    {{-- membuat profile tampilan  --}}
    <div class="wrapper wrapper-content">
     <div class="row animated fadeInRight">
+       @if ( session('success'))
+               <div class="col-lg-12">
+                <div class="alert alert-success alert-dismissable">
+                                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                <a class="alert-link" href="#">Berhasil.! </a>{{session('success')}} 
+                </div>
+            </div> 
+          @endif
         <div class="col-md-3">
             <div class="ibox float-e-margins" style="border: 2px solid #1AB394; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); border-radius:2px " >
               <style>
@@ -18,7 +27,7 @@
                     padding:10px;
                     display: block; /* Atur elemen menjadi blok agar dapat menggunakan margin */
                     margin-left: auto; /* Pusatkan gambar secara horizontal */
-      margin-right: auto; /* Pusatkan gambar secara horizontal */
+                    margin-right: auto; /* Pusatkan gambar secara horizontal */
                   }
                 }
               
