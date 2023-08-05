@@ -41,7 +41,7 @@ Route::middleware('checklogin')->group(function () {
     });
     Route::get('/', function () {
         $menu = menu::getMenu(Session::get('role'));
-        return view('layout.master',compact('menu'));
+        return view('page.home',compact('menu'));
     });
     Route::resource('tahun_pelajaran', thnPljrnController::class)->except(['show','create','edit']);
     Route::resource('siswa', SiswaController::class)->except(['create','edit']);
