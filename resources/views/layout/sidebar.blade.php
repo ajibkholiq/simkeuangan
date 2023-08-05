@@ -4,34 +4,53 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="{{ URL:: asset ('assets/img/profile_small.jpg')}}" />
+                            <img alt="image" class="img-circle" src="{{ URL:: asset ('assets/img/user/')}}/{{session()->get('photo')? : 'profile_small.png' }}" style="width: 70px"/>
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">David Williams</strong>
-                             </span> <span class="text-muted text-xs block">Art Director <b class="caret"></b></span> </span> </a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold text-capitalize">{{session('nama')}}</strong>
+                             </span> <span class="text-muted text-xs block text-uppercase" >{{session('role')}} <b class="caret"></b></span> </span> </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="profile.html">Profile</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="mailbox.html">Mailbox</a></li>
+                            <li><a href="/profile">Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="{{route('logout')}}">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element">
                         IN+
                     </div>
-                </li>
-                <li>
-                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
+                @foreach ($menu as $item)
+                <li class="{{Request::segment(1) == $item->route ? 'active' : ''}}">
+                    @if ($item->induk == "head")
+                    <a href="/{{$item->route}} " class=""><i class="fa fa-th-large"></i> <span class="nav-label text-uppercase">{{$item->kode_menu}}. {{$item->nama_menu}}</span><span class ="{{$item->route ? : 'fa arrow' }}"></span></a>
+                    @endif
+                    @if ($item->route == "")
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="index.html">Dashboard v.1</a></li>
-                        <li><a href="dashboard_2.html">Dashboard v.2</a></li>
-                        <li><a href="dashboard_3.html">Dashboard v.3</a></li>
-                        <li><a href="dashboard_4_1.html">Dashboard v.4</a></li>
-                        <li><a href="dashboard_5.html">Dashboard v.5 </a></li>
+                        @foreach($menu as $sm)
+                        @if ( $sm->induk == $item->nama_menu )
+                            <li class="{{Request::segment(1) == $sm->route ? 'active' : ''}}"><a href="{{$sm->route}}" class="text-capitalize">{{$sm->kode_menu}}. {{$sm->nama_menu}}</a></li>
+                        @endif
+                        @endforeach
                     </ul>
+                    @endif
+                    
                 </li>
-                
+                @endforeach
+@if (session()->get('role') == 'admin')
+                <li class="{{Request::segment(1) == 'adm-user' ? 'active' : ''}}">
+                    <a href="{{URL::route('adm-user.index')}}"><i class="fa fa-user-circle"></i> <span class="nav-label ">ADM USER</span></span></a>
+                </li>
+                <li class="{{Request::segment(1) == 'adm-menu' ? 'active' : ''}}">
+                    <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM MENU</span></span></a>
+                </li>
+                 <li class="{{Request::segment(1) == 'adm-role' ? 'active' : ''}}">
+                    <a href="{{URL::route('adm-role.index')}}"><i class="fa fa-id-card"></i> <span class="nav-label ">ADM ROLE</span></span></a>
+                </li>
+                <li class="{{Request::segment(1) == 'adm-role-menu' ? 'active' : ''}}">
+                    <a href="{{URL::route('adm-role-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM ROLE MENU</span></span></a>
+                </li>
+               
+@endif
+
             </ul>
 
         </div>

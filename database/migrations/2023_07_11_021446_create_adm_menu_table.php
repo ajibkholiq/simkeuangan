@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string("nama_menu",20);
             $table->string("icon",100);
             $table->string("urut",20);
-            $table->string("route",30);
+            $table->string("route",30)->nullable();
             $table->string("remark",100);
-            $table->string("create_by",20);
-            $table->string("update_by",20);
+            $table->string("create_by",20)->nullable();
+            $table->string("update_by",20)->nullable();
             $table->timestamps();
         });
     }

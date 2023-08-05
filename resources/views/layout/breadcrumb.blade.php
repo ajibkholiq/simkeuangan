@@ -1,9 +1,15 @@
 <div class="row wrapper border-bottom white-bg page-heading">
-        <div class="col-lg-10" >
-            <h2>{{ Request::segment(count(Request::segments()))}}</h2>
+        <div class="col-lg-12 " >
+           
+            <h2 class="text-capitalize"> {{Request::segment(count(Request::segments()))?  : "Welcome"}} </h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="index.html">{{Request::segment(1)}}</a>
+                        @for ($i = 0; $i < count(Request::segments()); $i++)
+                            {{Request::segment($i) }} 
+                        @endfor
+                        <a  class="text-capitalize" href="/{{Request::segment(count(Request::segments()))}}">
+                           {{Request::segment(count(Request::segments()))}}
+                        </a>
                     </li>
                 </ol>
         </div>
