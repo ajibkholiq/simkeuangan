@@ -40,11 +40,11 @@
 
 <div class="content">
     <div class="text">
-        <h2>Selamat Datang Di As-syifa Bording School</h2>
+        <h2 style="text-transform: capitalize ">Selamat Datang  {{session('nama')}}</h2>
         <h4>Menemukan Solusi Keuangan Yang Andal Dan Efektif</h4>
         <p>Apakah anda mencari cara untuk mengelola keuangan anda lebih cerdas ?
                 Atau mungkin anda ingin berivestasi untuk masa depan yang lebih stabil dan sejahtera ?
-                Di as-syifa bording school ,kami siap membantu anda mencapai tujuan keuangan </p>
+                 </p>
 
     </div>
     <div class="image">

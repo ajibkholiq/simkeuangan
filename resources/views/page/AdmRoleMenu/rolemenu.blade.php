@@ -29,7 +29,7 @@
                                         <th style="width: 20%;">Role</th>
                                         <th>Daftar Menu</th>
                                     </thead>
-                                    <tbody style="text-align: center; text-transform:uppercase"  >
+                                    <tbody style="text-align: center; text-transform:capitalize"  >
                                         @foreach ($role as $item)
                                         <tr>
                                             <td>#</td>
@@ -37,7 +37,7 @@
                                             <td> 
                                             @foreach ($test as $tem)
                                             @if ($tem->nama_role == $item->nama_role )
-                                                ({{$tem->nama_menu}}) 
+                                                 ({{$tem->nama_menu}}) 
                                             @endif
                                             @endforeach
                                            </td>
@@ -60,8 +60,9 @@
                     <div class="ibox-content">
                         <form action="{{route('adm-role-menu.store')}}" method="POST">
                             @foreach ($role as $item)
-                                    <div style="height: auto ; border:1pt dashed rgb(117, 114, 114) ; padding:10px 0 ; margin:20px 0; border-radius: 10px; font-size: 10pt;text-transform: uppercase"   >
-                                        <input type="checkbox" name="idRole[]" value="{{$item->id}}"  style="margin-left:30px"> {{$item->nama_role}}
+                                    <div style="height: auto ; border:1pt dashed rgb(117, 114, 114) ; padding:5px 0 ; margin:20px 0; border-radius: 10px;text-transform: capitalize"   >
+                                        <input type="checkbox" name="idRole[]" value="{{$item->id}}" id="{{$item->nama_role}}"  style="margin-left:30px"> 
+                                        <label for="{{$item->nama_role}}">{{$item->nama_role}}</label>
                                     </div>    
                             @endforeach
                     </div>
@@ -76,12 +77,16 @@
                           @csrf
                             @foreach ($data as $item)
                                 @if ($item->induk == "head")
-                                    <div style="height: auto ; border:1pt dashed rgb(117, 114, 114) ; padding:20px 20px ; margin:20px 0 ; border-radius: 10px; font-size: 10pt;text-transform: uppercase"   >
-                                        <input type="checkbox" name="idMenu[]" value="{{$item->id}}"> {{$item->nama_menu}}
+                                    <div style="height: auto ; border:1pt dashed rgb(117, 114, 114) ; padding:5px 20px ; margin:20px 0 ; border-radius: 10px; text-transform: capitalize"   >
+                                        <input type="checkbox" id="{{$item->nama_menu}}" name="idMenu[]" value="{{$item->id}}">
+                                        <label for="{{$item->nama_menu}}">{{$item->nama_menu}}</label>
+
                                         @foreach ($data as $sm)
                                             @if ($sm->induk == $item->nama_menu)
-                                                <div class="hr-line-dashed"></div>
-                                                <input type="checkbox" name="idMenu[]" value="{{$sm->id}}" style="margin-left:30px"> {{$sm->nama_menu}}
+                                                <hr style="margin: 0;">
+                                                <input type="checkbox" name="idMenu[]" id="{{$sm->nama_menu}}" value="{{$sm->id}}" style="margin-left:30px"> 
+                                                <label for="{{$sm->nama_menu}}">{{$sm->nama_menu}}</label>
+                                                
                                             @endif 
                                         @endforeach
                                     </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\adm_role;
 use App\Models\adm_menu;
+use App\Helper\menu;
+use Session;
 use Illuminate\Http\Request;
 
 class Adm_RoleController extends Controller
@@ -23,19 +25,11 @@ class Adm_RoleController extends Controller
     
 public function index()
 {
-    $menu = adm_menu::select('kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
+    $menu = menu::getMenu(Session::get('role'));
     $adm_roles = adm_role::get();
     return view('page.adm_role.index', compact('adm_roles','menu'));
     // return $adm_roles;
 }
-
-
-
-
-    public function create()
-    {
-        return view('page.adm_role.create');
-    }
 
     public function store(Request $request)
     {
