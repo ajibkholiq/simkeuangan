@@ -94,6 +94,26 @@ class MenuSeeder extends Seeder
             'route' => '',
             'remark' => 'Laporan Data',
         ]);
+         adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B5',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Tingkat',
+            'route' => 'tingkat',
+            'remark' => 'Master Data Tingkat',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B6',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Unit',
+            'route' => 'unit',
+            'remark' => 'Master Data Unit',
+        ]);
 
 
     }

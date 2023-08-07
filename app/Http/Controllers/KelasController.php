@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use App\Models\MasterTingkat;
 use App\Helper\menu;
 use Session;
 
@@ -11,14 +12,19 @@ class KelasController extends Controller
 {
     function index(){
         $menu = menu::getMenu(Session::get('role'));
-        $data = kelas::all();
-        return view('page.MasterData.kelas',compact(['menu','data']));
+        $data = kelas::join('master_tingkat','tingkat_id','master_tingkat.id')->select('kelas.id','kelas.uuid','kelas',
+            'nama_tingkat', 
+            'kelas.remark',
+            'kelas.created_by',
+            'kelas.updated_by')->get();
+        $tingkat = MasterTingkat::all();
+        return view('page.MasterData.kelas',compact(['menu','data','tingkat']));
     }
     function store(Request $request){
         $data = Kelas::create([
             'uuid' => uniqid(),
             'kelas' => $request->kelas,
-            'tingkat' => $request->tingkat,
+            'tingkat_id' => $request->tingkat,
             'remark' => $request->remark,
             'created_by' => Session::get('nama')
         ]);
