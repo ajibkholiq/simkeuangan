@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\adm_menu;
 use App\Models\Siswa;
+use App\Models\MasterTingkat;
+use App\Models\MasterUnit;
 use Illuminate\Support\Facades\DB;
 
 
@@ -41,5 +43,11 @@ Route::get('getkelurahan/{id}', function ($id){
 });
 Route::get('getSiswa', function(){
     return ['data' => Siswa::all()];
+});
+Route::get('tingkat', function(){
+    return ['data' => MasterTingkat::all()];
+});
+Route::get('unit', function(){
+    return ['data' => MasterUnit::all()];
 });
 

@@ -12,9 +12,8 @@ class SiswaController extends Controller
 {
     function index(){
         $menu = menu::getMenu(Session::get('role'));
-        $data = Siswa::all();
         $kelas = Kelas::all();
-        return view('page.MasterData.siswa',compact(['menu','data','kelas']));
+        return view('page.MasterData.siswa',compact(['menu','kelas']));
     }
     function show($id){
         return response()->json(Siswa::where('uuid',$id)->first(), 200);
