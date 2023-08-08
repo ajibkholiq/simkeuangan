@@ -12,7 +12,10 @@ class Kelas extends Model
     protected $fillable =[
             'uuid',
             'kelas',
+            'kode_kelas',
             'tingkat_id', 
+            'unit_id', 
+            'user_id', 
             'remark',
             'created_by',
             'updated_by'

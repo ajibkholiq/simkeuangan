@@ -14,14 +14,19 @@ return new class extends Migration
         Schema::create('kelas', function (Blueprint $table) {
             $table->id();
             $table->string('uuid',20);
+            $table->string('kode_kelas',20);
             $table->string('kelas',20);
             $table->unsignedBigInteger("tingkat_id");
+            $table->unsignedBigInteger("unit_id");
+            $table->unsignedBigInteger("user_id");
             $table->string('remark',20);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
+            $table->foreign('unit_id')->references('id')->on('master_unit')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('tingkat_id')->references('id')->on('master_tingkat')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

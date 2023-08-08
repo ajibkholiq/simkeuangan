@@ -1,4 +1,8 @@
 @extends('layout.master')
+@push('css')
+        <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!--datatable responsive css-->
+    @endpush
 @section('main')
     <div class="row" style="margin-top:10px">
         @if (session('success'))
@@ -19,54 +23,28 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="data-table" class="table table-striped">
                             <thead>
                                 <tr>
                                     <style>
                                         th {
                                             text-align: center;
                                         }
+                                        td {
+                                            text-transform: capitalize
+                                        }
                                     </style>
-                                    <th>ID</th>
+                                    <th>Action</th>
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Alamat</th>
                                     <th>No HP</th>
                                     <th>Role</th>
-                                    <th>Action</th>
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($data as $data)
-                                    <tr>
-
-                                        <td>{{ $data->id }}</td>
-                                        <td>{{ $data->nama }}</td>
-                                        <td>{{ $data->username }}</td>
-                                        <td>{{ $data->email }}</td>
-                                        <td>{{ $data->alamat }}</td>
-                                        <td>{{ $data->nohp }}</td>
-                                        <td>{{ $data->role }}</td>
-
-                                        <td style="display: flex; justify-content:center; gap: 10px">
-                                            @if ($data->role != 'admin')
-                                                {{-- <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a> --}}
-                                                <a data-toggle="modal" class="btn btn-outline btn-warning fa fa-pencil"
-                                                    id="btn-edit" data-id="{{ $data->uuid }}"></a>
-                                                <form action="{{ route('adm-user.destroy', $data->uuid) }}" method="POST"
-                                                    onsubmit="return confirm('Apakah Anda Yakin ?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"
-                                                        class="btn btn-outline btn-danger fa fa-trash-o"></button>
-                                                </form>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
+                           
                         </table>
                     </div>
                 </div>
@@ -94,11 +72,52 @@
 @endsection
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+   
     <script>
-        $('body').on('click', '#btn-edit', function() {
-            let uuid = $(this).data('id');
+        document.addEventListener("DOMContentLoaded", function () {
+    let table = new DataTable("#data-table", {
+        processing: false,
+        ordering: true,
+        lengthMenu: [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"],
+        ],
+        language: {
+            emptyTable: "Tidak ada data",
+        },
+        ajax: {
+            url: "/api/pegawai",
+            type: "GET",
+        },
+        columns: [
+            {
+                title: "Action",
+                data: null,
+                render: function (data, type, row) {
+                    if(data.role !== 'admin'){
+                    return `
+                    <div style="display:flex; gap:8px; justify-content: start">
+                   <button id="bt-hapus" class="btn btn-outline btn-danger fa fa-trash-o" data-id="${data.uuid}"></button> 
+                    <button id="bt-edit" class="btn btn-outline btn-warning fa fa-pencil " data-uuid="${data.uuid}"></button></div>
+                   `;}
+                   return '';
+                },
+            },
+            { title: "Nama", data: "nama" },
+            { title: "Username", data: "username" },
+            { title: "Email", data: "email" },
+            { title: "Alamat", data: "alamat" },
+            { title: "No Hp", data: "nohp" },
+            { title: "Role", data: "role" },
+        ],
+    });
+});
+        $('body').on('click', '#bt-edit', function() {
+            let uuid = $(this).data('uuid');
             $.ajax({
-                url: '/adm-user/' + uuid,
+                url: '/pegawai/' + uuid,
                 type: 'get',
                 success: function(data) {
                     $('#id').val(data.uuid);
@@ -119,7 +138,7 @@
             console.log(uuid);
 
             $.ajax({
-                url: '/adm-user/' + uuid,
+                url: '/pegawai/' + uuid,
                 type: 'PUT',
                 data: {
                     'nama': $('#nama').val(),
@@ -140,5 +159,21 @@
                 }
             });
         });
+$(document).on("click", "#bt-hapus", function () {
+    let uuid = $(this).data("id");
+    $.ajax({
+        url: "/pegawai/" + uuid,
+        type: "DELETE",
+        data: {
+            _token: $("input[name='_token']").val(),
+            _method: "DELETE",
+        },
+        success: () => {
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+        },
+    });
+});
     </script>
 @endpush

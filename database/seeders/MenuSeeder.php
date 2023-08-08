@@ -37,7 +37,7 @@ class MenuSeeder extends Seeder
          adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
-            'kode_menu' => 'B1',
+            'kode_menu' => 'B5',
             'icon' => "",
             'urut' => "",
             'nama_menu' =>'Tahun Pelajaran',
@@ -47,7 +47,7 @@ class MenuSeeder extends Seeder
          adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
-            'kode_menu' => 'B2',
+            'kode_menu' => 'B6',
             'icon' => "",
             'urut' => "",
             'nama_menu' =>'Semester',
@@ -97,7 +97,7 @@ class MenuSeeder extends Seeder
          adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
-            'kode_menu' => 'B5',
+            'kode_menu' => 'B2',
             'icon' => "",
             'urut' => "",
             'nama_menu' =>'Tingkat',
@@ -107,7 +107,7 @@ class MenuSeeder extends Seeder
         adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
-            'kode_menu' => 'B6',
+            'kode_menu' => 'B1',
             'icon' => "",
             'urut' => "",
             'nama_menu' =>'Unit',

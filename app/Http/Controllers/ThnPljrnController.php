@@ -11,9 +11,8 @@ use Session;
 class ThnPljrnController extends Controller
 {
     function index(){
-        $menu = menu::getMenu(Session::get('role'));
-        $data = pelajaran::all();
-        return view('page.MasterData.thnPlajaran',compact(['menu','data']));
+        $menu = menu::getMenu(Session::get('role'));        
+        return view('page.MasterData.thnPlajaran',compact(['menu']));
     }
     function store(Request $request){
         $data = pelajaran::create([
@@ -54,10 +53,10 @@ class ThnPljrnController extends Controller
     function destroy($id){
         $data = pelajaran::where('uuid',$id)->first();
         $data->delete();
-        if($data){
-            return redirect()->back()->with('success','Tahun Pelajaran Behasil dihapus');
-        }else{
-            return redirect()->back()->with('fail','Tahun Pelajarannu Gagal dihapus');
+        if($data->delete()){
+            return response()->json(['succsess' => 'Tahun pelajaran berhasil dihapus', 'data' => $id]);
         }
+        return response()->json(['fail' => 'Tahun pelajaran gagal dihapus', 'data' => $id]);
+
     }
 }

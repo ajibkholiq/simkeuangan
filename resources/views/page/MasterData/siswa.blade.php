@@ -23,27 +23,25 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table id="data-table" class="table table-striped">
-                            <thead>
-                                <style>
+                        <style>
                                     th {
                                         text-align: center
                                     }
+                                    td{ text-transform: capitalize}
                                 </style>
+                        <table id="data-table" class="table table-striped">
+                            <thead>
+                                
                                 <tr style="">
                                     <th>Action</th>
                                     <th>Nama</th>
+                                    <th>Kelas</th>
                                     <th>Nama Ayah</th>
                                     <th>Nama Ibu</th>
                                     <th>No Hp</th>
                                     <th>Alamat</th>
-                                    <th>Kelurahan</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kabupaten</th>
-                                    <th>Provinsi</th>
-                                    <th>Remark</th>
-                                    <th>Created by</th>
-                                    <th>Update by</th>
+                                    <th>Keterangan</th>
+                                    
                                 </tr>
                             </thead>
                         </table>
@@ -117,8 +115,8 @@
                                 <div class="col-sm-9"><input type="text" placeholder="Alamat" name="alamat" required
                                         class="form-control"></div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" name="remark" required
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark" required
                                         class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -197,8 +195,8 @@
                                             required class="form-control"></div>
                                 </div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" id="remark" required
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" id="remark" required
                                         class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>

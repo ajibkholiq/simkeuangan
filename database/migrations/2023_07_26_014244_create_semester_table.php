@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('semester', function (Blueprint $table) {
             $table->id();
             $table->string('uuid',20);
-            $table->string('semester',5);
+            $table->string('semester',20);
             $table->enum('status', ['AKTIF','TIDAK']);
             $table->string('remark',20);
             $table->string('created_by')->nullable();

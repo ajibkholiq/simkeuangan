@@ -11,8 +11,8 @@ class SemesterController extends Controller
 {
         function index(){
         $menu = menu::getMenu(Session::get('role'));
-        $data = SMSTR::all();
-        return view('page.MasterData.semester',compact(['menu','data']));
+       
+        return view('page.MasterData.semester',compact(['menu']));
     }
     function store(Request $request){
         $data = SMSTR::create([
@@ -53,10 +53,10 @@ class SemesterController extends Controller
     function destroy($id){
         $data = SMSTR::where('uuid',$id)->first();
         $data->delete();
-        if($data){
-            return redirect()->back()->with('success','Tahun Pelajaran Behasil dihapus');
-        }else{
-            return redirect()->back()->with('fail','Tahun Pelajarannu Gagal dihapus');
+         if($data->delete()){
+            return response()->json(['succsess' => 'Unit berhasil dihapus', 'data' => $id]);
         }
+        return response()->json(['fail' => 'Unit gagal dihapus', 'data' => $id]);
+
     }
 }

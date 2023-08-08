@@ -66,7 +66,7 @@ Route::middleware('checklogin')->group(function () {
         Route::resource('adm-menu', AdmMenuController::class)->except(['create','show']);
         Route::resource('adm-role', Adm_roleController::class)->except(['create','edit']);
         Route::resource('adm-role-menu', AdmRoleMenu::class)->only(['index','store']);
-        Route::resource('adm-user', AdmUserController::class);
+        Route::resource('pegawai', AdmUserController::class);
     });
 });
 
