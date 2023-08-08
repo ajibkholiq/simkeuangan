@@ -27,6 +27,7 @@
                    `;
                  },
              },
+             { title: "NIS", data: "nis" },
              { title: "Nama", data: "nama" },
              { title: "Kelas", data: "kelas" },
              { title: "Nama Ayah", data: "nama_ayah" },
