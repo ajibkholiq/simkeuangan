@@ -22,6 +22,7 @@ class SiswaController extends Controller
     if (!Siswa::create([
             'uuid' => uniqid(),
             'nama' => $request->nama,
+            'nis' => $request->nis,
             'id_kelas' => $request->kelas,
             'alamat_detail' => $request->alamat,
             'provinsi' => $request->provinsi,

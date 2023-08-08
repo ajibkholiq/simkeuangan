@@ -42,18 +42,8 @@ Route::get('getkecamatan/{id}', function ($id){
 Route::get('getkelurahan/{id}', function ($id){
     return response()->json(DB::table('kelurahan')->select('kelurahan.name')->join('kecamatan','kecamatan_id','kecamatan.id')->where('kecamatan.name',str_replace('%20',' ' ,$id))->get() , 200,);
 });
-Route::get('getSiswa', function(){return ['data' => Siswa::join('kelas','id_kelas','kelas.id')->select('siswa.uuid',
-            'nama',
-            'kelas.kelas',
-            'alamat_detail',
-            'provinsi',
-            'kabupaten',
-            'kecamatan',
-            'kelurahan',
-            'nama_ayah',
-            'nama_ibu',
-            'no_hp',
-            'siswa.remark',)->get()];});
+Route::get('getSiswa', function(){return ['data' => Siswa::join('kelas','id_kelas','kelas.id')->select('siswa.uuid','nis','nama','kelas.kelas','alamat_detail',
+            'provinsi','kabupaten','kecamatan','kelurahan','nama_ayah','nama_ibu','no_hp','siswa.remark',)->get()];});
 Route::get('tingkat', function(){return ['data' => MasterTingkat::all()];});
 Route::get('unit', function(){return ['data' => MasterUnit::all()];});
 Route::get('thn-ajar', function(){return ['data' => pelajaran::all()];});

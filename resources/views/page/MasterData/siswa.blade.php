@@ -34,6 +34,7 @@
                                 
                                 <tr style="">
                                     <th>Action</th>
+                                    <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
                                     <th>Nama Ayah</th>
@@ -57,6 +58,11 @@
                         <form method="post" action="{{ URL::Route('siswa.store') }}"class="form-horizontal">
                             @csrf
                             <div class="hr-line-dashed"></div>
+                            <div class="form-group"><label class="col-sm-3 control-label">NIS</label>
+
+                                <div class="col-sm-9"><input type="text" placeholder="Nomer Induk Siswa" name="nis" required
+                                        class="form-control"></div>
+                            </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Nama</label>
 
                                 <div class="col-sm-9"><input type="text" placeholder="Nama" name="nama" required
@@ -64,7 +70,7 @@
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kelas</label>
                                 <div class="col-sm-9">
-                                    <select name="kelas" id="" class='form-control'>
+                                    <select name="kelas" id="" required class='form-control'>
                                         @foreach ($kelas as $kls)
                                             <option value="{{ $kls->id }}">{{ $kls->kelas }}</option>
                                         @endforeach
@@ -86,28 +92,28 @@
 
                             <div class="form-group"><label class="col-sm-3 control-label">Provinsi</label>
                                 <div class="col-sm-9">
-                                    <select name="provinsi" id="provinsi" class='form-control'>
+                                    <select name="provinsi" required id="provinsi" class='form-control'>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kabupaten</label>
                                 <div class="col-sm-9">
-                                    <select name="kabupaten" id="kabupaten" class='form-control'>
+                                    <select name="kabupaten" required id="kabupaten" class='form-control'>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kecamatan</label>
                                 <div class="col-sm-9">
-                                    <select name="kecamatan" id="kecamatan" class='form-control'>
+                                    <select name="kecamatan" required id="kecamatan" class='form-control'>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kelurahan / Desa</label>
                                 <div class="col-sm-9">
-                                    <select name="kelurahan" id="kelurahan" class='form-control'>
+                                    <select name="kelurahan" required    id="kelurahan" class='form-control'>
                                     </select>
                                 </div>
                             </div>
