@@ -16,22 +16,19 @@ class loginController extends Controller
     }
 
     function validasi (Request $request) {
-        
          $request->validate([
             'username' => 'required',
             'password' => 'required'
         ]);
         
-
         $user = User::where('username',$request->username)->first();
         if( $user != null){
-        if($user->password == $request->password){
+        if($user->password == md5($request->password)){
             Session::put('uuid', $user->uuid);
             Session::put('role', $user->role);
             Session::put('nama', $user->nama);
             Session::put('photo', $user->foto);
-
-            return redirect('/');
+            return redirect('/welcome');
             // return Session::get('role');
         }
         return redirect()->back()->with('fail' , 'password salah!');
@@ -44,6 +41,6 @@ class loginController extends Controller
         Auth::logout();
         Session::invalidate();
         Session::regenerateToken();
-        return redirect('/login');
+        return redirect('/');
     }
 }

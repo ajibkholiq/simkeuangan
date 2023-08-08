@@ -4,20 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\adm_menu;
+use App\Helper\menu;
 use Illuminate\Support\Facades\Session;
 
 
 class AdmMenuController extends Controller
 {
 
-    function getHeadMenu (){
-        return adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
     
-    }
 
     function index (){
         $data = adm_menu::all();
-        $menu = $this->getHeadMenu();
+        $menu = menu::getMenu(Session::get('role'));
         return view('page.AdmMenu.index',compact('data','menu'));
         // return $menu;
 
@@ -57,7 +55,7 @@ class AdmMenuController extends Controller
 
     function show($id){
         $data = adm_menu::where('uuid',$id)->get();
-        return response()->json($data, 200, $headers);
+        return response()->json($data, 200);
         // return adm_menu::findOrFail($id);
 
     }
@@ -78,13 +76,13 @@ class AdmMenuController extends Controller
                 'data' => $data
                 ]
             );
-        }
-         return response()->json([
+        }else{
+            return response()->json([
                 "mesage" => "berhasil diedit",
                 'data' => $data
                 ]
-            );
-    }
+                );
+    }}
     function destroy($id){
         $data = adm_menu::where('uuid',$id)->first();
 
