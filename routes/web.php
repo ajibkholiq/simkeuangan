@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AkunHeadController;
+use App\Http\Controllers\AkunHeadSubController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmMenuController;
 use App\Http\Controllers\AdmRoleMenu;
@@ -55,6 +57,8 @@ Route::middleware('checklogin')->group(function () {
     Route::resource('tingkat', MasterTingkaCntrl::class);
     Route::resource('unit', MasterUnitCntrl::class);
 
+    Route::resource('akun_head',AkunHeadController::class);
+    Route::resource('akun_head_sub',AkunHeadSubController::class);
     Route::resource('tahun_pelajaran', thnPljrnController::class)->except(['show','create','edit']);
     Route::resource('siswa', SiswaController::class)->except(['create','edit']);
     Route::resource('kelas', KelasController::class)->except(['create','edit']);

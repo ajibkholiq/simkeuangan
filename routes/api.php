@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\AkunHead;
+use App\Models\AkunHeadSub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\adm_menu;
@@ -54,5 +56,12 @@ Route::get('kelas', function(){
                     ->join('master_unit','unit_id','master_unit.id')
                     ->join('users','user_id','users.id')
                     ->select('kelas.id','kelas.uuid','kelas','kode_kelas','nama_tingkat','nama_unit', 'kelas.remark','users.nama')->get()];
+});
+
+Route::get('akun_head', function(){
+    return ['data' => AkunHead::all()];
+});
+Route::get('akun_head_sub', function(){
+    return ['data' => AkunHeadSub::all()];
 });
 
