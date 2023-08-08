@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AkunHeadController;
+use App\Http\Controllers\AkunHeadSubController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmMenuController;
 use App\Http\Controllers\AdmRoleMenu;
@@ -10,6 +12,8 @@ use App\Http\Controllers\ThnPljrnController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\MasterTingkaCntrl;
+use App\Http\Controllers\MasterUnitCntrl;
 use App\Models\adm_menu;
 use App\Models\adm_role;
 use App\Models\Siswa;
@@ -50,6 +54,11 @@ Route::middleware('checklogin')->group(function () {
         return view('page.dashboard',compact(['menu','siswa']));
         // return $siswa;
     });
+    Route::resource('tingkat', MasterTingkaCntrl::class);
+    Route::resource('unit', MasterUnitCntrl::class);
+
+    Route::resource('akun_head',AkunHeadController::class);
+    Route::resource('akun_head_sub',AkunHeadSubController::class);
     Route::resource('tahun_pelajaran', thnPljrnController::class)->except(['show','create','edit']);
     Route::resource('siswa', SiswaController::class)->except(['create','edit']);
     Route::resource('kelas', KelasController::class)->except(['create','edit']);
@@ -59,9 +68,10 @@ Route::middleware('checklogin')->group(function () {
     Route::put('/photo/{id}', [AdmUserController::class, 'updatePhoto'])->name('updatePhoto');
     Route::middleware('role:admin')->group(function () {
         Route::resource('adm-menu', AdmMenuController::class)->except(['create','show']);
-        Route::resource('adm-role', Adm_roleController::class)->except(['create','show']);
+        Route::resource('adm-role', Adm_roleController::class)->except(['create','edit']);
         Route::resource('adm-role-menu', AdmRoleMenu::class)->only(['index','store']);
         Route::resource('adm-user', AdmUserController::class);
+       
     });
 });
 

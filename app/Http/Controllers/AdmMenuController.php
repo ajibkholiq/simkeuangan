@@ -77,14 +77,12 @@ class AdmMenuController extends Controller
                 ]
             );
         }else{
-        return redirect('adm-menu')->with('success','Menu Behasil Diedit');
-        }
-         return response()->json([
+            return response()->json([
                 "mesage" => "berhasil diedit",
                 'data' => $data
                 ]
-            );
-    }
+                );
+    }}
     function destroy($id){
         $data = adm_menu::where('uuid',$id)->first();
 

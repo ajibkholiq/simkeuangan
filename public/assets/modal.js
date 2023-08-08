@@ -94,7 +94,7 @@ $("#kelas-save").on("click", () => {
          },
          columns: [
              {
-                 title: "Aksi",
+                 title: "Action",
                  data: null,
                  render: function (data, type, row) {
                      return `

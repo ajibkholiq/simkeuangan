@@ -45,8 +45,8 @@ public function index()
             'uuid' => uniqid(),
             'nama_role' => $request->nama_role,
             'remark' => $request->remark,
-            'create_by' => $request->create_by,
-            'update_by' => $request->update_by
+            'create_by' => $request->session()->get('nama'),
+            
         ]);
         
         if (!$data){
@@ -60,21 +60,18 @@ public function index()
        }
     }
 
-    function edit($id)
-    {
-        $menu = adm_menu::select('kode_menu','nama_menu','route')->where('induk','head')->orderBy('kode_menu','asc')->get();
-    $adm_role = adm_role::where('uuid', $id)->first();
-    return view('page.adm_role.edit', compact('adm_role','menu'));
+   function show($id){
+        return response()->json(adm_role::where('uuid',$id)->first(), 200);
     }
 
     public function update(Request $request, $adm_role) 
 {
     $data = adm_role::where('uuid',$adm_role)->update([
        
-        'nama_role' => $request->nama_role,
+        'nama_role' => $request->nama,
         'remark' => $request->remark,
         // 'create_by' => $request->create_by,
-        // 'update_by' => $request->update_by 
+        'update_by' => $request->session()->get('nama'),
     ]);
 
     if (!$data) {
@@ -83,7 +80,10 @@ public function index()
            'data' => $data
         ]);
     } else {
-        return redirect('adm_role')->with('success', 'Menu Behasil Diedit');
+         return response()->json([
+           "message" => "berhasil diedit",
+           'data' => $data
+        ]);
     }
 }
 
