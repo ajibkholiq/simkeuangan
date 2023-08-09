@@ -62,6 +62,6 @@ Route::get('akun_head', function(){
     return ['data' => AkunHead::all()];
 });
 Route::get('akun_head_sub', function(){
-    return ['data' => AkunHeadSub::all()];
+    return ['data' => AkunHeadSub::join('akun_head','akun_head_id','akun_head.id')->get()];
 });
 

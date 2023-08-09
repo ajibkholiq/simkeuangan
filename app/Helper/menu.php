@@ -11,7 +11,7 @@ class menu {
         return DB::select("select induk,kode_menu,nama_menu,route FROM `adm_menu`,`adm_role_menu`,`adm_role` WHERE `adm_menu`.`id`=`adm_role_menu`.`menu_id` AND `adm_role`.`id`=`adm_role_menu`.`role_id` and adm_role.nama_role = '$role'");
         }
     else{
-        return adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('kode_menu','asc')->get();
+        return adm_menu::select('induk','kode_menu','nama_menu','route')->orderBy('id','asc')->get();
         } 
     }   
 }

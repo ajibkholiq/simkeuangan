@@ -24,12 +24,14 @@
                         <table id="data-table" class="table table-striped">
                             <thead>
                                 <style>
-                                    th,td {
-
+                                    th {
                                         text-align: center
                                     }
+                                     tr {
+                                        font-size:12px
+                                    }
                                 </style>
-                                <tr style="">
+                                <tr style="font-size:12px">
                                     <th>Action</th>
                                     <th>Akun Head</th>
                                     <th>Urut</th>
