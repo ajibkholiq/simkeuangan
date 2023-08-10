@@ -1,86 +1,9 @@
-// tahun pelajaran
-$("body").on("click", "#btn-act-thnpljrn", function () {
-    let uuid = $(this).data("id");
-    let status = $(this).data("status");
-    $.ajax({
-        url: "/tahun_pelajaran/" + uuid,
-        type: "PUT",
-        data: {
-            status: status,
-            _token: $("input[name='_token']").val(),
-            _method: "PUT",
-        },
-        success: function (response) {
-            console.log(response);
-            setTimeout(() => {
-                location.reload();
-            }, 100);
-        },
-    });
-});
-$("body").on("click", "#btn-act-smtr", function () {
-    let uuid = $(this).data("id");
-    let status = $(this).data("status");
-    $.ajax({
-        url: "/semester/" + uuid,
-        type: "PUT",
-        data: {
-            status: status,
-            _token: $("input[name='_token']").val(),
-            _method: "PUT",
-        },
-        success: function (response) {
-            console.log(response);
-            setTimeout(() => {
-                location.reload();
-            }, 100);
-        },
-    });
-});
-$("body").on("click", "#btn-kelas", function () {
-    $.ajax({
-        url: "/kelas/" + $(this).data("id"),
-        type: "GET",
-        success: (data) => {
-            $("#uuid").val(data.uuid);
-            $("#kelas").val(data.kelas);
-            $("#tingkat").val(data.tingkat);
-            $("#remark").val(data.remark);
-            $("#edit-kelas").modal("show");
-        },
-    });
-});
-$("#kelas-save").on("click", () => {
-    $.ajax({
-        url: "/kelas/" + $("#uuid").val(),
-        type: "PUT",
-        data: {
-            kelas: $("#kelas").val(),
-            tingkat: $("#tingkat").val(),
-            remark: $("#remark").val(),
-            _token: $("input[name='_token']").val(),
-            _method: "PUT",
-        },
-        success: (response) => {
-            $("#edit-kelas").modal("hide");
-            console.log(response);
-            setTimeout(() => {
-                location.reload();
-            }, 100);
-            console.log("berhasil");
-        },
-    });
-});
+;
+
  document.addEventListener("DOMContentLoaded", function () {
      let table = new DataTable("#data-table", {
-        processing: false,
-        ordering: true,
-        columnDefs: [{ width: '20%', targets: 0 }],
-        fixedColumns: true,
-        paging: false,
-        scrollCollapse: true,
-        scrollX: true,
-        scrollY: 300,
+         processing: false,
+         ordering: true,
          lengthMenu: [
              [10, 25, 50, -1],
              [10, 25, 50, "All"],
@@ -104,18 +27,20 @@ $("#kelas-save").on("click", () => {
                    `;
                  },
              },
+             { title: "NIS", data: "nis" },
              { title: "Nama", data: "nama" },
+             { title: "Kelas", data: "kelas" },
              { title: "Nama Ayah", data: "nama_ayah" },
              { title: "Nama Ibu", data: "nama_ibu" },
              { title: "No Hp", data: "no_hp" },
-             { title: "Alamat", data: "alamat_detail" },
-             { title: "Kelurahan", data: "kelurahan" },
-             { title: "Kecamatan", data: "kecamatan" },
-             { title: "Kabupaten", data: "kabupaten" },
-             { title: "Provinsi", data: "provinsi" },
-             { title: "Remark", data: "remark" },
-             { title: "Created by", data: "created_by" },
-             { title: "Update by", data: "updated_by" },
+             {
+                 title: "Alamat",
+                 data: null,
+                 render: (data) => {
+                     return `${data.alamat_detail}, Desa ${data.kelurahan}, Kecamatan ${data.kecamatan}, ${data.kabupaten}, ${data.provinsi} `;
+                 },
+             },
+             { title: "Keterangan", data: "remark" },
          ],
      });
      $.ajax({

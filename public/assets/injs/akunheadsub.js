@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 },
             },
             { title: "Akun Head Sub", data: "akun_head_sub" },
-            { title: "Akun Head", data: "akun_head_id" },
+            { title: "Akun Head", data: "akun_head" },
             { title: "Urut", data: "urut" },
             { title: "keterangan", data: "remark" },
             

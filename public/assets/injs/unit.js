@@ -37,9 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             },
            
-            { title: "Remark", data: "remark" },
-            { title: "Created by", data: "created_by" },
-            { title: "Update by", data: "updated_by" },
+            { title: "Keterangan", data: "remark" },
+           
         ],
     });
 });

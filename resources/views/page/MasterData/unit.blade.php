@@ -37,9 +37,8 @@
                                     <th>Alamat</th>
                                     <th>No Hp</th>
                                     <th>Logo</th>
-                                    <th>Remark</th>
-                                    <th>Created by</th>
-                                    <th>Update by</th>
+                                    <th>Keterangan</th>
+                                    
                                 </tr>
                             </thead>
                         </table>
@@ -77,8 +76,8 @@
                                 <div class="col-sm-9"><input type="file" placeholder="Logo" name="logo" required
                                         class="form-control"></div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" name="remark" required
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark" required
                                         class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -115,8 +114,8 @@
                                 <div class="col-sm-9"><input type="text" placeholder="No Telephone" name="nohp"
                                         id="nohp" required class="form-control"></div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" name="remark"
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark"
                                         id="remark" required class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>

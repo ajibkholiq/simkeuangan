@@ -11,15 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('semester', function (Blueprint $table) {
+        Schema::create('non_tagihans', function (Blueprint $table) {
             $table->id();
             $table->string('uuid',20);
-            $table->string('semester',20);
-            $table->enum('status', ['AKTIF','TIDAK']);
+            $table->unsignedBigInteger('akun_id');
+            $table->string('kode');
+            $table->string('nama');
             $table->string('remark',20);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
+            $table->foreign('akun_id')->references('id')->on('akuns')->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('semester');
+        Schema::dropIfExists('non_tagihans');
     }
 };

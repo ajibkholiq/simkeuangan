@@ -1,5 +1,9 @@
 @extends('layout.master')
 @section('main')
+ @push('css')
+        <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <!--datatable responsive css-->
+    @endpush
     <div class="row" style="margin-top:10px">
         @if (session('success'))
             <div class="col-lg-12">
@@ -19,7 +23,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="data-table" class="table table-striped">
                             <thead>
                                 <tr>
                                     <style>
@@ -27,43 +31,13 @@
                                             text-align: center;
                                         }
                                     </style>
-                                    <th>ID</th>
+                                    <th>Action</th>
                                     <th>Tahun Pelajaran</th>
                                     <th>Status</th>
-                                    <th>Remark</th>
-                                    <th>Create by</th>
-                                    <th>Update by</th>
-                                    <th>Action</th>
+                                    <th>Keterangan</th>
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($data as $data)
-                                    <tr style="text-align: center">
-
-                                        <td>{{ $data->id }}</td>
-                                        <td>{{ $data->tahun_pelajaran }}</td>
-                                        <td>{{ $data->status }}</td>
-                                        <td>{{ $data->remark }}</td>
-                                        <td>{{ $data->created_by }}</td>
-                                        <td>{{ $data->updated_by }}</td>
-                                        <td style="display: flex; justify-content:center; gap: 10px">
-                                            {{-- <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a> --}}
-                                            <button id="btn-act-thnpljrn"
-                                                class="btn btn-outline {{ $data->status == 'AKTIF' ? 'btn-warning fa fa-check-square-o ' : 'btn-primary fa fa-square-o ' }} "
-                                                id="aktif" data-id="{{ $data->uuid }}"
-                                                data-status="{{ $data->status }}"></button>
-                                            <form action="{{ route('tahun_pelajaran.destroy', $data->uuid) }}"
-                                                method="POST" onsubmit="return confirm('Apakah Anda Yakin ?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-outline btn-danger fa fa-trash-o"></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -91,8 +65,8 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Remark</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Remark" name="remark" required
+                        <div class="form-group"><label class="col-sm-2 control-label">Keterangan</label>
+                            <div class="col-sm-10"><input type="text" placeholder="Keterangan" name="remark" required
                                     class="form-control"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -109,5 +83,8 @@
 @endsection
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ URL::asset('assets/modal.js') }}"></script>
+   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+   
+    <script src="{{ URL::asset('assets/injs/thnPljrn.js') }}"></script>
 @endpush

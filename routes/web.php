@@ -14,6 +14,12 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\MasterTingkaCntrl;
 use App\Http\Controllers\MasterUnitCntrl;
+use App\Http\Controllers\Sub2AkunController;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\TagihanController;
+use App\Http\Controllers\TagihanTingkatController;
+use App\Http\Controllers\NonTagihanController;
+
 use App\Models\adm_menu;
 use App\Models\adm_role;
 use App\Models\Siswa;
@@ -54,9 +60,13 @@ Route::middleware('checklogin')->group(function () {
         return view('page.dashboard',compact(['menu','siswa']));
         // return $siswa;
     });
-    Route::resource('tingkat', MasterTingkaCntrl::class);
+    Route::resource('sub_sub_akun', Sub2AkunController::class);
+    Route::resource('akun', AkunController::class);
+    Route::resource('tagihan', TagihanController::class);
+    Route::resource('tagihan_siswa', TagihanSiswaController::class);
+    Route::resource('tagihan_tingkat', TagihanTingkatController::class);
+    Route::resource('non_tagihan', NonTagihanController::class);
     Route::resource('unit', MasterUnitCntrl::class);
-
     Route::resource('akun_head',AkunHeadController::class);
     Route::resource('akun_head_sub',AkunHeadSubController::class);
     Route::resource('tahun_pelajaran', thnPljrnController::class)->except(['show','create','edit']);
@@ -70,8 +80,7 @@ Route::middleware('checklogin')->group(function () {
         Route::resource('adm-menu', AdmMenuController::class)->except(['create','show']);
         Route::resource('adm-role', Adm_roleController::class)->except(['create','edit']);
         Route::resource('adm-role-menu', AdmRoleMenu::class)->only(['index','store']);
-        Route::resource('adm-user', AdmUserController::class);
-       
+        Route::resource('pegawai', AdmUserController::class);
     });
 });
 

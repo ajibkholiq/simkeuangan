@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emptyTable: "Tidak ada data",
         },
         ajax: {
-            url: "/api/tingkat",
+            url: "/api/kelas",
             type: "GET",
         },
         columns: [
@@ -19,68 +19,71 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: null,
                 render: function (data, type, row) {
                     return `
-                    <div style="display:flex; gap:8px; justify-content: center">
+                    <div style="display:flex; gap:8px; justify-content: start">
                    <button id="bt-hapus" class="btn btn-outline btn-danger fa fa-trash-o" data-id="${data.uuid}"></button> 
                     <button id="bt-edit" class="btn btn-outline btn-warning fa fa-pencil " data-uuid="${data.uuid}"></button></div>
                    `;
                 },
             },
-            { title: "ID Tingkat", data: "id_tingkat" },
-            { title: "Nama", data: "nama_tingkat" },
+            { title: "Kode Kelas", data: "kode_kelas" },
+            { title: "Nama", data: "kelas" },
+            { title: "Tingkat", data: "nama_tingkat" },
+            { title: "Wali Kelas", data: "nama" },
+            { title: "Kampus", data: "nama_unit" },
             { title: "Keterangan", data: "remark" },
-           
         ],
     });
-   
 });
-$("#btn-add").click(() => {
-    $("#add-siswa").modal("show");
+$("body").on("click", "#bt-edit", function () {
+    $.ajax({
+        url: "/kelas/" + $(this).data("id"),
+        type: "GET",
+        success: (data) => {
+            $("#uuid").val(data.uuid);
+            $("#kelas").val(data.kelas);
+            $("#kode").val(data.kode_kelas);
+            $("#tingkat").val(data.tingkat_id);
+            $("#kampus").val(data.unit_id);
+            $("#wali").val(data.user_id);
+            $("#remark").val(data.remark);
+            $("#edit-kelas").modal("show");
+        },
+    });
+});
+$("#kelas-save").on("click", () => {
+    $.ajax({
+        url: "/kelas/" + $("#uuid").val(),
+        type: "PUT",
+        data: {
+            kelas: $("#kelas").val(),
+            kode: $("#kode").val(),
+            tingkat: $("#tingkat").val(),
+            kampus: $("#kampus").val(),
+            wali: $("#wali").val(),
+            remark: $("#remark").val(),
+            _token: $("input[name='_token']").val(),
+            _method: "PUT",
+        },
+        success: (response) => {
+            $("#edit-kelas").modal("hide");
+            console.log(response);
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+            console.log("berhasil");
+        },
+    });
 });
 $(document).on("click", "#bt-hapus", function () {
     let uuid = $(this).data("id");
     $.ajax({
-        url: "/tingkat/" + uuid,
+        url: "/kelas/" + uuid,
         type: "DELETE",
         data: {
             _token: $("input[name='_token']").val(),
             _method: "DELETE",
         },
         success: () => {
-            setTimeout(() => {
-                location.reload();
-            }, 100);
-        },
-    });
-});
-var uuid;
-$("body").on("click", "#bt-edit", function () {
-    $("#edit-alamat").hide();
-    $.ajax({
-        url: "/tingkat/" + $(this).data("uuid"),
-        type: "GET",
-        success: (data) => {
-            uuid = data.uuid;
-            $("#idtingkat").val(data.id_tingkat);
-            $("#nama").val(data.nama_tingkat);
-            $("#remark").val(data.remark);
-            $("#edit-siswa").modal("show");
-        },
-    });
-});
-$("#ubahsiswa").click(function () {
-    $.ajax({
-        url: "/tingkat/" + uuid,
-        type: "PUT",
-        data: {
-            id_tingkat: $("#idtingkat").val(),
-            nama: $("#nama").val(),
-            remark: $("#remark").val(),
-            _token: $("input[name='_token']").val(),
-            _method: "PUT",
-        },
-        success: (response) => {
-            $("#edit-siswa").modal("hide");
-            console.log(response);
             setTimeout(() => {
                 location.reload();
             }, 100);

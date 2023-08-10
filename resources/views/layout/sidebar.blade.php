@@ -1,6 +1,6 @@
 
-  <nav class="navbar-default navbar-static-side" role="navigation">
-        <div class="sidebar-collapse">
+  <nav class="navbar-default navbar-static-side" role="navigation" style="overflow-y:auto" >
+        <div class="sidebar-collapse" >
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
@@ -36,8 +36,8 @@
                 </li>
                 @endforeach
 @if (session()->get('role') == 'admin')
-                <li class="{{Request::segment(1) == 'adm-user' ? 'active' : ''}}">
-                    <a href="{{URL::route('adm-user.index')}}"><i class="fa fa-user-circle"></i> <span class="nav-label ">ADM USER</span></span></a>
+                <li class="{{Request::segment(1) == 'pegawai' ? 'active' : ''}}">
+                    <a href="{{URL::route('pegawai.index')}}"><i class="fa fa-user-circle"></i> <span class="nav-label ">PEGAWAI</span></span></a>
                 </li>
                 <li class="{{Request::segment(1) == 'adm-menu' ? 'active' : ''}}">
                     <a href="{{URL::route('adm-menu.index')}}"><i class="fa fa-th-large"></i> <span class="nav-label ">ADM MENU</span></span></a>

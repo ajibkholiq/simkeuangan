@@ -5,25 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Model
+class NonTagihan extends Model
 {
     use HasFactory;
 
-    protected $table ='siswa';
-
     protected $fillable = [
             'uuid',
+            'akun_id',
+            'kode',
             'nama',
-            'nis',
-            'id_kelas',
-            'alamat_detail',
-            'provinsi',
-            'kabupaten',
-            'kecamatan',
-            'kelurahan',
-            'nama_ayah',
-            'nama_ibu',
-            'no_hp',
             'remark',
             'created_by',
             'updated_by',
