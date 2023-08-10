@@ -66,7 +66,7 @@ $("body").on("click", "#bt-edit", function () {
             $("#akun_head_id").val(data.akun_head_id);
             $("#urut").val(data.urut);
             $("#remark").val(data.remark);
-            $("#edit-akun_head").modal("show");
+            $("#edit-akun_headsub").modal("show");
         },
     });
 });

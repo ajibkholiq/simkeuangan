@@ -82,6 +82,46 @@
                 </div>
             </div>
         </div>
+         <div id="edit-akun_headsub" class="modal in" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h4>Ubah akun sub</h4>
+                        <div class="form-horizontal">
+                            @csrf
+                           <div class="hr-line-dashed"></div>
+                             <div class="form-group"><label class="col-sm-3 control-label">Akun Head Sub</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Nama" name="akun_head_sub" required
+                                        class="form-control"></div>
+                            </div>
+                            {{-- <div class="form-group"><label class="col-sm-3 control-label">Akun Head</label>
+                                <div class="col-sm-9">
+                                    <select name="akun_head_id" id="" class='form-control'>
+                                        @foreach ($akun_head as $akun_head)
+                                            <option value="{{ $akun_head->id }}">{{ $akun_head->akun_head }}</option>
+                                        @endforeach
+                                    </select>
+                                </div> --}}
+                            </div>
+                            <div class="form-group"><label class="col-sm-3 control-label">Urut</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Nama" name="urut" required
+                                        class="form-control"></div>
+                            </div>
+                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Remark" name="remark" required
+                                        class="form-control"></div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <div class="col-sm-9 col-sm-offset-3" style="text-align: end">
+                                    <button class="btn btn-primary" id="ubahsiswa">Ubah</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         @endsection
