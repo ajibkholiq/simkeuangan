@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 },
             },
             { title: "Akun Head Sub", data: "akun_head_sub" },
-            { title: "Akun Head", data: "akun_head" },
+            { title: "Akun Head", data: "akun_head_id" },
             { title: "Urut", data: "urut" },
             { title: "keterangan", data: "remark" },
             
@@ -34,27 +34,27 @@ document.addEventListener("DOMContentLoaded",function(){
        
     });
 });
-$("#btn-add").click(() => {
-    $("#add-siswa").modal("show");
-});
-
-$(document).on("click", "#bt-hapus", function () {
-    let uuid = $(this).data("id");
-    $.ajax({
-        url: "/akun_head_sub/" + uuid,
-        type: "DELETE",
-        data: {
-            _token: $("input[name='_token']").val(),
-            _method: "DELETE",
-        },
-        success: () => {
-            setTimeout(() => {
-                location.reload();
-            }, 100);
-        },
+    $("#btn-add").click(() => {
+        $("#add-siswa").modal("show");
     });
-});
-var uuid;
+    
+    $(document).on("click", "#bt-hapus", function () {
+        let uuid = $(this).data("id");
+        $.ajax({
+            url: "/akun_head_sub/" + uuid,
+            type: "DELETE",
+            data: {
+                _token: $("input[name='_token']").val(),
+                _method: "DELETE",
+            },
+            success: () => {
+                setTimeout(() => {
+                    location.reload();
+                }, 100);
+            },
+        });
+    });
+    var uuid;
 $("body").on("click", "#bt-edit", function () {
     $("#edit-alamat").hide();
     $.ajax({
@@ -62,11 +62,11 @@ $("body").on("click", "#bt-edit", function () {
         type: "GET",
         success: (data) => {
             uuid = data.uuid;
-            $("#akun_head_sub").val(data.akun_head_sub);
-            $("#akun_head_id").val(data.akun_head_id);
+            $("#nama").val(data.akun_head_sub);
+            $("#id").val(data.akun_head_id);
             $("#urut").val(data.urut);
             $("#remark").val(data.remark);
-            $("#edit-akun_head").modal("show");
+            $("#edit-akun_headsub").modal("show");
         },
     });
 });
@@ -75,8 +75,8 @@ $("#ubahsiswa").click(function () {
         url: "/akun_head_sub/" + uuid,
         type: "PUT",
         data: {
-            akun_head_sub: $("#akun_head_sub").val(),
-            akun_head: $("#akun_head_id").val(),
+            akun_head_sub: $("#nama").val(),
+            akun_head: $("#id").val(),
             urut: $("#urut").val(),
             remark: $("#remark").val(),
             _token: $("input[name='_token']").val(),

@@ -55,9 +55,9 @@ class AkunHeadSubController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(AkunHeadSub $akunHeadSub)
+    public function show($id)
     {
-        //
+        return response()->json(AkunHeadSub::where('uuid',$id)->first(), 200);
     }
 
     /**
@@ -71,16 +71,32 @@ class AkunHeadSubController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AkunHeadSub $akunHeadSub)
+    public function update($id,Request $request)
     {
-        //
+        $data = AkunHeadSub::where('uuid',$id)->update([
+            'akun_head_sub'=> $request->akun_head_sub,
+            'akun_head_id' => $request->akun_head,
+            'urut' => $request ->urut,
+            'remark' => $request ->remark,
+            'created_by' => session::get('nama')
+        ]);
+
+        if($data){
+            return response()->json([
+                "mesage" => "gagal diubah",
+            ]);
+        }
+        return response()->json(['succsess' => 'data akun berhasil ubah', 'data' => $request]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AkunHeadSub $akunHeadSub)
+    public function destroy($id)
     {
-        //
+        if(AkunHeadSub::where('uuid',$id)->delete()){
+            return response()->json(['succsess' => 'data berhasil dihapus', 'data' => $id]);
+        }
+        return response()->json(['fail' => 'akun gagal dihapus', 'data' => $id]);
     }
 }
