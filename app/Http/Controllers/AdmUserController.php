@@ -123,7 +123,7 @@ class AdmUserController extends Controller
 
         // Mengupdate data user dengan informasi foto baru
         $user = User::where('uuid', $id)->first();
-        if (!is_int(strpos($user->foto, 'profile_small') ) || !is_int(strpos($user->foto, 'um') ) && file_exists(public_path('assets/img/user/'.$user->foto))){
+        if (!is_int(strpos($user->foto, 'profile_small')) && file_exists(public_path('assets/img/user/'.$user->foto))){
             File::delete('assets/img/user/'.$user->foto);
         }
         $user->foto = $imagename;
