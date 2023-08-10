@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\AkunHead;
+use App\Models\Sub2Akun;
+use App\Models\Akun;
+use App\Models\Tagihan;
 use App\Models\AkunHeadSub;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,5 +66,21 @@ Route::get('akun_head', function(){
 });
 Route::get('akun_head_sub', function(){
     return ['data' => AkunHeadSub::join ('akun_head','akun_head_id','akun_head.id')->select('master_akun_head_sub.uuid','akun_head_sub','akun_head_id','master_akun_head_sub.urut','master_akun_head_sub.remark')->get()];
+});
+Route::get('akun_head_sub2', function(){
+    return ['data' => Sub2Akun::join('master_akun_head_sub','sub_akun_id','master_akun_head_sub.id')->join('akun_head','akun_head_id','akun_head.id')->select('sub2_akuns.uuid','Nama','akun_head_sub','akun_head','sub2_akuns.urut','sub2_akuns.remark')->get()];
+});
+Route::get('akun', function(){
+    return ['data' => Akun::join('sub2_akuns','sub2_akun_id','sub2_akuns.id')
+                            ->join('master_akun_head_sub','sub_akun_id','master_akun_head_sub.id')
+                            ->join('akun_head','akun_head_id','akun_head.id')
+                            ->select('kode','akuns.uuid','akuns.Nama as akun','akun_head_sub','akun_head','sub2_akuns.Nama','akuns.remark')
+                            ->get()];
+});
+Route::get('tagihan', function(){
+    return ['data' => Tagihan::join('tahun_pelajaran','tahun_pelajaran.id','thn_ajaran_id')
+                                ->join('akuns','akuns.id','akun_id')
+                                ->select('tagihans.uuid','tahun_pelajaran','tagihans.kode','tagihans.nama','akuns.Nama','batas_bayar','tagihans.remark')
+                                ->get()];
 });
 

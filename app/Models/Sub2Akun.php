@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sub2Akun extends Model
 {
     use HasFactory;
+
     protected $fillable = [
             'uuid',
             'sub_akun_id',

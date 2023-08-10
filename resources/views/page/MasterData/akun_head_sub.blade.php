@@ -70,8 +70,8 @@
                                 <div class="col-sm-9"><input type="text" placeholder="Nama" name="urut" required
                                         class="form-control"></div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" name="remark" required
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark" required
                                         class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -126,7 +126,6 @@
                 </div>
             </div>
         </div>
-
 
         @endsection
 </div>

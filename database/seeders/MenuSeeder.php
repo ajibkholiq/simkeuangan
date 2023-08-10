@@ -151,7 +151,7 @@ class MenuSeeder extends Seeder
             'kode_menu' => 'B10',
             'icon' => "",
             'urut' => "",
-            'nama_menu' =>'Tagihan Siswa',
+            'nama_menu' =>'Data Tagihan Siswa',
             'route' => 'tagihan_siswa',
             'remark' => 'Master Data Tagihan Siswa',
         ]);

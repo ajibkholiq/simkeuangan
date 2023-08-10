@@ -61,6 +61,7 @@ Route::middleware('checklogin')->group(function () {
         // return $siswa;
     });
     Route::resource('sub_sub_akun', Sub2AkunController::class);
+    Route::resource('tingkat', MasterTingkaCntrl::class);
     Route::resource('akun', AkunController::class);
     Route::resource('tagihan', TagihanController::class);
     Route::resource('tagihan_siswa', TagihanSiswaController::class);
