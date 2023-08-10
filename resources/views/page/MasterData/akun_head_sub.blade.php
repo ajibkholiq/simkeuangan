@@ -85,8 +85,6 @@
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
-=======
          <div id="edit-akun_headsub" class="modal in" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -128,9 +126,6 @@
                 </div>
             </div>
         </div>
-
-
->>>>>>> rickydarmawan
         @endsection
 </div>
 
