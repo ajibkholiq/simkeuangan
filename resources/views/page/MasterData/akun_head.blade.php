@@ -47,7 +47,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-                        <h4>Tambah master_akun_head</h4>
+                        <h4>Tambah master_akun_head </h4>
                         <form method="post" action="{{ URL::Route('akun_head.store') }}"class="form-horizontal">
                             @csrf
                             <div class="hr-line-dashed"></div>

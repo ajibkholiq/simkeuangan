@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded",function(){
     $(document).on("click", "#bt-hapus", function () {
         let uuid = $(this).data("id");
         $.ajax({
-            url: "/akun_head/" + uuid,
+            url: "/akun_head_sub/" + uuid,
             type: "DELETE",
             data: {
                 _token: $("input[name='_token']").val(),

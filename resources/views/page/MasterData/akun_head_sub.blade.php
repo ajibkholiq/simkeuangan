@@ -15,7 +15,7 @@
         @endif
 
         <div class="col-md-12">
-            <button id="btn-add" class="btn btn-primary" style="justify-items: end"><i class="fa fa-plus"></i> Tambah Master Akun Head</button>
+            <button id="btn-add" class="btn btn-primary" style="justify-items: end"><i class="fa fa-plus"></i> Tambah Master Akun Head sub</button>
         </div>
         <div class="col-lg-12 " style="margin-top: 10px ;margin-bottom: 30px">
             <div class="ibox float-e-margins">
