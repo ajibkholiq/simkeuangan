@@ -3,6 +3,6 @@
                 10000GB of <strong>25000GB</strong> Free.
                 </div>
             <div>
-                <strong>Copyright</strong> PKL As-Syifa &copy; 2023-2024
+                <strong>Copyright</strong> PKL As-Syifa &copy; {{date('Y')}}
             </div>
         </div>

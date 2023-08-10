@@ -10,9 +10,9 @@ class Akun extends Model
     use HasFactory;
     protected $fillable = [
             'uuid',
+            'kode',
             'sub2_akun_id',
             'Nama',
-            'urut',
             'remark',
             'created_by',
             'updated_by',

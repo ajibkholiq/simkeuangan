@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('akuns', function (Blueprint $table) {
             $table->id();
             $table->string('uuid',20);
+            $table->string('kode',20);
             $table->unsignedBigInteger('sub2_akun_id');
             $table->string('Nama');
-            $table->string('urut');
             $table->string('remark',20);
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();

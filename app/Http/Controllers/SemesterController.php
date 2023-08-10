@@ -22,8 +22,6 @@ class SemesterController extends Controller
             'remark' => $request->remark,
             'created_by' => Session::get('nama')
         ]);
-      
-
         if (!$data){
              return response()->json([
                 "mesage" => "Gagal ditambahkan",
