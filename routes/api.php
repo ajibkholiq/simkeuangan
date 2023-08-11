@@ -87,5 +87,6 @@ Route::get('tagihan', function(){
 
 Route::get('non_tagihan', function(){
     return ['data' => NonTagihan::all()];
+    // return ['data' => NonTagihan::join('akuns','akun_id','akuns.id')->select('non_tagihans.uuid','akun_id','non_tagihans.kode','non_tagihans.nama','non_tagihans.remark')->get()];
 });
 

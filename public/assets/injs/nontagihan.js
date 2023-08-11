@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                    `;
                 },
             },
-            { title: "Kode Akun", data: "akun_id" },
+            { title: "Kode Akun", data: "id" },
             { title: "Kode Non Tagihan", data: "kode" },
             { title: "Nama", data: "nama" },
             { title: "Keterangan", data: "remark" },

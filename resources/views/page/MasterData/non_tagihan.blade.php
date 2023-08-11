@@ -93,16 +93,16 @@
                         @csrf
                         <div class="hr-line-dashed"></div>
                         <input type="hidden" id="uuid">
-                          <div class="form-group"><label class="col-sm-3 control-label">Tahun pelajaran </label>
+                          <div class="form-group"><label class="col-sm-3 control-label"> Kode Akun</label>
                                 <div class="col-sm-9">
-                                    <select name="akun_id" id="akun_id" class='form-control'>
-                                        @foreach ($akuns as $akun_id)
-                                            <option value="{{ $akuns->id }}">{{ $akuns->id }}</option>
+                                    <select name="akun_id" id="" class='form-control'>
+                                        @foreach ($akuns as $akns)
+                                            <option value="{{ $akuns->id }}">{{ $akuns->Nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div> 
-                          <div class="form-group"><label class="col-sm-3 control-label">Kode</label>
+                          <div class="form-group"><label class="col-sm-3 control-label">Kode Non Tagihan</label>
 
                             <div class="col-sm-9"><input type="text" id="kode" placeholder="Kode Tagihan" name="kode" required
                                     class="form-control"></div>
@@ -112,11 +112,7 @@
                             <div class="col-sm-9"><input type="text" id="nama" placeholder="Nama Tagihan" name="nama" required
                                     class="form-control"></div>
                         </div>
-                        <div class="form-group"><label class="col-sm-3 control-label">Akun</label>
-                                <div class="col-sm-9">
-                                    
-                                </div>
-                            </div> 
+                        
                         <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
                             <div class="col-sm-9"><input type="text" id="remark" placeholder="Keterangan" name="remark" required
                                     class="form-control"></div>
