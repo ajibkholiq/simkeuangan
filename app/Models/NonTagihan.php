@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class NonTagihan extends Model
 {
     use HasFactory;
+    protected $table ='non_tagihans';
 
     protected $fillable = [
             'uuid',

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AkunHead;
+use App\Models\NonTagihan;
 use App\Models\Sub2Akun;
 use App\Models\Akun;
 use App\Models\Tagihan;
@@ -65,7 +66,7 @@ Route::get('akun_head', function(){
     return ['data' => AkunHead::all()];
 });
 Route::get('akun_head_sub', function(){
-    return ['data' => AkunHeadSub::join ('akun_head','akun_head_id','akun_head.id')->select('master_akun_head_sub.uuid','akun_head_sub','akun_head_id','master_akun_head_sub.urut','master_akun_head_sub.remark')->get()];
+    return ['data' => AkunHeadSub::join ('akun_head','akun_head_id','akun_head.id')->select('master_akun_head_sub.uuid','akun_head_sub','akun_head','master_akun_head_sub.urut','master_akun_head_sub.remark')->get()];
 });
 Route::get('akun_head_sub2', function(){
     return ['data' => Sub2Akun::join('master_akun_head_sub','sub_akun_id','master_akun_head_sub.id')->join('akun_head','akun_head_id','akun_head.id')->select('sub2_akuns.uuid','Nama','akun_head_sub','akun_head','sub2_akuns.urut','sub2_akuns.remark')->get()];
@@ -82,5 +83,9 @@ Route::get('tagihan', function(){
                                 ->join('akuns','akuns.id','akun_id')
                                 ->select('tagihans.uuid','tahun_pelajaran','tagihans.kode','tagihans.nama','akuns.Nama','batas_bayar','tagihans.remark')
                                 ->get()];
+});
+
+Route::get('non_tagihan', function(){
+    return ['data' => NonTagihan::all()];
 });
 
