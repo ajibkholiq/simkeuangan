@@ -1,5 +1,6 @@
+let table;
 document.addEventListener("DOMContentLoaded", function () {
-    let table = new DataTable("#data-table", {
+    table = new DataTable("#data-table", {
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -67,10 +68,7 @@ $("#kelas-save").on("click", () => {
         success: (response) => {
             $("#edit-kelas").modal("hide");
             console.log(response);
-            setTimeout(() => {
-                location.reload();
-            }, 100);
-            console.log("berhasil");
+            table.ajax.reload();
         },
     });
 });
@@ -84,9 +82,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+            table.ajax.reload();
         },
     });
 });

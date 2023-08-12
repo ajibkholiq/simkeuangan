@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emptyTable: "Tidak ada data",
         },
         ajax: {
-            url: "/api/tingkat",
+            url: "/api/tghnTingkat",
             type: "GET",
         },
         columns: [
@@ -26,59 +26,56 @@ document.addEventListener("DOMContentLoaded", function () {
                    `;
                 },
             },
-            { title: "ID Tingkat", data: "id_tingkat" },
-            { title: "Nama", data: "nama_tingkat" },
+            { title: "Tahun Ajaran", data: "tahun_pelajaran" },
+            { title: "Tagihan", data: "nama" },
+            { title: "Tingkat", data: "nama_tingkat" },
+            { title: "Nominal", data: "nominal" },
             { title: "Keterangan", data: "remark" },
-           
         ],
     });
-   
-});
-$("#btn-add").click(() => {
-    $("#add-siswa").modal("show");
 });
 $(document).on("click", "#bt-hapus", function () {
     let uuid = $(this).data("id");
     $.ajax({
-        url: "/tingkat/" + uuid,
+        url: "/tagihan_tingkat/" + uuid,
         type: "DELETE",
         data: {
             _token: $("input[name='_token']").val(),
             _method: "DELETE",
         },
         success: () => {
-           table.ajax.reload();
+           table.ajax.reload();;
         },
     });
 });
 var uuid;
 $("body").on("click", "#bt-edit", function () {
-    $("#edit-alamat").hide();
     $.ajax({
-        url: "/tingkat/" + $(this).data("uuid"),
+        url: "/tagihan_tingkat/" + $(this).data("uuid"),
         type: "GET",
         success: (data) => {
             uuid = data.uuid;
-            $("#idtingkat").val(data.id_tingkat);
-            $("#nama").val(data.nama_tingkat);
+            $("#tahun").val(data.tahun_pelajaran);
+            $("#tagihan").val(data.nama);
+            $("#tingkat").val(data.nama_tingkat);
+            $("#nominal").val(data.nominal);
             $("#remark").val(data.remark);
-            $("#edit-siswa").modal("show");
+            $("#edit").modal("show");
         },
     });
 });
-$("#ubahsiswa").click(function () {
+$("#ubah").click(function () {
     $.ajax({
-        url: "/tingkat/" + uuid,
+        url: "/tagihan_tingkat/" + uuid,
         type: "PUT",
         data: {
-            id_tingkat: $("#idtingkat").val(),
-            nama: $("#nama").val(),
+            nominal: $("#nominal").val(),
             remark: $("#remark").val(),
             _token: $("input[name='_token']").val(),
             _method: "PUT",
         },
         success: (response) => {
-            $("#edit-siswa").modal("hide");
+            $("#edit").modal("hide");
             console.log(response);
             table.ajax.reload();
         },

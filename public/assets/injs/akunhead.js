@@ -1,5 +1,6 @@
+let table;
 document.addEventListener("DOMContentLoaded",function(){
-    let table = new DataTable("#data-table",{
+    table = new DataTable("#data-table",{
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -47,9 +48,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+          table.ajax.reload();
         },
     });
 });
@@ -82,9 +81,7 @@ $("#ubahsiswa").click(function () {
         success: (response) => {
             $("#edit-siswa").modal("hide");
             console.log(response);
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+            table.ajax.reload();
         },
     });
 });

@@ -1,13 +1,14 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Models\AkunHead;
 use App\Models\NonTagihan;
 use App\Models\Sub2Akun;
 use App\Models\Akun;
 use App\Models\Tagihan;
+use App\Models\TagihanTingkat;
 use App\Models\AkunHeadSub;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Models\adm_menu;
 use App\Models\Siswa;
 use App\Models\User;
@@ -82,6 +83,13 @@ Route::get('tagihan', function(){
     return ['data' => Tagihan::join('tahun_pelajaran','tahun_pelajaran.id','thn_ajaran_id')
                                 ->join('akuns','akuns.id','akun_id')
                                 ->select('tagihans.uuid','tahun_pelajaran','tagihans.kode','tagihans.nama','akuns.Nama','batas_bayar','tagihans.remark')
+                                ->get()];
+});
+Route::get('tghnTingkat', function(){
+    return ['data' => TagihanTingkat::join('tahun_pelajaran','tahun_pelajaran.id','thn_ajaran_id')
+                                ->join('tagihans','tagihans.id','tagihan_id')
+                                ->join('master_tingkat','tingkat_id','master_tingkat.id')
+                                ->select('tagihan_tingkats.uuid','tahun_pelajaran','nominal','tagihans.nama','tagihan_tingkats.remark','master_tingkat.nama_tingkat')
                                 ->get()];
 });
 
