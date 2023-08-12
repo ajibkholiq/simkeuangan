@@ -14,7 +14,8 @@ class NonTagihanController extends Controller
     function index(){
         $menu =menu::getMenu(session::get('role'));
         $akuns=Akun::all();
-        return view('page.MasterData.non_tagihan',compact(['menu','akuns']));   
+        return view('page.MasterData.non_tagihan',compact(['menu','akuns']));
+        // return $akuns;   
 
     }
 
@@ -48,7 +49,7 @@ class NonTagihanController extends Controller
 
     function update($id,request $request) {
         $data =NonTagihan::where('uuid',$id)->update([
-            'akun_id'=> $request->akuns,
+            'akun_id'=> $request->akun_id,
             'kode'=> $request-> kode,
             'nama' =>$request-> nama,
             'remark'=>$request->remark,
@@ -68,6 +69,7 @@ class NonTagihanController extends Controller
             return response()->json(['succsess' => 'data berhasil dihapus', 'data' => $id]);
         }
         return response()->json(['fail' => 'akun gagal dihapus', 'data' => $id]);
+        
      }
         
  }

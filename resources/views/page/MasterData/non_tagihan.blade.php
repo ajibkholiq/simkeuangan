@@ -15,7 +15,7 @@
         @endif
 
         <div class="col-md-12">
-            <a data-toggle="modal"href="#add-kelas" class="btn btn-primary" style="justify-items: end"><i
+            <a data-toggle="modal"href="#add-kelas" class="btn btn-primary"  style="justify-items: end"><i
                     class="fa fa-plus"></i>Tambah Non Tagihan</a>
         </div>
      <div class="col-lg-12 " style="margin-top: 10px ;margin-bottom: 30px">
@@ -53,8 +53,8 @@
                           <div class="form-group"><label class="col-sm-3 control-label">Kode Akun </label>
                                  <div class="col-sm-9">
                                  <select name="akun_id" id="" class='form-control'>
-                                        @foreach ($akuns as $akuns)
-                                            <option value="{{ $akuns->id }}">{{ $akuns->Nama }}</option>
+                                        @foreach ($akuns as $akun)
+                                            <option value="{{ $akun->id }}">{{ $akun->Nama }}</option>
                                         @endforeach
                                     </select>
                                     </div>
@@ -95,9 +95,9 @@
                         <input type="hidden" id="uuid">
                           <div class="form-group"><label class="col-sm-3 control-label"> Kode Akun</label>
                                 <div class="col-sm-9">
-                                    <select name="akun_id" id="" class='form-control'>
-                                        @foreach ($akuns as $akns)
-                                            <option value="{{ $akuns->id }}">{{ $akuns->Nama }}</option>
+                                    <select name="akun_id" id="akuns" class='form-control'>
+                                        @foreach ($akuns as $akun)
+                                            <option value="{{ $akun->id }}">{{ $akun->Nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
