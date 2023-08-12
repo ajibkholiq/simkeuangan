@@ -48,13 +48,14 @@ $(document).on("click", "#bt-hapus", function () {
         },
     });
 });
-var uuid;
+
 $("body").on("click", "#bt-edit", function () {
     $.ajax({
         url: "/tagihan_tingkat/" + $(this).data("uuid"),
         type: "GET",
         success: (data) => {
-            uuid = data.uuid;
+            console.log(data);
+            $("#uuid").val(data.uuid);
             $("#tahun").val(data.tahun_pelajaran);
             $("#tagihan").val(data.nama);
             $("#tingkat").val(data.nama_tingkat);
@@ -66,7 +67,7 @@ $("body").on("click", "#bt-edit", function () {
 });
 $("#ubah").click(function () {
     $.ajax({
-        url: "/tagihan_tingkat/" + uuid,
+        url: "/tagihan_tingkat/" + $("#uuid").val(),
         type: "PUT",
         data: {
             nominal: $("#nominal").val(),

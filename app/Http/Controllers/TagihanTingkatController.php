@@ -41,6 +41,7 @@ class TagihanTingkatController extends Controller
         return response()->json(TagihanTingkat::join('tahun_pelajaran','tahun_pelajaran.id','thn_ajaran_id')
                                 ->join('tagihans','tagihans.id','tagihan_id')
                                 ->join('master_tingkat','tingkat_id','master_tingkat.id')
+                                ->where('tagihan_tingkats.uuid',$id)
                                 ->select('tagihan_tingkats.uuid','tahun_pelajaran','nominal','tagihans.nama','tagihan_tingkats.remark','master_tingkat.nama_tingkat')
                                 ->first(), 200);
     }

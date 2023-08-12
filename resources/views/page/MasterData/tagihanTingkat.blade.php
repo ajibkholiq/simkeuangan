@@ -73,7 +73,8 @@
                             </div> 
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <div class="col-sm-9 col-sm-offset-3" style="text-align: end">
+                            <div class="col-sm-9 col-sm-offset-3 " style="justify-content:end; display:flex; gap:2rem">
+                                <p class="text-danger">Untuk Awal Tahun Pelajaran.!</p>
                                 <button class="btn btn-primary" id="thn-save">Generate</button>
                             </div>
                         </div>

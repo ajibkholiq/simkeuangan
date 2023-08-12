@@ -17,6 +17,7 @@ use App\Http\Controllers\MasterUnitCntrl;
 use App\Http\Controllers\Sub2AkunController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\TagihanController;
+use App\Http\Controllers\TagihanSiswaController;
 use App\Http\Controllers\TagihanTingkatController;
 use App\Http\Controllers\NonTagihanController;
 

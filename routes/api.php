@@ -95,6 +95,16 @@ Route::get('tghnTingkat', function(){
 
 Route::get('non_tagihan', function(){
     return ['data' => NonTagihan::all()];
-    // return ['data' => NonTagihan::join('akuns','akun_id','akuns.id')->select('non_tagihans.uuid','akun_id','non_tagihans.kode','non_tagihans.nama','non_tagihans.remark')->get()];
+    // return ['data' => NonTagihan::join('akuns','akun_id','akuns.id')->select('non_tagihans.uuid','non_tagihans.kode','non_tagihans.nama','non_tagihans.remark')->get()];
+});
+
+Route::get('dataTagihan', function(){
+    return ['data' => Siswa::join('kelas','id_kelas','kelas.id')
+                            ->join('master_tingkat','master_tingkat.id','kelas.tingkat_id')
+                            ->join('tagihan_tingkats','tagihan_tingkats.tingkat_id','master_tingkat.id')
+                            ->join('tahun_pelajaran','thn_ajaran_id','tahun_pelajaran.id')
+                            ->join('tagihans','tagihans.id','tagihan_id')
+                            ->select('tahun_pelajaran','kelas.kelas','siswa.nama as siswa','tagihans.nama as tagihan','nominal','tagihan_tingkats.remark')
+                            ->get()];
 });
 
