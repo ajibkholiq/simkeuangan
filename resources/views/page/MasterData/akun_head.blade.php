@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-         <div id="edit-akun_head" class="modal in" aria-hidden="true">
+         <div id="edit" class="modal in" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">

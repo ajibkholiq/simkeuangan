@@ -60,8 +60,8 @@
                             <div class="form-group"><label class="col-sm-3 control-label">Akun Head</label>
                                 <div class="col-sm-9">
                                     <select name="akun_head_id" id="" class='form-control'>
-                                        @foreach ($akun_head as $akun_head)
-                                            <option value="{{ $akun_head->id }}">{{ $akun_head->akun_head }}</option>
+                                        @foreach ($akun_head as $akun)
+                                            <option value="{{$akun->id}}">{{ $akun->akun_head }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -85,7 +85,7 @@
                 </div>
             </div>
         </div>
-         <div id="edit-akun_headsub" class="modal in" aria-hidden="true">
+         <div id="edit" class="modal in" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -100,9 +100,9 @@
                             </div>
                            <div class="form-group"><label class="col-sm-3 control-label">Akun Head</label>
                                 <div class="col-sm-9">
-                                    <select name="akun_head_id" id="id" class='form-control'>
-                                        @foreach ($akun_head as $akun_head_id)
-                                            <option value="{{ $akun_head->id }}">{{ $akun_head->akun_head }}</option>
+                                    <select  id="id" class='form-control'>
+                                        @foreach ($akun_head as $itm)
+                                            <option value="{{$itm->id}}">{{$itm->akun_head}}</option>
                                         @endforeach
                                     </select>
                                 </div>

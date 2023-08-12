@@ -63,7 +63,7 @@ $("body").on("click", "#bt-edit", function () {
             $("#akun_head").val(data.akun_head);
             $("#urut").val(data.urut);
             $("#remark").val(data.remark);
-            $("#edit-akun_head").modal("show");
+            $("#edit").modal("show");
         },
     });
 });
@@ -79,7 +79,7 @@ $("#ubahsiswa").click(function () {
             _method: "PUT",
         },
         success: (response) => {
-            $("#edit-siswa").modal("hide");
+            $("#edit").modal("hide");
             console.log(response);
             table.ajax.reload();
         },
