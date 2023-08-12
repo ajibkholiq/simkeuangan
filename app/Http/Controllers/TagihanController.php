@@ -52,7 +52,7 @@ class TagihanController extends Controller
             'remark'  => $request->remark,
             'updated_by'  => Session::get('nama'),
          ]);
-    
+         return response()->json(['berhasil']);
         }
 
        function destroy($id){
