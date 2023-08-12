@@ -60,6 +60,7 @@ Route::middleware('checklogin')->group(function () {
         return view('page.dashboard',compact(['menu','siswa']));
         // return $siswa;
     });
+    Route::resource('non_tagihan',NonTagihanController::class);
     Route::resource('sub_sub_akun', Sub2AkunController::class);
     Route::resource('tingkat', MasterTingkaCntrl::class);
     Route::resource('akun', AkunController::class);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\AkunHead;
+use App\Models\NonTagihan;
 use App\Models\Sub2Akun;
 use App\Models\Akun;
 use App\Models\Tagihan;
@@ -82,5 +83,10 @@ Route::get('tagihan', function(){
                                 ->join('akuns','akuns.id','akun_id')
                                 ->select('tagihans.uuid','tahun_pelajaran','tagihans.kode','tagihans.nama','akuns.Nama','batas_bayar','tagihans.remark')
                                 ->get()];
+});
+
+Route::get('non_tagihan', function(){
+    return ['data' => NonTagihan::all()];
+    // return ['data' => NonTagihan::join('akuns','akun_id','akuns.id')->select('non_tagihans.uuid','akun_id','non_tagihans.kode','non_tagihans.nama','non_tagihans.remark')->get()];
 });
 
