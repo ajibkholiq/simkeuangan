@@ -1,6 +1,16 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Tingkat",
+                exportOptions: {
+                    columns: [1, 2, 3],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -29,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
             { title: "ID Tingkat", data: "id_tingkat" },
             { title: "Nama", data: "nama_tingkat" },
             { title: "Keterangan", data: "remark" },
-           
         ],
     });
    
@@ -47,6 +56,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Data Tingkat");
            table.ajax.reload();
         },
     });
@@ -80,6 +90,7 @@ $("#ubahsiswa").click(function () {
         success: (response) => {
             $("#edit-siswa").modal("hide");
             console.log(response);
+            toastr.success("Berhasil diubah!", "Data Tingkat");
             table.ajax.reload();
         },
     });

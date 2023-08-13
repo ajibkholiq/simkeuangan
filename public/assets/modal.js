@@ -1,7 +1,27 @@
-;
 
+let table;
  document.addEventListener("DOMContentLoaded", function () {
-     let table = new DataTable("#data-table", {
+     table = new DataTable("#data-table", {
+         dom: "Bfrtipl",
+         buttons: [
+             {
+                 extend: "excel",
+                 title: "Data Siswa",
+                 text: '<i class="fa fa-file-excel-o"></i>',
+                 titleAttr: "Excel",
+                 autoFilter: true,
+                 exportOptions: {
+                     columns: [1, 2, 3, 4, 5, 6, 7, 8],
+                 },
+             },
+             {
+                 extend: "print",
+                 title: "Data Siswa",
+                 exportOptions: {
+                     columns: [1, 2, 3, 4, 5, 6, 7, 8],
+                 },
+             },
+         ],
          processing: false,
          ordering: true,
          lengthMenu: [
@@ -75,9 +95,9 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-         setTimeout(() => {
-           location.reload();
-         }, 100);
+            toastr.success("Berhasil dihapus!", "Data Siswa");
+            table.ajax.reload();
+        
         },
     });
 });
@@ -123,10 +143,10 @@ $("#ubahsiswa").click(function () {
         },
         success: (response) => {
             $("#edit-siswa").modal("hide");
+            toastr.success("Berhasil diubah!", "Data Siswa");
+            table.ajax.reload();
             console.log(response);
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+            
         },
     });
 });

@@ -1,6 +1,25 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "excel",
+                title: "Data Kelas",
+                text: '<i class="fa fa-file-excel-o"></i>',
+                autoFilter: true,
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6],
+                },
+            },
+            {
+                extend: "print",
+                title: "Data Kelas",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -67,6 +86,8 @@ $("#kelas-save").on("click", () => {
         },
         success: (response) => {
             $("#edit-kelas").modal("hide");
+            toastr.success("Berhasil diubah!", "Data Kelas");
+
             console.log(response);
             table.ajax.reload();
         },
@@ -82,6 +103,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Data Kelas");
             table.ajax.reload();
         },
     });

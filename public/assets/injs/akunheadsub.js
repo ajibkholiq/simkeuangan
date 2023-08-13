@@ -1,6 +1,16 @@
 let table;
 document.addEventListener("DOMContentLoaded",function(){
-    table = new DataTable("#data-table",{
+    table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Sub Akun Head",
+                exportOptions: {
+                    columns: [1, 2, 3,4],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -30,9 +40,7 @@ document.addEventListener("DOMContentLoaded",function(){
             { title: "Akun Head", data: "akun_head" },
             { title: "Urut", data: "urut" },
             { title: "keterangan", data: "remark" },
-            
         ],
-       
     });
 });
     $("#btn-add").click(() => {
@@ -49,6 +57,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 _method: "DELETE",
             },
             success: () => {
+                toastr.success("Berhasil dihapus!", "Data Sub Akun");
                 table.ajax.reload();
             },
         });
@@ -84,6 +93,8 @@ $("#ubahsiswa").click(function () {
         success: (response) => {
             $("#edit").modal("hide");
             console.log(response);
+            toastr.success("Berhasil diubah!", "Data Sub Akun");
+
             table.ajax.reload();
         },
     });

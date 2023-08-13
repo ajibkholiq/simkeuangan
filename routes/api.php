@@ -94,8 +94,8 @@ Route::get('tghnTingkat', function(){
 });
 
 Route::get('non_tagihan', function(){
-    return ['data' => NonTagihan::all()];
-    // return ['data' => NonTagihan::join('akuns','akun_id','akuns.id')->select('non_tagihans.uuid','non_tagihans.kode','non_tagihans.nama','non_tagihans.remark')->get()];
+    // return ['data' => NonTagihan::all()];
+    return ['data' => NonTagihan::join('akuns','akun_id','akuns.id')->select('non_tagihans.uuid','non_tagihans.kode','non_tagihans.nama','non_tagihans.remark','akuns.Nama as akun')->get()];
 });
 
 Route::get('dataTagihan', function(){

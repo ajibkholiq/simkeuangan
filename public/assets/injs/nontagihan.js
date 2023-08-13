@@ -2,6 +2,26 @@ let table ;
 
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "excel",
+                title: "Data NonTagihan",
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: "Excel",
+                autoFilter: true,
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                },
+            },
+            {
+                extend: "print",
+                title: "Data NonTagihan",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -27,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                    `;
                 },
             },
-            { title: "Kode Akun", data: "id" },
+            { title: "Kode Akun", data: "akun" },
             { title: "Kode Non Tagihan", data: "kode" },
             { title: "Nama", data: "nama" },
             { title: "Keterangan", data: "remark" },
@@ -62,6 +82,8 @@ $("#btn-ubah").on("click", () => {
         },
         success: (response) => {
             $("#edit").modal("hide");
+            toastr.success("Berhasil diubah!", "Data NonTagihan");
+
             console.log(response);
             table.ajax.reload();
         },
@@ -77,6 +99,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Data NonTagihan");
             table.ajax.reload();
         },
     });

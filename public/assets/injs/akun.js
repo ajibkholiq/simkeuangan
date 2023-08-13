@@ -1,6 +1,26 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "excel",
+                title: "Data Akun",
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: "Excel",
+                autoFilter: true,
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5,6],
+                },
+            },
+            {
+                extend: "print",
+                title: "Data Akun",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5,6],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -63,6 +83,7 @@ $("#btn-ubah").on("click", () => {
         },
         success: (response) => {
             $("#edit").modal("hide");
+            toastr.success("Berhasil diubah!", "Data Akun");
             console.log(response);
             table.ajax.reload();
         },
@@ -78,6 +99,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Data Akun");
             table.ajax.reload();
         },
     });

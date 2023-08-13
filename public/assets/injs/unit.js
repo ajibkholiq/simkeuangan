@@ -1,6 +1,16 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Unit",
+                exportOptions: {
+                    columns: [1, 2, 3, 4,5,6],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -33,13 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 title: "Logo",
                 data: null,
-                render : function(data) {
+                render: function (data) {
                     return `<a href="assets/img/unit/${data.logo}">${data.logo}</a>`;
                 },
             },
-           
+
             { title: "Keterangan", data: "remark" },
-           
         ],
     });
 });
@@ -56,6 +65,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Data Unit");
            table.ajax.reload();
         },
     });
@@ -92,6 +102,8 @@ $("#ubah").click(function () {
         },
         success: (response) => {
             $("#edit-siswa").modal("hide");
+            toastr.success("Berhasil diubah!", "Data Unit");
+
             table.ajax.reload();
         },
     });

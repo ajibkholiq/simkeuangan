@@ -1,6 +1,16 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Sub Sub Akun Head ",
+                exportOptions: {
+                    columns: [1, 2, 3, 4,5],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -62,6 +72,7 @@ $("#btn-ubah").on("click", () => {
         },
         success: (response) => {
             $("#edit").modal("hide");
+            toastr.success("Berhasil diubah!", "Sub Sub Akun");
             console.log(response);
             table.ajax.reload();
         },
@@ -77,6 +88,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Sub Sub Akun");
            table.ajax.reload();
         },
     });

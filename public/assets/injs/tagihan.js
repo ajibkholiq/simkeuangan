@@ -1,12 +1,32 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
-        processing: false,
-        ordering: true,
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "excel",
+                title: "Data Tagihan",
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: "Excel",
+                autoFilter: true,
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6],
+                },
+            },
+            {
+                extend: "print",
+                title: "Data Tagihan",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6],
+                },
+            },
+        ],
         lengthMenu: [
             [10, 25, 50, -1],
             [10, 25, 50, "All"],
         ],
+        processing: false,
+        ordering: true,
         language: {
             emptyTable: "Tidak ada data",
         },
@@ -68,6 +88,7 @@ $("#btn-ubah").on("click", () => {
         success: (response) => {
             $("#edit").modal("hide");
             console.log(response);
+            toastr.success('Berhasil diubah!', 'Data Tagihan');
             table.ajax.reload();
         },
     });
@@ -82,7 +103,8 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-           table.ajax.reload();;
+            toastr.success("Berhasil dihapus!", "Data Tagihan");
+            table.ajax.reload();;
         },
     });
 });

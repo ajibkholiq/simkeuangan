@@ -1,6 +1,26 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "excel",
+                title: "Data Tagihan Tingkat",
+                text: '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: "Excel",
+                autoFilter: true,
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                },
+            },
+            {
+                extend: "print",
+                title: "Data Tagihan Tingkat",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -44,7 +64,8 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-           table.ajax.reload();;
+            toastr.success("Berhasil dihapus!", "Data Tagihan Tingkat");
+            table.ajax.reload();;
         },
     });
 });
@@ -77,7 +98,7 @@ $("#ubah").click(function () {
         },
         success: (response) => {
             $("#edit").modal("hide");
-            console.log(response);
+            toastr.success("Berhasil diubah!", "Data Tagihan Tingkat");
             table.ajax.reload();
         },
     });

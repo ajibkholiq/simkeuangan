@@ -1,6 +1,16 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Tingkat",
+                exportOptions: {
+                    columns: [1, 2, 3],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -20,7 +30,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: null,
                 render: function (data, type, row) {
                     var clas;
-                    if(data.status==='AKTIF'){clas = "btn-warning fa fa-check-square-o ";}else{ clas = "btn-primary fa fa-square-o ";}
+                    if (data.status === "AKTIF") {
+                        clas = "btn-warning fa fa-check-square-o ";
+                    } else {
+                        clas = "btn-primary fa fa-square-o ";
+                    }
                     return `
                     <div style="display:flex; gap:8px; justify-content: start">
                    <button id="bt-hapus" class="btn btn-outline btn-danger fa fa-trash-o" data-id="${data.uuid}"></button> 
@@ -36,18 +50,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 $("body").on("click", "#bt-edit", function () {
     let uuid = $(this).data("uuid");
-    let status = $(this).data("status");
+    let statu = $(this).data("status");
     $.ajax({
         url: "/tahun_pelajaran/" + uuid,
         type: "PUT",
         data: {
-            status: status,
+            status: statu,
             _token: $("input[name='_token']").val(),
             _method: "PUT",
         },
-        success: function (response) {
-            console.log(response);
-          table.ajax.reload();
+        success: function () {
+            if (statu == 'AKTIF'){
+            toastr.success("Berhasil dinonaktifkan!", "Tahun Pelajaran");
+            }
+            else {toastr.success("Berhasil diaktifkan!", "Tahun Pelajaran");}
+            table.ajax.reload();
         },
     });
 });
@@ -62,6 +79,8 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Tahun Pelajaran")
+
            table.ajax.reload();
         },
     });

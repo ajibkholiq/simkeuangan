@@ -1,6 +1,16 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Semester",
+                exportOptions: {
+                    columns: [1, 2, 3],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -49,8 +59,13 @@ $("body").on("click", "#bt-edit", function () {
             _token: $("input[name='_token']").val(),
             _method: "PUT",
         },
-        success: function (response) {
-            console.log(response);
+        success: function () {
+              if (statu == "AKTIF") {
+                  toastr.success("Berhasil dinonaktifkan!", "Tahun Pelajaran");
+              } else {
+                  toastr.success("Berhasil diaktifkan!", "Tahun Pelajaran");
+              }
+              table.ajax.reload();
             table.ajax.reload();
         },
     });
@@ -66,6 +81,7 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
+            toastr.success("Berhasil dihapus!", "Semester");
             table.ajax.reload();
         },
     });

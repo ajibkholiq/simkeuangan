@@ -1,6 +1,8 @@
 @extends('layout.master')
 @push('css')
         <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+
         <!--datatable responsive css-->
     @endpush
 @section('main')
@@ -72,12 +74,41 @@
 @endsection
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> // export pdf --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> // export pdf --}}
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print--}}
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+>
    
     <script>
+        let table 
         document.addEventListener("DOMContentLoaded", function () {
-    let table = new DataTable("#data-table", {
+            table = new DataTable("#data-table", {
+         dom: "Bfrtipl",
+         buttons: [
+             {
+                 extend: "excel",
+                 title: "Data Siswa",
+                 text: '<i class="fa fa-file-excel-o"></i>',
+                 titleAttr: "Excel",
+                 autoFilter: true,
+                 exportOptions: {
+                     columns: [1, 2, 3, 4, 5, 6],
+                 },
+             },
+             {
+                 extend: "print",
+                 title: "Data Siswa",
+                 exportOptions: {
+                     columns: [1, 2, 3, 4, 5, 6],
+                 },
+             },
+         ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -153,10 +184,8 @@
                 success: function(response) {
                     console.log(response);
                     $('#edit-form').modal('hide');
-                    setTimeout(function() {
-                        location.reload();
-                    }, 100);
-                }
+                     toastr.success('Berhasil diubah!', 'Data Pegawai');
+                     table.ajax.reload();},
             });
         });
 $(document).on("click", "#bt-hapus", function () {
@@ -169,9 +198,8 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+            toastr.success('Berhasil dihapus!', 'Data Pegawai');
+            table.ajax.reload();
         },
     });
 });

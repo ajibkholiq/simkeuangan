@@ -12,6 +12,8 @@
     <link href="{{ URL::asset ('assets/css/plugins/codemirror/codemirror.css')}}" rel="stylesheet">
     <link href="{{ URL::asset ('assets/css/plugins/codemirror/ambiance.css')}}" rel="stylesheet">
     <link href="{{ URL::asset ('assets/css/style.css')}}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+      
 
 </head>
 
@@ -34,6 +36,9 @@
     <!-- Custom and plugin javascript -->
     <script src="{{ URL::asset ('assets/js/inspinia.js')}}"></script>
     <script src="{{ URL::asset ('assets/js/plugins/pace/pace.min.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+    
 </body>
 
 </html>
