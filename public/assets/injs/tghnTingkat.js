@@ -65,7 +65,7 @@ $(document).on("click", "#bt-hapus", function () {
         },
         success: () => {
             toastr.success("Berhasil dihapus!", "Data Tagihan Tingkat");
-            table.ajax.reload();;
+            table.ajax.reload();
         },
     });
 });

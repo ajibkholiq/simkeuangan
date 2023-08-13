@@ -76,19 +76,19 @@ $("#btn-ubah").on("click", () => {
         url: "/tagihan/" + $("#uuid").val(),
         type: "PUT",
         data: {
-            tahun   : $("#tahun").val(),
-            akun    : $("#akun").val(),
-            nama    : $("#nama").val(),
-            kode    : $("#kode").val(),
-            btsbyr  : $("#bayar").val(),
-            remark  : $("#remark").val(),
+            tahun: $("#tahun").val(),
+            akun: $("#akun").val(),
+            nama: $("#nama").val(),
+            kode: $("#kode").val(),
+            btsbyr: $("#bayar").val(),
+            remark: $("#remark").val(),
             _token: $("input[name='_token']").val(),
             _method: "PUT",
         },
         success: (response) => {
             $("#edit").modal("hide");
             console.log(response);
-            toastr.success('Berhasil diubah!', 'Data Tagihan');
+            toastr.success("Berhasil diubah!", "Data Tagihan");
             table.ajax.reload();
         },
     });
@@ -104,7 +104,7 @@ $(document).on("click", "#bt-hapus", function () {
         },
         success: () => {
             toastr.success("Berhasil dihapus!", "Data Tagihan");
-            table.ajax.reload();;
+            table.ajax.reload();
         },
     });
 });

@@ -25,14 +25,17 @@
                 <div class="ibox-content">
                     <div class="table-responsive">
                         <style>
-                                    th {
-                                        text-align: center
-                                    }
-                                    td{ text-transform: capitalize}
-                                </style>
+                            th {
+                                text-align: center
+                            }
+
+                            td {
+                                text-transform: capitalize
+                            }
+                        </style>
                         <table id="data-table" class="table table-striped">
                             <thead>
-                                
+
                                 <tr style="">
                                     <th>Action</th>
                                     <th>NIS</th>
@@ -43,7 +46,7 @@
                                     <th>No Hp</th>
                                     <th>Alamat</th>
                                     <th>Keterangan</th>
-                                    
+
                                 </tr>
                             </thead>
                         </table>
@@ -61,8 +64,8 @@
                             <div class="hr-line-dashed"></div>
                             <div class="form-group"><label class="col-sm-3 control-label">NIS</label>
 
-                                <div class="col-sm-9"><input type="text" placeholder="Nomer Induk Siswa" name="nis" required
-                                        class="form-control"></div>
+                                <div class="col-sm-9"><input type="text" placeholder="Nomer Induk Siswa" name="nis"
+                                        required class="form-control"></div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Nama</label>
 
@@ -114,7 +117,7 @@
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kelurahan / Desa</label>
                                 <div class="col-sm-9">
-                                    <select name="kelurahan" required    id="kelurahan" class='form-control'>
+                                    <select name="kelurahan" required id="kelurahan" class='form-control'>
                                     </select>
                                 </div>
                             </div>
@@ -123,8 +126,8 @@
                                         class="form-control"></div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark" required
-                                        class="form-control"></div>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark"
+                                        required class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
@@ -203,8 +206,8 @@
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" id="remark" required
-                                        class="form-control"></div>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" id="remark"
+                                        required class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
@@ -230,7 +233,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> // export pdf --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> // export pdf --}}
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print--}}
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print --}}
     <script src="{{ URL::asset('assets/modal.js') }}"></script>
-
 @endpush

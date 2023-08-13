@@ -1,7 +1,6 @@
 let table;
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
-        
         dom: "Bfrtipl",
         buttons: [
             {
@@ -43,7 +42,5 @@ document.addEventListener("DOMContentLoaded", function () {
             { title: "Nominal", data: "nominal" },
             { title: "Keterangan", data: "remark" },
         ],
-    
-        
     });
 });

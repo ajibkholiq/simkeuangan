@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 extend: "print",
                 title: "Data Unit",
                 exportOptions: {
-                    columns: [1, 2, 3, 4,5,6],
+                    columns: [1, 2, 3, 4, 5, 6],
                 },
             },
         ],
@@ -66,7 +66,7 @@ $(document).on("click", "#bt-hapus", function () {
         },
         success: () => {
             toastr.success("Berhasil dihapus!", "Data Unit");
-           table.ajax.reload();
+            table.ajax.reload();
         },
     });
 });
@@ -92,9 +92,9 @@ $("#ubah").click(function () {
         url: "/unit/" + uuid,
         type: "PUT",
         data: {
-            unit : $("#unit").val(),
-            alamat :$("#alamat").val(),
-            nohp :$("#nohp").val(),
+            unit: $("#unit").val(),
+            alamat: $("#alamat").val(),
+            nohp: $("#nohp").val(),
             nama: $("#nama").val(),
             remark: $("#remark").val(),
             _token: $("input[name='_token']").val(),

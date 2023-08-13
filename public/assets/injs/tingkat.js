@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function () {
             { title: "Keterangan", data: "remark" },
         ],
     });
-   
 });
 $("#btn-add").click(() => {
     $("#add-siswa").modal("show");
@@ -57,7 +56,7 @@ $(document).on("click", "#bt-hapus", function () {
         },
         success: () => {
             toastr.success("Berhasil dihapus!", "Data Tingkat");
-           table.ajax.reload();
+            table.ajax.reload();
         },
     });
 });

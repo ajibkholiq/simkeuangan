@@ -1,5 +1,5 @@
 let table;
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
         dom: "Bfrtipl",
         buttons: [
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded",function(){
                 extend: "print",
                 title: "Data Sub Akun Head",
                 exportOptions: {
-                    columns: [1, 2, 3,4],
+                    columns: [1, 2, 3, 4],
                 },
             },
         ],
@@ -43,26 +43,26 @@ document.addEventListener("DOMContentLoaded",function(){
         ],
     });
 });
-    $("#btn-add").click(() => {
-        $("#add-siswa").modal("show");
+$("#btn-add").click(() => {
+    $("#add-siswa").modal("show");
+});
+
+$(document).on("click", "#bt-hapus", function () {
+    let uuid = $(this).data("id");
+    $.ajax({
+        url: "/akun_head_sub/" + uuid,
+        type: "DELETE",
+        data: {
+            _token: $("input[name='_token']").val(),
+            _method: "DELETE",
+        },
+        success: () => {
+            toastr.success("Berhasil dihapus!", "Data Sub Akun");
+            table.ajax.reload();
+        },
     });
-    
-    $(document).on("click", "#bt-hapus", function () {
-        let uuid = $(this).data("id");
-        $.ajax({
-            url: "/akun_head_sub/" + uuid,
-            type: "DELETE",
-            data: {
-                _token: $("input[name='_token']").val(),
-                _method: "DELETE",
-            },
-            success: () => {
-                toastr.success("Berhasil dihapus!", "Data Sub Akun");
-                table.ajax.reload();
-            },
-        });
-    });
-    var uuid;
+});
+var uuid;
 $("body").on("click", "#bt-edit", function () {
     $("#edit-alamat").hide();
     $.ajax({

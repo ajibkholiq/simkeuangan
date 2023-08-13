@@ -1,10 +1,10 @@
 @extends('layout.master')
 @push('css')
-        <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 
-        <!--datatable responsive css-->
-    @endpush
+    <!--datatable responsive css-->
+@endpush
 @section('main')
     <div class="row" style="margin-top:10px">
         @if (session('success'))
@@ -32,6 +32,7 @@
                                         th {
                                             text-align: center;
                                         }
+
                                         td {
                                             text-transform: capitalize
                                         }
@@ -46,7 +47,7 @@
 
                                 </tr>
                             </thead>
-                           
+
                         </table>
                     </div>
                 </div>
@@ -81,70 +82,87 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> // export pdf --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> // export pdf --}}
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print--}}
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print --}}
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
->
-   
+    >
+
     <script>
-        let table 
-        document.addEventListener("DOMContentLoaded", function () {
+        let table
+        document.addEventListener("DOMContentLoaded", function() {
             table = new DataTable("#data-table", {
-         dom: "Bfrtipl",
-         buttons: [
-             {
-                 extend: "excel",
-                 title: "Data Siswa",
-                 text: '<i class="fa fa-file-excel-o"></i>',
-                 titleAttr: "Excel",
-                 autoFilter: true,
-                 exportOptions: {
-                     columns: [1, 2, 3, 4, 5, 6],
-                 },
-             },
-             {
-                 extend: "print",
-                 title: "Data Siswa",
-                 exportOptions: {
-                     columns: [1, 2, 3, 4, 5, 6],
-                 },
-             },
-         ],
-        processing: false,
-        ordering: true,
-        lengthMenu: [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"],
-        ],
-        language: {
-            emptyTable: "Tidak ada data",
-        },
-        ajax: {
-            url: "/api/pegawai",
-            type: "GET",
-        },
-        columns: [
-            {
-                title: "Action",
-                data: null,
-                render: function (data, type, row) {
-                    if(data.role !== 'admin'){
-                    return `
+                dom: "Bfrtipl",
+                buttons: [{
+                        extend: "excel",
+                        title: "Data Siswa",
+                        text: '<i class="fa fa-file-excel-o"></i>',
+                        titleAttr: "Excel",
+                        autoFilter: true,
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5, 6],
+                        },
+                    },
+                    {
+                        extend: "print",
+                        title: "Data Siswa",
+                        exportOptions: {
+                            columns: [1, 2, 3, 4, 5, 6],
+                        },
+                    },
+                ],
+                processing: false,
+                ordering: true,
+                lengthMenu: [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"],
+                ],
+                language: {
+                    emptyTable: "Tidak ada data",
+                },
+                ajax: {
+                    url: "/api/pegawai",
+                    type: "GET",
+                },
+                columns: [{
+                        title: "Action",
+                        data: null,
+                        render: function(data, type, row) {
+                            if (data.role !== 'admin') {
+                                return `
                     <div style="display:flex; gap:8px; justify-content: start">
                    <button id="bt-hapus" class="btn btn-outline btn-danger fa fa-trash-o" data-id="${data.uuid}"></button> 
                     <button id="bt-edit" class="btn btn-outline btn-warning fa fa-pencil " data-uuid="${data.uuid}"></button></div>
-                   `;}
-                   return '';
-                },
-            },
-            { title: "Nama", data: "nama" },
-            { title: "Username", data: "username" },
-            { title: "Email", data: "email" },
-            { title: "Alamat", data: "alamat" },
-            { title: "No Hp", data: "nohp" },
-            { title: "Role", data: "role" },
-        ],
-    });
-});
+                   `;
+                            }
+                            return '';
+                        },
+                    },
+                    {
+                        title: "Nama",
+                        data: "nama"
+                    },
+                    {
+                        title: "Username",
+                        data: "username"
+                    },
+                    {
+                        title: "Email",
+                        data: "email"
+                    },
+                    {
+                        title: "Alamat",
+                        data: "alamat"
+                    },
+                    {
+                        title: "No Hp",
+                        data: "nohp"
+                    },
+                    {
+                        title: "Role",
+                        data: "role"
+                    },
+                ],
+            });
+        });
         $('body').on('click', '#bt-edit', function() {
             let uuid = $(this).data('uuid');
             $.ajax({
@@ -184,24 +202,25 @@
                 success: function(response) {
                     console.log(response);
                     $('#edit-form').modal('hide');
-                     toastr.success('Berhasil diubah!', 'Data Pegawai');
-                     table.ajax.reload();},
+                    toastr.success('Berhasil diubah!', 'Data Pegawai');
+                    table.ajax.reload();
+                },
             });
         });
-$(document).on("click", "#bt-hapus", function () {
-    let uuid = $(this).data("id");
-    $.ajax({
-        url: "/pegawai/" + uuid,
-        type: "DELETE",
-        data: {
-            _token: $("input[name='_token']").val(),
-            _method: "DELETE",
-        },
-        success: () => {
-            toastr.success('Berhasil dihapus!', 'Data Pegawai');
-            table.ajax.reload();
-        },
-    });
-});
+        $(document).on("click", "#bt-hapus", function() {
+            let uuid = $(this).data("id");
+            $.ajax({
+                url: "/pegawai/" + uuid,
+                type: "DELETE",
+                data: {
+                    _token: $("input[name='_token']").val(),
+                    _method: "DELETE",
+                },
+                success: () => {
+                    toastr.success('Berhasil dihapus!', 'Data Pegawai');
+                    table.ajax.reload();
+                },
+            });
+        });
     </script>
 @endpush

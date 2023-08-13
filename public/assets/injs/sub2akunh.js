@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 extend: "print",
                 title: "Data Sub Sub Akun Head ",
                 exportOptions: {
-                    columns: [1, 2, 3, 4,5],
+                    columns: [1, 2, 3, 4, 5],
                 },
             },
         ],
@@ -89,7 +89,7 @@ $(document).on("click", "#bt-hapus", function () {
         },
         success: () => {
             toastr.success("Berhasil dihapus!", "Sub Sub Akun");
-           table.ajax.reload();
+            table.ajax.reload();
         },
     });
 });

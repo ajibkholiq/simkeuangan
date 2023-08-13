@@ -1,4 +1,4 @@
-let table ;
+let table;
 
 document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
@@ -73,10 +73,10 @@ $("#btn-ubah").on("click", () => {
         url: "/non_tagihan/" + $("#uuid").val(),
         type: "PUT",
         data: {
-            akun_id   : $("#akuns").val(),
-            nama    : $("#nama").val(),
-            kode    : $("#kode").val(),
-            remark  : $("#remark").val(),
+            akun_id: $("#akuns").val(),
+            nama: $("#nama").val(),
+            kode: $("#kode").val(),
+            remark: $("#remark").val(),
             _token: $("input[name='_token']").val(),
             _method: "PUT",
         },

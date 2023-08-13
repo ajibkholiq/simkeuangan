@@ -10,14 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 titleAttr: "Excel",
                 autoFilter: true,
                 exportOptions: {
-                    columns: [1, 2, 3, 4, 5,6],
+                    columns: [1, 2, 3, 4, 5, 6],
                 },
             },
             {
                 extend: "print",
                 title: "Data Akun",
                 exportOptions: {
-                    columns: [1, 2, 3, 4, 5,6],
+                    columns: [1, 2, 3, 4, 5, 6],
                 },
             },
         ],

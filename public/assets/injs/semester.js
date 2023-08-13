@@ -60,12 +60,12 @@ $("body").on("click", "#bt-edit", function () {
             _method: "PUT",
         },
         success: function () {
-              if (statu == "AKTIF") {
-                  toastr.success("Berhasil dinonaktifkan!", "Tahun Pelajaran");
-              } else {
-                  toastr.success("Berhasil diaktifkan!", "Tahun Pelajaran");
-              }
-              table.ajax.reload();
+            if (statu == "AKTIF") {
+                toastr.success("Berhasil dinonaktifkan!", "Tahun Pelajaran");
+            } else {
+                toastr.success("Berhasil diaktifkan!", "Tahun Pelajaran");
+            }
+            table.ajax.reload();
             table.ajax.reload();
         },
     });

@@ -49,24 +49,24 @@
                     <form method="post" action="{{ URL::Route('tagihan_tingkat.store') }}"class="form-horizontal">
                         @csrf
                         <div class="hr-line-dashed"></div>
-                          <div class="form-group"><label class="col-sm-3 control-label">Tahun pelajaran </label>
-                                <div class="col-sm-9">
-                                    <select name="tahun" id="" class='form-control'>
-                                        @foreach ($thn as $th)
-                                            <option value="{{ $th->id }}">{{ $th->tahun_pelajaran }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> 
+                        <div class="form-group"><label class="col-sm-3 control-label">Tahun pelajaran </label>
+                            <div class="col-sm-9">
+                                <select name="tahun" id="" class='form-control'>
+                                    @foreach ($thn as $th)
+                                        <option value="{{ $th->id }}">{{ $th->tahun_pelajaran }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group"><label class="col-sm-3 control-label">Tingkat</label>
-                                <div class="col-sm-9">
-                                    <select name="tingkat" id="" class='form-control'>
-                                        @foreach ($sub as $sb)
-                                            <option value="{{ $sb->id }}">{{ $sb->nama_tingkat }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div> 
+                            <div class="col-sm-9">
+                                <select name="tingkat" id="" class='form-control'>
+                                    @foreach ($sub as $sb)
+                                        <option value="{{ $sb->id }}">{{ $sb->nama_tingkat }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
                             <div class="col-sm-9 col-sm-offset-3 " style="justify-content:end; display:flex; gap:2rem">
@@ -88,28 +88,28 @@
                         @csrf
                         <div class="hr-line-dashed"></div>
                         <input type="hidden" id="uuid">
-                          <div class="form-group"><label class="col-sm-3 control-label">Tahun Pelajaran</label>
-                            <div class="col-sm-9"><input type="text" id="tahun" placeholder="Tahun Pelajaran" disabled required
-                                    class="form-control"></div>
+                        <div class="form-group"><label class="col-sm-3 control-label">Tahun Pelajaran</label>
+                            <div class="col-sm-9"><input type="text" id="tahun" placeholder="Tahun Pelajaran"
+                                    disabled required class="form-control"></div>
                         </div>
                         <div class="form-group"><label class="col-sm-3 control-label">Tagihan</label>
 
-                            <div class="col-sm-9"><input type="text" id="tagihan" placeholder="Tagihan" disabled  required
-                                    class="form-control"></div>
+                            <div class="col-sm-9"><input type="text" id="tagihan" placeholder="Tagihan" disabled
+                                    required class="form-control"></div>
                         </div>
                         <div class="form-group"><label class="col-sm-3 control-label">Tingkat</label>
 
-                            <div class="col-sm-9"><input type="text" id="tingkat" placeholder="Tingkat" disabled required
-                                    class="form-control"></div>
+                            <div class="col-sm-9"><input type="text" id="tingkat" placeholder="Tingkat" disabled
+                                    required class="form-control"></div>
                         </div>
                         <div class="form-group"><label class="col-sm-3 control-label">Nominal</label>
 
-                            <div class="col-sm-9"><input type="text" id="nominal" placeholder="Nominal"  required
+                            <div class="col-sm-9"><input type="text" id="nominal" placeholder="Nominal" required
                                     class="form-control"></div>
                         </div>
                         <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
-                            <div class="col-sm-9"><input type="text" id="remark" placeholder="Keterangan" name="remark" required
-                                    class="form-control"></div>
+                            <div class="col-sm-9"><input type="text" id="remark" placeholder="Keterangan"
+                                    name="remark" required class="form-control"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
@@ -124,9 +124,9 @@
     </div>
 @endsection
 @push('css')
-        <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-        <!--datatable responsive css-->
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 @endpush
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -137,6 +137,6 @@
     <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> // export pdf --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> // export pdf --}}
-    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print--}}
-  <script src="{{ URL::asset('assets/injs/tghnTingkat.js') }}"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print --}}
+    <script src="{{ URL::asset('assets/injs/tghnTingkat.js') }}"></script>
 @endpush

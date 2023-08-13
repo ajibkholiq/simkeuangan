@@ -1,5 +1,5 @@
 let table;
-document.addEventListener("DOMContentLoaded",function(){
+document.addEventListener("DOMContentLoaded", function () {
     table = new DataTable("#data-table", {
         dom: "Bfrtipl",
         buttons: [
@@ -58,7 +58,7 @@ $(document).on("click", "#bt-hapus", function () {
         success: () => {
             toastr.success("Berhasil dihapus!", "Data Akun Head");
 
-          table.ajax.reload();
+            table.ajax.reload();
         },
     });
 });

@@ -60,10 +60,11 @@ $("body").on("click", "#bt-edit", function () {
             _method: "PUT",
         },
         success: function () {
-            if (statu == 'AKTIF'){
-            toastr.success("Berhasil dinonaktifkan!", "Tahun Pelajaran");
+            if (statu == "AKTIF") {
+                toastr.success("Berhasil dinonaktifkan!", "Tahun Pelajaran");
+            } else {
+                toastr.success("Berhasil diaktifkan!", "Tahun Pelajaran");
             }
-            else {toastr.success("Berhasil diaktifkan!", "Tahun Pelajaran");}
             table.ajax.reload();
         },
     });
@@ -79,9 +80,9 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-            toastr.success("Berhasil dihapus!", "Tahun Pelajaran")
+            toastr.success("Berhasil dihapus!", "Tahun Pelajaran");
 
-           table.ajax.reload();
+            table.ajax.reload();
         },
     });
 });
