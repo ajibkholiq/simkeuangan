@@ -23,7 +23,7 @@ class userseeder extends Seeder
         'nohp' => '00000',
         'alamat'  => 'indonesia',
         'role' => 'admin',
-        'foto' => 'profile_small.png'
+        'foto' => 'um.png'
         ]);
     }
 }

@@ -30,8 +30,8 @@
             color: #000;
             /* font-family:inter; */
             /* font-style: normal;
-        font-weight: 400;
-        line-height: normal; */
+            font-weight: 400;
+            line-height: normal; */
         }
     </style>
 

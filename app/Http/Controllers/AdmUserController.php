@@ -16,10 +16,10 @@ use Illuminate\Validation\Rules\Unique;
 class AdmUserController extends Controller
 {
     function index(){
-       $data = User::all();
+      
        $role = adm_role::all();
         $menu = menu::getMenu(Session::get('role'));
-        return view('page.AdmUser.index',compact('data','menu','role'));
+        return view('page.AdmUser.index',compact('menu','role'));
     }
      function store(Request $request){
         $data = User::create([
@@ -70,11 +70,11 @@ class AdmUserController extends Controller
         $data = User::where('uuid',$id)->first();
         File::delete('assets/img/user/'.$data->foto);
         $data->delete();
-        if($data){
-            return redirect()->back()->with('success','User Behasil dihapus');
-        }else{
-            return redirect()->back()->with('fail','User Gagal dihapus');
+        if($data->delete()){
+            return response()->json(['succsess' => 'Unit berhasil dihapus', 'data' => $id]);
         }
+        return response()->json(['fail' => 'Unit gagal dihapus', 'data' => $id]);
+
     }
 
     function updateUser($id, Request $request){

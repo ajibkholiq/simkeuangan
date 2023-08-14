@@ -1,5 +1,16 @@
+let table;
 document.addEventListener("DOMContentLoaded", function () {
-    let table = new DataTable("#data-table", {
+    table = new DataTable("#data-table", {
+        dom: "Bfrtipl",
+        buttons: [
+            {
+                extend: "print",
+                title: "Data Unit",
+                exportOptions: {
+                    columns: [1, 2, 3, 4, 5, 6],
+                },
+            },
+        ],
         processing: false,
         ordering: true,
         lengthMenu: [
@@ -32,14 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
             {
                 title: "Logo",
                 data: null,
-                render : function(data) {
+                render: function (data) {
                     return `<a href="assets/img/unit/${data.logo}">${data.logo}</a>`;
                 },
             },
-           
-            { title: "Remark", data: "remark" },
-            { title: "Created by", data: "created_by" },
-            { title: "Update by", data: "updated_by" },
+
+            { title: "Keterangan", data: "remark" },
         ],
     });
 });
@@ -56,9 +65,8 @@ $(document).on("click", "#bt-hapus", function () {
             _method: "DELETE",
         },
         success: () => {
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+            toastr.success("Berhasil dihapus!", "Data Unit");
+            table.ajax.reload();
         },
     });
 });
@@ -84,9 +92,9 @@ $("#ubah").click(function () {
         url: "/unit/" + uuid,
         type: "PUT",
         data: {
-            unit : $("#unit").val(),
-            alamat :$("#alamat").val(),
-            nohp :$("#nohp").val(),
+            unit: $("#unit").val(),
+            alamat: $("#alamat").val(),
+            nohp: $("#nohp").val(),
             nama: $("#nama").val(),
             remark: $("#remark").val(),
             _token: $("input[name='_token']").val(),
@@ -94,9 +102,9 @@ $("#ubah").click(function () {
         },
         success: (response) => {
             $("#edit-siswa").modal("hide");
-            setTimeout(() => {
-                location.reload();
-            }, 100);
+            toastr.success("Berhasil diubah!", "Data Unit");
+
+            table.ajax.reload();
         },
     });
 });

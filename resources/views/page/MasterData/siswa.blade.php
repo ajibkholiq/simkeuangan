@@ -2,6 +2,7 @@
 @section('main')
     @push('css')
         <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
         <!--datatable responsive css-->
     @endpush
     <div class="row" style="margin-top:10px">
@@ -23,27 +24,29 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="table-responsive">
+                        <style>
+                            th {
+                                text-align: center
+                            }
+
+                            td {
+                                text-transform: capitalize
+                            }
+                        </style>
                         <table id="data-table" class="table table-striped">
                             <thead>
-                                <style>
-                                    th {
-                                        text-align: center
-                                    }
-                                </style>
+
                                 <tr style="">
                                     <th>Action</th>
+                                    <th>NIS</th>
                                     <th>Nama</th>
+                                    <th>Kelas</th>
                                     <th>Nama Ayah</th>
                                     <th>Nama Ibu</th>
                                     <th>No Hp</th>
                                     <th>Alamat</th>
-                                    <th>Kelurahan</th>
-                                    <th>Kecamatan</th>
-                                    <th>Kabupaten</th>
-                                    <th>Provinsi</th>
-                                    <th>Remark</th>
-                                    <th>Created by</th>
-                                    <th>Update by</th>
+                                    <th>Keterangan</th>
+
                                 </tr>
                             </thead>
                         </table>
@@ -59,6 +62,11 @@
                         <form method="post" action="{{ URL::Route('siswa.store') }}"class="form-horizontal">
                             @csrf
                             <div class="hr-line-dashed"></div>
+                            <div class="form-group"><label class="col-sm-3 control-label">NIS</label>
+
+                                <div class="col-sm-9"><input type="text" placeholder="Nomer Induk Siswa" name="nis"
+                                        required class="form-control"></div>
+                            </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Nama</label>
 
                                 <div class="col-sm-9"><input type="text" placeholder="Nama" name="nama" required
@@ -66,7 +74,7 @@
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kelas</label>
                                 <div class="col-sm-9">
-                                    <select name="kelas" id="" class='form-control'>
+                                    <select name="kelas" id="" required class='form-control'>
                                         @foreach ($kelas as $kls)
                                             <option value="{{ $kls->id }}">{{ $kls->kelas }}</option>
                                         @endforeach
@@ -88,28 +96,28 @@
 
                             <div class="form-group"><label class="col-sm-3 control-label">Provinsi</label>
                                 <div class="col-sm-9">
-                                    <select name="provinsi" id="provinsi" class='form-control'>
+                                    <select name="provinsi" required id="provinsi" class='form-control'>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kabupaten</label>
                                 <div class="col-sm-9">
-                                    <select name="kabupaten" id="kabupaten" class='form-control'>
+                                    <select name="kabupaten" required id="kabupaten" class='form-control'>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kecamatan</label>
                                 <div class="col-sm-9">
-                                    <select name="kecamatan" id="kecamatan" class='form-control'>
+                                    <select name="kecamatan" required id="kecamatan" class='form-control'>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"><label class="col-sm-3 control-label">Kelurahan / Desa</label>
                                 <div class="col-sm-9">
-                                    <select name="kelurahan" id="kelurahan" class='form-control'>
+                                    <select name="kelurahan" required id="kelurahan" class='form-control'>
                                     </select>
                                 </div>
                             </div>
@@ -117,9 +125,9 @@
                                 <div class="col-sm-9"><input type="text" placeholder="Alamat" name="alamat" required
                                         class="form-control"></div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" name="remark" required
-                                        class="form-control"></div>
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark"
+                                        required class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
@@ -197,9 +205,9 @@
                                             required class="form-control"></div>
                                 </div>
                             </div>
-                            <div class="form-group"><label class="col-sm-3 control-label">Remark</label>
-                                <div class="col-sm-9"><input type="text" placeholder="Remark" id="remark" required
-                                        class="form-control"></div>
+                            <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                                <div class="col-sm-9"><input type="text" placeholder="Keterangan" id="remark"
+                                        required class="form-control"></div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
@@ -218,7 +226,13 @@
 
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> // export pdf --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> // export pdf --}}
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print --}}
     <script src="{{ URL::asset('assets/modal.js') }}"></script>
 @endpush

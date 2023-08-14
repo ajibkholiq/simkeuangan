@@ -19,7 +19,7 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="data-table" class="table table-striped">
                             <thead>
                                 <tr>
                                     <style>
@@ -27,40 +27,15 @@
                                             text-align: center;
                                         }
                                     </style>
-                                    <th>ID</th>
-                                    <th>Kelas</th>
-                                    <th>Tingkat</th>
-                                    <th>Remark</th>
-                                    <th>Create by</th>
-                                    <th>Update by</th>
                                     <th>Action</th>
-
+                                    <th>Kode Kelas</th>
+                                    <th>Nama</th>
+                                    <th>Tingkat</th>
+                                    <th>Wali Kelas</th>
+                                    <th>Kampus</th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($data as $data)
-                                    <tr style="text-align: center">
-                                        <td>{{ $data->id }}</td>
-                                        <td>{{ $data->kelas }}</td>
-                                        <td>{{ $data->nama_tingkat }}</td>
-                                        <td>{{ $data->remark }}</td>
-                                        <td>{{ $data->created_by }}</td>
-                                        <td>{{ $data->updated_by }}</td>
-                                        <td style="display: flex; justify-content:center; gap: 10px">
-                                            {{-- <a href="{{route('adm-menu.edit',$data->uuid)}}" class="btn btn-warning fa fa-pencil"></a> --}}
-                                            <button id="btn-kelas" class="btn btn-outline btn-warning fa fa-pencil "
-                                                id="aktif" data-id="{{ $data->uuid }}"></button>
-                                            <form action="{{ route('kelas.destroy', $data->uuid) }}" method="POST"
-                                                onsubmit="return confirm('Apakah Anda Yakin ?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-outline btn-danger fa fa-trash-o"></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -75,28 +50,54 @@
                     <form method="post" action="{{ URL::Route('kelas.store') }}"class="form-horizontal">
                         @csrf
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Nama Kelas</label>
+                        <div class="form-group"><label class="col-sm-3 control-label">kode</label>
 
-                            <div class="col-sm-10"><input type="text" placeholder="Nama Kelas" name="kelas" required
+                            <div class="col-sm-9"><input type="text" placeholder="Kode Kelas" name="kode" required
                                     class="form-control"></div>
                         </div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Tingkat</label>
-                            <div class="col-sm-10">
-                                <select name="tingkat" id="" required class=" form-control">
-                                    @foreach ($tingkat as $tingkat)
-                                        <option value="{{ $tingkat->id }}">{{ $tingkat->nama_tingkat }}</option>
+                        <div class="form-group"><label class="col-sm-3 control-label">Nama Kelas</label>
+
+                            <div class="col-sm-9"><input type="text" placeholder="Nama Kelas" name="kelas" required
+                                    class="form-control"></div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">Tingkat</label>
+                            <div class="col-sm-9">
+                                <select name="tingkat" required class=" form-control">
+                                    @foreach ($tingkat as $tk)
+                                        <option value="{{ $tk->id }}">{{ $tk->nama_tingkat }}</option>
                                     @endforeach
 
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Remark</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Remark" name="remark" required
+                        <div class="form-group"><label class="col-sm-3 control-label">Wali Kelas</label>
+                            <div class="col-sm-9">
+                                <select name="wali" required class=" form-control">
+                                    @foreach ($user as $usr)
+                                        <option value="{{ $usr->id }}">{{ $usr->nama }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">Kampus</label>
+                            <div class="col-sm-9">
+                                <select name="kampus" required class=" form-control">
+                                    @foreach ($unit as $item)
+                                        <option value="{{ $item->id }}">{{ $item->nama_unit }}</option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                            <div class="col-sm-9"><input type="text" placeholder="Keterangan" name="remark" required
                                     class="form-control"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2" style="text-align: end">
+                            <div class="col-sm-9 col-sm-offset-3" style="text-align: end">
                                 <button class="btn btn-primary" id="thn-save">Save</button>
                             </div>
                         </div>
@@ -114,28 +115,52 @@
                         @csrf
                         <input type="hidden" id='uuid'>
                         <div class="hr-line-dashed"></div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Nama Kelas</label>
-
-                            <div class="col-sm-10"><input type="text" placeholder="Nama Kelas" name="kelas"
+                        <div class="form-group"><label class="col-sm-3 control-label">kode</label>
+                            <div class="col-sm-9">
+                                <input type="text" placeholder="Kode Kelas" name="kode" id='kode' required
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">Nama Kelas</label>
+                            <div class="col-sm-9"><input type="text" placeholder="Nama Kelas" name="kelas"
                                     id="kelas" required class="form-control"></div>
                         </div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Tingkat</label>
-                            <div class="col-sm-10">
+                        <div class="form-group"><label class="col-sm-3 control-label">Tingkat</label>
+                            <div class="col-sm-9">
                                 <select name="tingkat" id="tingkat" required class=" form-control">
-                                    @for ($i = 1; $i <= 12; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
+                                    @foreach ($tingkat as $tk)
+                                        <option value="{{ $tk->id }}">{{ $tk->nama_tingkat }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group"><label class="col-sm-3 control-label">Wali Kelas</label>
+                            <div class="col-sm-9">
+                                <select name="wali" id="wali" required class=" form-control">
+                                    @foreach ($user as $usr)
+                                        <option value="{{ $usr->id }}">{{ $usr->nama }}</option>
+                                    @endforeach
 
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group"><label class="col-sm-2 control-label">Remark</label>
-                            <div class="col-sm-10"><input type="text" placeholder="Remark" id="remark"
+                        <div class="form-group"><label class="col-sm-3 control-label">Kampus</label>
+                            <div class="col-sm-9">
+                                <select name="kampus" id="kampus" required class=" form-control">
+                                    @foreach ($unit as $itm)
+                                        <option value="{{ $itm->id }}">{{ $itm->nama_unit }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group"><label class="col-sm-3 control-label">Keterangan</label>
+                            <div class="col-sm-9"><input type="text" placeholder="Keterangan" id="remark"
                                     name="remark" required class="form-control"></div>
                         </div>
                         <div class="hr-line-dashed"></div>
                         <div class="form-group">
-                            <div class="col-sm-10 col-sm-offset-2" style="text-align: end">
+                            <div class="col-sm-9 col-sm-offset-3" style="text-align: end">
                                 <button class="btn btn-primary" id="kelas-save">Save</button>
                             </div>
                         </div>
@@ -146,7 +171,21 @@
         </div>
     </div>
 @endsection
+@push('css')
+    <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+@endpush
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ URL::asset('assets/modal.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> // export pdf --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> // export pdf --}}
+    <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script> {{-- print --}}
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ URL::asset('assets/injs/kelas.js') }}"></script>
 @endpush

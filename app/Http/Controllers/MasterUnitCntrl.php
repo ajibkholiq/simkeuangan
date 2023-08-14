@@ -16,7 +16,7 @@ class MasterUnitCntrl extends Controller
     }
     function store(Request $request){
         $image = $request->file('logo');
-        $imageName = str_replace(' ','_' ,$request->nama).'_'.uniqid().'.'.$image->getClientOriginalExtension();
+        $imageName = str_replace(' ','_' ,$request->nama).'_'.date('dmy').'.'.$image->getClientOriginalExtension();
         $data = MasterUnit::create([
             'uuid' => uniqid(),
             'unit' => $request->unit,

@@ -1,9 +1,8 @@
 <h4>Tambah User</h4>
-<form method="post" action="{{ URL::Route('adm-user.store') }}"class="form-horizontal">
+<form method="post" action="{{ URL::Route('pegawai.store') }}"class="form-horizontal">
     @csrf
     <div class="hr-line-dashed"></div>
     <div class="form-group"><label class="col-sm-2 control-label">Nama</label>
-
         <div class="col-sm-10"><input type="text" placeholder="Nama" name="nama" required class="form-control"></div>
     </div>
     <div class="form-group"><label class="col-sm-2 control-label">Username </label>

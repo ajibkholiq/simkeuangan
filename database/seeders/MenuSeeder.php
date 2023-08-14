@@ -34,15 +34,36 @@ class MenuSeeder extends Seeder
             'route' => '',
             'remark' => 'Master Data Sistem',
         ]);
-         adm_menu::create([
+           adm_menu::create([
+            'induk' => 'head',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Proses',
+            'route' => '',
+            'remark' => 'Proses Data',
+        ]);
+        adm_menu::create([
+            'induk' => 'head',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Reporting',
+            'route' => '',
+            'remark' => 'Laporan Data',
+        ]);
+        
+          adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
             'kode_menu' => 'B1',
             'icon' => "",
             'urut' => "",
-            'nama_menu' =>'Tahun Pelajaran',
-            'route' => 'tahun_pelajaran',
-            'remark' => 'Master Tahun Pelajaran',
+            'nama_menu' =>'Unit',
+            'route' => 'unit',
+            'remark' => 'Master Data Unit',
         ]);
          adm_menu::create([
             'induk' => 'Master Data',
@@ -50,9 +71,9 @@ class MenuSeeder extends Seeder
             'kode_menu' => 'B2',
             'icon' => "",
             'urut' => "",
-            'nama_menu' =>'Semester',
-            'route' => 'semester',
-            'remark' => 'Master Data Semester',
+            'nama_menu' =>'Tingkat',
+            'route' => 'tingkat',
+            'remark' => 'Master Data Tingkat',
         ]);
          adm_menu::create([
             'induk' => 'Master Data',
@@ -74,45 +95,104 @@ class MenuSeeder extends Seeder
             'route' => 'siswa',
             'remark' => 'Master Data Siswa',
         ]);
-         adm_menu::create([
-            'induk' => 'head',
-            'uuid' => uniqid(),
-            'kode_menu' => 'C',
-            'icon' => "",
-            'urut' => "",
-            'nama_menu' =>'Proses',
-            'route' => '',
-            'remark' => 'Proses Data',
-        ]);
         adm_menu::create([
-            'induk' => 'head',
-            'uuid' => uniqid(),
-            'kode_menu' => 'D',
-            'icon' => "",
-            'urut' => "",
-            'nama_menu' =>'Reporting',
-            'route' => '',
-            'remark' => 'Laporan Data',
-        ]);
-         adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
             'kode_menu' => 'B5',
             'icon' => "",
             'urut' => "",
-            'nama_menu' =>'Tingkat',
-            'route' => 'tingkat',
-            'remark' => 'Master Data Tingkat',
+            'nama_menu' =>'Tahun Pelajaran',
+            'route' => 'tahun_pelajaran',
+            'remark' => 'Master Tahun Pelajaran',
         ]);
-        adm_menu::create([
+         adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
             'kode_menu' => 'B6',
             'icon' => "",
             'urut' => "",
-            'nama_menu' =>'Unit',
-            'route' => 'unit',
-            'remark' => 'Master Data Unit',
+            'nama_menu' =>'Semester',
+            'route' => 'semester',
+            'remark' => 'Master Data Semester',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B7',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Non Tagihan',
+            'route' => 'non_tagihan',
+            'remark' => 'Master Data Non Tagihan',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B8',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Tagihan',
+            'route' => 'tagihan',
+            'remark' => 'Master Data Tagihan',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B9',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Tagihan Tingkat',
+            'route' => 'tagihan_tingkat',
+            'remark' => 'Master Data Tagihan Tingkat',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B10',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Data Tagihan Siswa',
+            'route' => 'tagihan_siswa',
+            'remark' => 'Master Data Tagihan Siswa',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B11',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Akun Head',
+            'route' => 'akun_head',
+            'remark' => 'Master Data Akun Head',
+        ]);adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B12',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Sub Akun Head',
+            'route' => 'akun_head_sub',
+            'remark' => 'Master Data Sub Akun head',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B13',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Sub Sub Akun Head',
+            'route' => 'sub_sub_akun',
+            'remark' => 'Master Data Sub Sub Akun Head',
+        ]);
+        adm_menu::create([
+            'induk' => 'Master Data',
+            'uuid' => uniqid(),
+            'kode_menu' => 'B14',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Akun',
+            'route' => 'akun',
+            'remark' => 'Master Data Akun',
         ]);
 
 
