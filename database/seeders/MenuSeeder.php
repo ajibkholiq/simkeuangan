@@ -34,27 +34,6 @@ class MenuSeeder extends Seeder
             'route' => '',
             'remark' => 'Master Data Sistem',
         ]);
-           adm_menu::create([
-            'induk' => 'head',
-            'uuid' => uniqid(),
-            'kode_menu' => 'C',
-            'icon' => "",
-            'urut' => "",
-            'nama_menu' =>'Proses',
-            'route' => '',
-            'remark' => 'Proses Data',
-        ]);
-        adm_menu::create([
-            'induk' => 'head',
-            'uuid' => uniqid(),
-            'kode_menu' => 'D',
-            'icon' => "",
-            'urut' => "",
-            'nama_menu' =>'Reporting',
-            'route' => '',
-            'remark' => 'Laporan Data',
-        ]);
-        
           adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
@@ -194,6 +173,37 @@ class MenuSeeder extends Seeder
             'route' => 'akun',
             'remark' => 'Master Data Akun',
         ]);
+         adm_menu::create([
+            'induk' => 'head',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Proses',
+            'route' => '',
+            'remark' => 'Proses Data',
+        ]);
+        adm_menu::create([
+            'induk' => 'Proses',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C1',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Tansaksi Siswa',
+            'route' => 'transaksi_siswa',
+            'remark' => 'Transaksi bayar siswa',
+        ]);
+        adm_menu::create([
+            'induk' => 'head',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Reporting',
+            'route' => '',
+            'remark' => 'Laporan Data',
+        ]);
+        
 
 
     }

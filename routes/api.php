@@ -33,9 +33,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/menu/{id}',function ($id){
+Route::get('/menu',function (){
         $data = adm_menu::where('uuid','=',$id)->first();
+        // $data = adm_menu::all();
         return response()->json( $data, 200);
+        // return [$data];
 });
 Route::get('getprovinsi', function (){
     return response()->json(DB::table('provinsi')->get() , 200,);
@@ -101,10 +103,14 @@ Route::get('non_tagihan', function(){
 Route::get('dataTagihan', function(){
     return ['data' => Siswa::join('kelas','id_kelas','kelas.id')
                             ->join('master_tingkat','master_tingkat.id','kelas.tingkat_id')
-                            ->join('tagihan_tingkats','tagihan_tingkats.tingkat_id','master_tingkat.id')
-                            ->join('tahun_pelajaran','thn_ajaran_id','tahun_pelajaran.id')
-                            ->join('tagihans','tagihans.id','tagihan_id')
-                            ->select('tahun_pelajaran','kelas.kelas','siswa.nama as siswa','tagihans.nama as tagihan','nominal','tagihan_tingkats.remark')
+                            ->join('tagihan_siswas','siswa_id','siswa.id')
+                            ->join('tagihans','kode','tagihan_siswas.kode_tagihan')
+                            ->select('tahun_ajaran','kelas.kelas','siswa.nama as siswa','tagihans.nama','nominal','tagihan_siswas.remark','kali','diskon','tagihan_siswas.uuid')
                             ->get()];
+});
+
+Route::get('/siswa', function(){
+    $data = Siswa::all();
+    return response()->json($data);
 });
 

@@ -62,4 +62,5 @@ class TagihanTingkatController extends Controller
         }
         return response()->json(['fail' => 'Tagihan Tingkat gagal dihapus', 'data' => $id]);
     }
+   
 }

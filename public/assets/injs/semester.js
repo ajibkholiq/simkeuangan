@@ -50,12 +50,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 $("body").on("click", "#bt-edit", function () {
     let uuid = $(this).data("uuid");
-    let status = $(this).data("status");
+    let statu = $(this).data("status");
     $.ajax({
         url: "/semester/" + uuid,
         type: "PUT",
         data: {
-            status: status,
+            status: statu,
             _token: $("input[name='_token']").val(),
             _method: "PUT",
         },
