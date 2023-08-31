@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bukti Pembayaran</title>
+        <title>Bukti {{ Request::segment(1) }}</title>
         {{-- <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -12,12 +12,12 @@
             <div class="card my-5" >
                 <div class="card-body">
                     <img src="assets/img/unit/Universitas_Mandiri_120823.png" style="width:100px; position:relative" >
-                    <h3 style="text-align: center; text-transform:uppercase ;position: absolute; left:250px" >BUKTI PEMBAYARAN</h3>
+                    <h3 style="text-align: center; text-transform:uppercase ;position: absolute; left:250px">BUKTI {{ Request::segment(1) }}</h3>
                     <hr>
                     <div class="row justify-content-start">
                          <style>
                                 .col-md-6 td {
-                                    width: 300px;
+                                    width: 200px;
                                 }
                             </style>
                         <div class="col-md-6">
@@ -25,30 +25,20 @@
                             <table>
                                 
                                 <tr>
-                                    <td><strong>Tanggal Pembayaran</strong></td>
+                                    <td><strong>Tanggal {{$head->masuk ? 'penerimaan':'pengeluaran' }}</strong></td>
                                     <td> : {{date('d F Y', strtotime($head->tanggal))}}</td>
                                 </tr>
                                 <tr>
-                                    <td><strong>Nama Siswa</strong></td>
-                                    <td class="text-capitalize">: {{$head->nama}}</td>
-                                </tr>
-                                 <tr>
-                                    <td><strong>NIS</strong></td>
-                                    <td class="text-capitalize">: {{$head->nis}}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Kelas</strong></td>
-                                    <td class="text-capitalize">: {{$head->kelas}}</td>
+                                    <td><strong>{{$head->masuk ? 'Diterima Dari':'Dikeluarkan Kepada' }}</strong></td>
+                                    <td style="text-transform: capitalize">: {{$head->nama}}</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Metode Pembayaran</strong></td>
-                                    <td class="text-uppercase">: {{$head->akun}}</td>
+                                    <td style="text-transform: uppercase">: {{$head->akun}}</td>
                                 </tr>
                             </table>
                         </div>
-                        <div class="col-md-6">
-                            <img src="" alt="">
-                        </div>
+                        
                     </div>
                     <hr>
                     <style>
@@ -64,30 +54,30 @@
                             width: 200px
                         }
                     </style>
-                    <table class="table table-striped mt-5">
+                    <table class="table table-striped mt-5" style="">
                         <thead>
-                            <tr style="font-weight:bolder" >
-                                <td>Rincian Pembayaran</td>
-                                <td>Jumlah</td>
+                            <tr style="font-weight:bolder">
+                                <td >Rincian {{ Request::segment(1) }}</td>
+                                <td class="nom" >Jumlah</td>
                             </tr>
-                            
+                        
                         </thead>
                         <tbody>
                             @foreach ($detail as $i)
                             <tr>
-                                <td>{{$i->nama}}</td>
-                                <td>Rp. {{$i->nominal}},-</td>
+                                <td>{{$i->kode_tagihan}}</td>
+                                <td class="nom"  >Rp. {{$i->nominal}},-</td>
                             </tr>
                             @endforeach
-                            
-                            <tr style="">
-                                <td><strong>Total Pembayaran:</strong></td>
-                                <td><strong>{{$head->masuk}},-</strong></td>
+                           
+                            <tr>
+                                <td><strong>Total Diterima:</strong></td>
+                                <td  class="nom" ><strong>Rp. {{$head->masuk ? $head->masuk : $head->keluar }},-</strong></td>
                             </tr>
                         </tbody>
                     </table>
                     <hr />
-                     <div class="row justify-content-end">
+                    <div class="row justify-content-end">
                         <div class="col-md-5">
                             <style>
                             .col-md-5 td{
@@ -112,10 +102,13 @@
                         </div>
                     </div>
                   
-                  
                 </div>
             </div>
         </div>
 
-    </body>
+        {{-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    --}}
+    </body> 
 </html>

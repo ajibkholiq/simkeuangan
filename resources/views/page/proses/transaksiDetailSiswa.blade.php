@@ -1,7 +1,7 @@
 @extends('layout.master')
 @section('main')
     <div class="row" style="margin-top:20px">
-        <form method="post" action="{{ route('transaksi_siswa.store') }}" id="download" class="form-horizontal" style="text-align: start">
+        <form method="post" action="{{ route('transaksi_siswa.store') }}" id="download" class="form-horizontal" target="_blank" style="text-align: start">
             <div class="col-md-5">
                 @csrf
                 <div class="form-group">
@@ -70,7 +70,7 @@
                                                  </td>
                                         <td class="col-md-6" style="text-align:center">
                                             <input oninput="aget_total()" type="number"
-                                            id="jumlah{{ $loop->index + 1 }}" value="0" name="nominal[]"  class="form-control"></td>
+                                            id="jumlah{{ $loop->index + 1 }}" value="0" name="nominal[]" required class="form-control"></td>
                                     </tr>
                                 {{-- @endif --}}
                                 @endforeach

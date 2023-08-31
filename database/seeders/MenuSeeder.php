@@ -194,6 +194,26 @@ class MenuSeeder extends Seeder
             'remark' => 'Transaksi bayar siswa',
         ]);
         adm_menu::create([
+            'induk' => 'Proses',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C2',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Penerimaan',
+            'route' => 'penerimaan',
+            'remark' => 'Transaksi Penerimaan',
+        ]);
+        adm_menu::create([
+            'induk' => 'Proses',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C3',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Pengeluaran',
+            'route' => 'pengeluaran',
+            'remark' => 'Transaksi Pengeluaran',
+        ]);
+        adm_menu::create([
             'induk' => 'head',
             'uuid' => uniqid(),
             'kode_menu' => 'D',

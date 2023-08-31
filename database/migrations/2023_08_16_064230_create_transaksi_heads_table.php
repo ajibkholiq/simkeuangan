@@ -17,8 +17,9 @@ return new class extends Migration
             $table->string('kode_trans');
             $table->date('tanggal');
             $table->string('kode_akun');
-            $table->integer('siswa_id');
+            $table->integer('siswa_id')->nullable();
             $table->string('nama');
+            $table->string('kampus');
             $table->string('masuk');
             $table->string('keluar');
             $table->integer('total_nominal');

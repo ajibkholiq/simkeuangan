@@ -16,6 +16,7 @@ class TransaksiHead extends Model
             'kode_akun',
             'siswa_id',
             'nama',
+            'kampus',
             'masuk',
             'keluar',
             'total_nominal',

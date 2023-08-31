@@ -35,7 +35,10 @@ class TransaksiSiswaController extends Controller
      }
 
      function store (Request $request){
-        $siswa = Siswa::where('nis',explode('_',$request->siswa)[0])->first();
+        $siswa = Siswa::join('kelas','kelas.id','id_kelas')
+                        ->join('master_unit','master_unit.id','unit_id')
+                        ->select('siswa.id','master_unit.unit','siswa.nama')
+                        ->where('nis',explode('_',$request->siswa)[0])->first();
         $uuid = uniqid();
 
         TransaksiHead::create([
@@ -45,6 +48,7 @@ class TransaksiSiswaController extends Controller
             'kode_akun' => $request->via ,//sementara
             'siswa_id' => $siswa->id ,
             'nama' => $siswa->nama,
+            'kampus' => $siswa->unit,
             'masuk' => $request->total,
             'keluar' => 0,
             'total_nominal' => preg_replace("/[^0-9]/", "", $request->total), //total

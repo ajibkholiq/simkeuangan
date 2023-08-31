@@ -21,6 +21,8 @@ use App\Http\Controllers\TagihanSiswaController;
 use App\Http\Controllers\TagihanTingkatController;
 use App\Http\Controllers\NonTagihanController;
 use App\Http\Controllers\TransaksiSiswaController;
+use App\Http\Controllers\PenerimaanController;
+use App\Http\Controllers\PengeluaranController;
 
 use App\Models\adm_menu;
 use App\Models\adm_role;
@@ -64,7 +66,8 @@ Route::middleware('checklogin')->group(function () {
     });
     Route::resource('non_tagihan',NonTagihanController::class)->except(['create','edit']);
     Route::resource('transaksi_siswa',TransaksiSiswaController::class);
-
+    Route::resource('penerimaan', PenerimaanController::class);
+    Route::resource('pengeluaran', PengeluaranController::class);
     Route::post('transaksi_detail_siswa', [TransaksiSiswaController::class ,'transaksiDetail'])->name('transaksiDetail');
     Route::get('generate_tagihan_siswa', [TagihanSiswaController::class ,'generate'])->name('generate');
     Route::resource('sub_sub_akun', Sub2AkunController::class)->except(['create','edit']);
