@@ -66,13 +66,13 @@
                             @foreach ($detail as $i)
                             <tr>
                                 <td>{{$i->kode_tagihan}}</td>
-                                <td class="nom"  >Rp. {{$i->nominal}},-</td>
+                                <td class="nom"  >Rp. {{number_format($i->nominal,0,',','.')}},-</td>
                             </tr>
                             @endforeach
                            
                             <tr>
                                 <td><strong>Total Diterima:</strong></td>
-                                <td  class="nom" ><strong>Rp. {{$head->masuk ? $head->masuk : $head->keluar }},-</strong></td>
+                                <td  class="nom" ><strong>Rp. {{$head->masuk ? number_format($head->masuk,0,',','.') : number_format($head->keluar,0,',','.') }},-</strong></td>
                             </tr>
                         </tbody>
                     </table>

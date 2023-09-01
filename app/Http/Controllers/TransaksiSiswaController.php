@@ -49,7 +49,7 @@ class TransaksiSiswaController extends Controller
             'siswa_id' => $siswa->id ,
             'nama' => $siswa->nama,
             'kampus' => $siswa->unit,
-            'masuk' => $request->total,
+            'masuk' => preg_replace("/[^0-9]/", "", $request->total),
             'keluar' => 0,
             'total_nominal' => preg_replace("/[^0-9]/", "", $request->total), //total
             'remark' => $request->remark,

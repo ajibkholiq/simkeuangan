@@ -23,11 +23,13 @@ use App\Http\Controllers\NonTagihanController;
 use App\Http\Controllers\TransaksiSiswaController;
 use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\LaporanController;
 
 use App\Models\adm_menu;
 use App\Models\adm_role;
 use App\Models\Siswa;
 use App\Models\User;
+use App\Models\TransaksiHead;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -61,9 +63,16 @@ Route::middleware('checklogin')->group(function () {
     Route::get('/dashboard', function(){ 
         $menu = menu::getMenu(Session::get('role'));
         $siswa = count(Siswa::all());
-        return view('page.dashboard',compact(['menu','siswa']));
-        // return $siswa;
+        $transaksi = TransaksiHead::select( DB::raw('sum(masuk) as pemasukan ,sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfMonth(), now()->endOfMonth()])->first();
+        return view('page.dashboard',compact(['menu','siswa','transaksi']));
+        
+        // return $transaksi;
     });
+    Route::get('laporan_penerimaan',[LaporanController::class ,'penerimaan']);
+    Route::get('history_pembayaran_siswa',[LaporanController::class ,'pembayaranSiswa']);
+    Route::get('rekap_penerimaan_kelas',[LaporanController::class ,'penerimaanKelas']);
+    Route::get('summary_tagihan',[LaporanController::class ,'summaryTagihan']);
+    Route::get('laporan_jurnal',[LaporanController::class ,'jurnal']);
     Route::resource('non_tagihan',NonTagihanController::class)->except(['create','edit']);
     Route::resource('transaksi_siswa',TransaksiSiswaController::class);
     Route::resource('penerimaan', PenerimaanController::class);

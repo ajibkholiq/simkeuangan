@@ -76,7 +76,7 @@
                             @foreach ($detail as $i)
                             <tr>
                                 <td>{{$i->nama}}</td>
-                                <td>Rp. {{$i->nominal}},-</td>
+                                <td>Rp. {{number_format($i->nominal,0,',','.')}},-</td>
                             </tr>
                             @endforeach
                             

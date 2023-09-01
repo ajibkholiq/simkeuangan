@@ -50,7 +50,7 @@
                                     class="form-control"></div>
                         </div>
                         <div class="form-group"><label class="col-sm-3 control-label">Total Nominal</label>
-                            <div class="col-sm-8"><input type="text" value="{{ $data->masuk }}" disabled
+                            <div class="col-sm-8"><input type="text" value="Rp. {{ number_format($data->masuk,2,',','.')}}" disabled
                                     class="form-control">
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                                             </form> 
                                         </td>
                                         <td>{{ $item->kode_tagihan }}</td>
-                                        <td>{{ $item->nominal }}</td>
+                                        <td> Rp. {{ number_format($item->nominal,2,',','.')}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
