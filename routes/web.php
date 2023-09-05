@@ -33,6 +33,8 @@ use App\Models\TransaksiHead;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Carbon;
+
 
 
 
@@ -61,12 +63,22 @@ Route::middleware('checklogin')->group(function () {
         return view('page.home',compact('menu'));
     });
     Route::get('/dashboard', function(){ 
+         
         $menu = menu::getMenu(Session::get('role'));
         $siswa = count(Siswa::all());
         $transaksi = TransaksiHead::select( DB::raw('sum(masuk) as pemasukan ,sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfMonth(), now()->endOfMonth()])->first();
-        return view('page.dashboard',compact(['menu','siswa','transaksi']));
+        $pengeluaran = TransaksiHead:: select( DB::raw('sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->groupBy(DB::raw('MONTH(tanggal)'))->orderBy(DB::raw('MONTH(tanggal)'),'asc')->get();
+        $pemasukan = TransaksiHead:: select( DB::raw('sum(masuk) as pemasukan'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->groupBy(DB::raw('MONTH(tanggal)'))->orderBy(DB::raw('MONTH(tanggal)'),'asc')->get();
+        $pengeluaranTahun = TransaksiHead:: select( DB::raw('sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->first();
+        $pemasukanTahun = TransaksiHead:: select( DB::raw('sum(masuk) as pemasukan'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->first();
+        $bulan = TransaksiHead::select(  DB::raw('MONTHNAME(tanggal) as bulan'))->distinct()->orderBy(DB::raw('MONTH(tanggal)'),'asc')->get();
+        $keluar =  collect($pengeluaran)->pluck('pengeluaran')->toArray();
+        $bulan = collect($bulan)->pluck('bulan')->toArray();
+        $masuk =  collect($pemasukan)->pluck('pemasukan')->toArray();
+       ;
+        return view('page.dashboard',compact(['menu','siswa','transaksi','pemasukanTahun','pengeluaranTahun','keluar','masuk','bulan']));
         
-        // return $transaksi;
+        // return $chart;
     });
     Route::delete('hapus/{id}',[LaporanController::class ,'hapusHead'])->name('hapusHead');
     Route::get('laporan_penerimaan',[LaporanController::class ,'penerimaan']);

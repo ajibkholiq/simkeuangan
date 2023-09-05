@@ -83,14 +83,14 @@
                         @if ($item->induk == 'head')
                             <div
                                 style="height: auto ; border:1pt dashed rgb(117, 114, 114) ; padding:5px 20px ; margin:20px 0 ; border-radius: 10px; text-transform: capitalize">
-                                <input type="checkbox" id="{{ $item->nama_menu }}" name="idMenu[]"
+                                <input type="checkbox" name="idMenu[]" 
                                     value="{{ $item->id }}">
                                 <label for="{{ $item->nama_menu }}">{{ $item->nama_menu }}</label>
 
                                 @foreach ($data as $sm)
                                     @if ($sm->induk == $item->nama_menu)
                                         <hr style="margin: 0;">
-                                        <input type="checkbox" name="idMenu[]" id="{{ $sm->nama_menu }}"
+                                        <input type="checkbox" name="idMenu[]" 
                                             value="{{ $sm->id }}" style="margin-left:30px">
                                         <label for="{{ $sm->nama_menu }}">{{ $sm->nama_menu }}</label>
                                     @endif

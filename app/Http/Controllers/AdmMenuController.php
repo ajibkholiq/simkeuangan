@@ -17,7 +17,7 @@ class AdmMenuController extends Controller
         $data = adm_menu::all();
         $menu = menu::getMenu(Session::get('role'));
         return view('page.AdmMenu.index',compact('data','menu'));
-        // return $menu;
+        // return collect($data)->pluck('nama_menu')->toArray();
 
     }
 

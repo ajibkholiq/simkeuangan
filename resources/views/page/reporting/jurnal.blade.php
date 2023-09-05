@@ -35,8 +35,13 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>
+                                            @if ($item->masuk != 0 )
                                             <a href="{{ route('penerimaan.show', $item->uuid) }}"
                                                 class="btn btn-primary fa fa-print" target="blank"></a>
+                                            @else
+                                            <a href="{{ route('pengeluaran.show', $item->uuid) }}"
+                                                class="btn btn-primary fa fa-print" target="blank"></a>
+                                            @endif
                                         </td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->masuk != 0 ? 'Terima dari' : 'Setor Ke' }} {{ $item->nama }} Rp.
