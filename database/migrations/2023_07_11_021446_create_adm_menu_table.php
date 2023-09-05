@@ -16,7 +16,7 @@ return new class extends Migration
             $table->char('uuid',100);
             $table->string("induk",20);
             $table->string("kode_menu",20);
-            $table->string("nama_menu",20);
+            $table->string("nama_menu");
             $table->string("icon",100);
             $table->string("urut",20);
             $table->string("route",30)->nullable();

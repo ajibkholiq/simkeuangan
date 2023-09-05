@@ -68,11 +68,17 @@ Route::middleware('checklogin')->group(function () {
         
         // return $transaksi;
     });
+    Route::delete('hapus/{id}',[LaporanController::class ,'hapusHead'])->name('hapusHead');
     Route::get('laporan_penerimaan',[LaporanController::class ,'penerimaan']);
     Route::get('history_pembayaran_siswa',[LaporanController::class ,'pembayaranSiswa']);
     Route::get('rekap_penerimaan_kelas',[LaporanController::class ,'penerimaanKelas']);
     Route::get('summary_tagihan',[LaporanController::class ,'summaryTagihan']);
     Route::get('laporan_jurnal',[LaporanController::class ,'jurnal']);
+    Route::post('laporan_penerimaan',[LaporanController::class ,'penerimaan'])->name('penerimaan');
+    Route::post('history_pembayaran_siswa',[LaporanController::class ,'pembayaranSiswa'])->name('pembayaranSiswa');
+    Route::post('rekap_penerimaan_kelas',[LaporanController::class ,'penerimaanKelas'])->name('penerimaanKelas');
+    Route::post('summary_tagihan',[LaporanController::class ,'summaryTagihan'])->name('summary');
+    Route::post('laporan_jurnal',[LaporanController::class ,'jurnal'])->name('jurnal');
     Route::resource('non_tagihan',NonTagihanController::class)->except(['create','edit']);
     Route::resource('transaksi_siswa',TransaksiSiswaController::class);
     Route::resource('penerimaan', PenerimaanController::class);

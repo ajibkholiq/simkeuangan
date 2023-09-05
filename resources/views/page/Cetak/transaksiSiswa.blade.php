@@ -76,13 +76,13 @@
                             @foreach ($detail as $i)
                             <tr>
                                 <td>{{$i->nama}}</td>
-                                <td>Rp. {{number_format($i->nominal,0,',','.')}},-</td>
+                                <td>Rp. {{number_format($i->nominal,2,',','.')}}-</td>
                             </tr>
                             @endforeach
                             
                             <tr style="">
                                 <td><strong>Total Pembayaran:</strong></td>
-                                <td><strong>{{$head->masuk}},-</strong></td>
+                                <td><strong>Rp. {{number_format($head->masuk,2,',','.')}}-</strong></td>
                             </tr>
                         </tbody>
                     </table>
