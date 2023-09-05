@@ -6,12 +6,12 @@
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <span class="label label-success pull-right">Total</span>
-                    <h5>Siswa</h5>
+                    <h5>Transaksi Hari Ini</h5>
                 </div>
                 <div class="ibox-content">
                     <h1 style="padding: 10px 0" class="no-margins">{{ $siswa }}</h1>
                     <div class="stat-percent font-bold text-success"> </i></div>
-                    <small>Total Siswa</small>
+                    <small>Total Transaksi</small>
                 </div>
             </div>
         </div>
@@ -46,10 +46,27 @@
         <div class="ibox float-e-margins">
             <div class="ibox-content">
                 <div>
-                    <span class="pull-right text-right">
-                        <small>Grafik penerimaan dan pengeluaran tahun ini</strong></small>
-                        <br>             
+                    <span class="">
+                        <h4><strong>Grafik penerimaan dan pengeluaran tahun ini</strong></h4>
+                                  
                     </span>
+                    <div  style="position: absolute ; right: 50px ;top :20px">
+                        <form action="" method="post" class="form-horizontal" style="display: flex; ">
+                                @csrf
+                                <label class="col-sm-3 control-label"> Tahun</label>
+                                <div class="col-sm-9">
+                                    <select name="tahun" style="width:100px" class='form-control'>
+                                            <option value="">Pilih Tahun</option>
+
+                                        @foreach ($tahun as $a)
+                                            <option value="{{ $a->tahun }}">{{ $a->tahun }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+            
+                                    <button class="btn btn-primary" >View</button>
+                        </form>
+                    </div>
                     <h4 class="m-b-xs">Masuk Rp. {{number_format($pemasukanTahun->pemasukan, 2, ',', '.')}}</h4>
                     <h4 class="m-b-xs">Keluar Rp.  {{number_format($pengeluaranTahun->pengeluaran, 2, ',', '.')}}</h4>
                 </div>
@@ -83,7 +100,7 @@
                 labels: {!!json_encode($bulan)!!},
                 datasets: [
                     {
-                        label: "penerimaan",
+                        label: "Masuk",
                         backgroundColor: "rgba(26,179,148,0.5)",
                         borderColor: "rgba(26,179,148,0.7)",
                         pointBackgroundColor: "rgba(26,179,148,1)",
@@ -91,7 +108,7 @@
                         data: {{json_encode($masuk)}}
                     },
                     {
-                        label: "pengeluaran",
+                        label: "Keluar",
                         backgroundColor: "rgba(220,220,220,0.5)",
                         borderColor: "rgba(220,220,220,1)",
                         pointBackgroundColor: "rgba(220,220,220,1)",

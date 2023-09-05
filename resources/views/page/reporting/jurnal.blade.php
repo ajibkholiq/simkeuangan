@@ -35,13 +35,24 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>
-                                            @if ($item->masuk != 0 )
-                                            <a href="{{ route('penerimaan.show', $item->uuid) }}"
-                                                class="btn btn-primary fa fa-print" target="blank"></a>
-                                            @else
-                                            <a href="{{ route('pengeluaran.show', $item->uuid) }}"
-                                                class="btn btn-primary fa fa-print" target="blank"></a>
-                                            @endif
+                                            <div style="display: flex; gap:10px">
+                                                @if ($item->masuk != 0)
+                                                    <a href="{{ route('penerimaan.show', $item->uuid) }}"
+                                                        class="btn btn-primary fa fa-print" target="blank"></a>
+                                                @else
+                                                    <a href="{{ route('pengeluaran.show', $item->uuid) }}"
+                                                        class="btn btn-primary fa fa-print" target="blank"></a>
+                                                @endif
+                                                <form action="{{ route('hapusHead', $item->uuid) }}"
+                                                    onsubmit="alert('Anda Yakin Akan Menghapus Data Dengan No Transaksi {{ $item->id }}');"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit"
+                                                        class="btn btn-outline btn-danger fa fa-trash-o"></button>
+
+                                                </form>
+                                            </div>
                                         </td>
                                         <td>{{ $item->tanggal }}</td>
                                         <td>{{ $item->masuk != 0 ? 'Terima dari' : 'Setor Ke' }} {{ $item->nama }} Rp.
@@ -92,8 +103,6 @@
                                     @endif
                                 </tr> --}}
                                 </tr>
-                            
-                               
                                 @endforeach
                             </tbody>
                         </table>

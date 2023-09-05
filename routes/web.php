@@ -5,6 +5,7 @@ use App\Http\Controllers\AkunHeadSubController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdmMenuController;
 use App\Http\Controllers\AdmRoleMenu;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\Adm_RoleController;
 use App\Http\Controllers\AdmUserController;
@@ -62,24 +63,8 @@ Route::middleware('checklogin')->group(function () {
         $menu = menu::getMenu(Session::get('role'));
         return view('page.home',compact('menu'));
     });
-    Route::get('/dashboard', function(){ 
-         
-        $menu = menu::getMenu(Session::get('role'));
-        $siswa = count(Siswa::all());
-        $transaksi = TransaksiHead::select( DB::raw('sum(masuk) as pemasukan ,sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfMonth(), now()->endOfMonth()])->first();
-        $pengeluaran = TransaksiHead:: select( DB::raw('sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->groupBy(DB::raw('MONTH(tanggal)'))->orderBy(DB::raw('MONTH(tanggal)'),'asc')->get();
-        $pemasukan = TransaksiHead:: select( DB::raw('sum(masuk) as pemasukan'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->groupBy(DB::raw('MONTH(tanggal)'))->orderBy(DB::raw('MONTH(tanggal)'),'asc')->get();
-        $pengeluaranTahun = TransaksiHead:: select( DB::raw('sum(keluar) as pengeluaran'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->first();
-        $pemasukanTahun = TransaksiHead:: select( DB::raw('sum(masuk) as pemasukan'))->whereBetween('tanggal', [now()->startOfYear(), now()->endOfYear()])->first();
-        $bulan = TransaksiHead::select(  DB::raw('MONTHNAME(tanggal) as bulan'))->distinct()->orderBy(DB::raw('MONTH(tanggal)'),'asc')->get();
-        $keluar =  collect($pengeluaran)->pluck('pengeluaran')->toArray();
-        $bulan = collect($bulan)->pluck('bulan')->toArray();
-        $masuk =  collect($pemasukan)->pluck('pemasukan')->toArray();
-       ;
-        return view('page.dashboard',compact(['menu','siswa','transaksi','pemasukanTahun','pengeluaranTahun','keluar','masuk','bulan']));
-        
-        // return $chart;
-    });
+    Route::get('/dashboard', [DashboardController::class ,'dashboard']);
+    Route::post('/dashboard', [DashboardController::class ,'dashboard']);
     Route::delete('hapus/{id}',[LaporanController::class ,'hapusHead'])->name('hapusHead');
     Route::get('laporan_penerimaan',[LaporanController::class ,'penerimaan']);
     Route::get('history_pembayaran_siswa',[LaporanController::class ,'pembayaranSiswa']);
