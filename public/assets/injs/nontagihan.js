@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", function () {
                    `;
                 },
             },
-            { title: "Kode Akun", data: "akun" },
-            { title: "Kode Non Tagihan", data: "kode" },
+            { title: "Akun", data: "akun" },
+            { title: "Kode", data: "kode" },
             { title: "Nama", data: "nama" },
             { title: "Keterangan", data: "remark" },
         ],

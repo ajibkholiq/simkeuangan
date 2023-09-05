@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\pelajaran;
 use App\Helper\menu;
-
 use Session;
 
 class ThnPljrnController extends Controller

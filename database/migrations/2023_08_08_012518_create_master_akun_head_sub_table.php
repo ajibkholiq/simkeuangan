@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('master_akun_head_sub', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->unsignedBigInteger('akun_head_id');
             $table->string('akun_head_sub');
             $table->string('urut');
-            $table->string('remark',20);
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

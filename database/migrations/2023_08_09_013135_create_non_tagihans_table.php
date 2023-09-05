@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('non_tagihans', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->unsignedBigInteger('akun_id');
             $table->string('kode');
             $table->string('nama');
-            $table->string('remark',20);
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

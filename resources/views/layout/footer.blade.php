@@ -3,6 +3,6 @@
               10000GB of <strong>25000GB</strong> Free.
           </div>
           <div>
-              <strong>Copyright</strong> PKL As-Syifa &copy; {{ date('Y') }}
+              <strong>Copyright</strong> PKL Universitas Mandiri  &copy; {{ date('Y') }}
           </div>
       </div>

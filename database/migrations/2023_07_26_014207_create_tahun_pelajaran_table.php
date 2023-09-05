@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('tahun_pelajaran', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
-            $table->string('tahun_pelajaran',20);
+            $table->string('uuid');
+            $table->string('tahun_pelajaran');
             $table->enum('status', ['AKTIF','TIDAK']);
-            $table->string('remark',20);
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

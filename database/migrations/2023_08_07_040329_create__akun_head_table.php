@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('akun_head', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->string('akun_head');
             $table->string('urut');
-            $table->string('remark',20);
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

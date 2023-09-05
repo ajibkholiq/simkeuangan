@@ -33,7 +33,7 @@
                         @foreach ($menu as $sm)
                             @if ($sm->induk == $item->nama_menu)
                                 <li class="{{ Request::segment(1) == $sm->route ? 'active' : '' }}"><a
-                                        href="{{ $sm->route }}" class="text-capitalize">{{ $sm->kode_menu }}.
+                                        href="/{{ $sm->route }}" class="text-capitalize">{{ $sm->kode_menu }}.
                                         {{ $sm->nama_menu }}</a></li>
                             @endif
                         @endforeach

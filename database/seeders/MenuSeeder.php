@@ -34,27 +34,6 @@ class MenuSeeder extends Seeder
             'route' => '',
             'remark' => 'Master Data Sistem',
         ]);
-           adm_menu::create([
-            'induk' => 'head',
-            'uuid' => uniqid(),
-            'kode_menu' => 'C',
-            'icon' => "",
-            'urut' => "",
-            'nama_menu' =>'Proses',
-            'route' => '',
-            'remark' => 'Proses Data',
-        ]);
-        adm_menu::create([
-            'induk' => 'head',
-            'uuid' => uniqid(),
-            'kode_menu' => 'D',
-            'icon' => "",
-            'urut' => "",
-            'nama_menu' =>'Reporting',
-            'route' => '',
-            'remark' => 'Laporan Data',
-        ]);
-        
           adm_menu::create([
             'induk' => 'Master Data',
             'uuid' => uniqid(),
@@ -194,7 +173,105 @@ class MenuSeeder extends Seeder
             'route' => 'akun',
             'remark' => 'Master Data Akun',
         ]);
-
-
+         adm_menu::create([
+            'induk' => 'head',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Proses',
+            'route' => '',
+            'remark' => 'Proses Data',
+        ]);
+        adm_menu::create([
+            'induk' => 'Proses',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C1',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Tansaksi Siswa',
+            'route' => 'transaksi_siswa',
+            'remark' => 'Transaksi bayar siswa',
+        ]);
+        adm_menu::create([
+            'induk' => 'Proses',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C2',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Penerimaan',
+            'route' => 'penerimaan',
+            'remark' => 'Transaksi Penerimaan',
+        ]);
+        adm_menu::create([
+            'induk' => 'Proses',
+            'uuid' => uniqid(),
+            'kode_menu' => 'C3',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Pengeluaran',
+            'route' => 'pengeluaran',
+            'remark' => 'Transaksi Pengeluaran',
+        ]);
+        adm_menu::create([
+            'induk' => 'head',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Reporting',
+            'route' => '',
+            'remark' => 'Laporan Data',
+        ]);
+        adm_menu::create([
+            'induk' => 'Reporting',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D1',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Laporan Penerimaan',
+            'route' => 'laporan_penerimaan',
+            'remark' => 'Laporan Data Penerimaan',
+        ]);
+        adm_menu::create([
+            'induk' => 'Reporting',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D2',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'History Pembayaran Siswa',
+            'route' => 'history_pembayaran_siswa',
+            'remark' => 'History Pembayaran Siswa',
+        ]);
+        adm_menu::create([
+            'induk' => 'Reporting',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D3',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Rekap Penerimaan Kelas',
+            'route' => 'rekap_penerimaan_kelas',
+            'remark' => 'Rekap Penerimaan Kelas',
+        ]);
+        adm_menu::create([
+            'induk' => 'Reporting',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D4',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Laporan Jurnal',
+            'route' => 'laporan_jurnal',
+            'remark' => 'Laporan Jurnal',
+        ]);
+        adm_menu::create([
+            'induk' => 'Reporting',
+            'uuid' => uniqid(),
+            'kode_menu' => 'D5',
+            'icon' => "",
+            'urut' => "",
+            'nama_menu' =>'Summary Tagihan',
+            'route' => 'summary_tagihan',
+            'remark' => 'Summary Tagihan',
+        ]);
     }
 }

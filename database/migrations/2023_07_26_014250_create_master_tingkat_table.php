@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('master_tingkat', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
-            $table->string('id_tingkat',20);
-            $table->string('nama_tingkat',20);
-            $table->string('remark',20);
+            $table->string('uuid');
+            $table->string('id_tingkat');
+            $table->string('nama_tingkat');
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();
