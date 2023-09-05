@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('tagihan_tingkats', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->unsignedBigInteger('thn_ajaran_id');
             $table->unsignedBigInteger('tagihan_id');
             $table->unsignedBigInteger('tingkat_id');
             $table->bigInteger('nominal')->default(0);
-            $table->string('remark',20);
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

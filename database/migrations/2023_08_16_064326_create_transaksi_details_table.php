@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_details', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->unsignedBigInteger('transaksi_id');
             $table->string('kode_tagihan');
             $table->integer('nominal');

@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('adm_menu', function (Blueprint $table) {
             $table->id();
-            $table->char('uuid',100);
-            $table->string("induk",20);
-            $table->string("kode_menu",20);
+            $table->char('uuid');
+            $table->string("induk");
+            $table->string("kode_menu");
             $table->string("nama_menu");
-            $table->string("icon",100);
-            $table->string("urut",20);
-            $table->string("route",30)->nullable();
-            $table->string("remark",100);
-            $table->string("create_by",20)->nullable();
-            $table->string("update_by",20)->nullable();
+            $table->string("icon");
+            $table->string("urut");
+            $table->string("route")->nullable();
+            $table->string("remark");
+            $table->string("create_by")->nullable();
+            $table->string("update_by")->nullable();
             $table->timestamps();
         });
     }

@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('master_unit', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->string('unit');
             $table->string('nama_unit');
             $table->string('alamat_unit');
-            $table->string('no_tlp',15);
+            $table->string('no_tlp');
             $table->string('logo');
-            $table->string('remark',20);
+            $table->string('remark');
             $table->string('created_by')->nullable();
             $table->string('updated_by')->nullable();
             $table->timestamps();

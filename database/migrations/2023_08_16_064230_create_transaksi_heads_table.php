@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_heads', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid',20);
+            $table->string('uuid');
             $table->string('kode_trans');
             $table->date('tanggal');
             $table->string('kode_akun');
