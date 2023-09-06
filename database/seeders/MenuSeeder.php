@@ -189,7 +189,7 @@ class MenuSeeder extends Seeder
             'kode_menu' => 'C1',
             'icon' => "",
             'urut' => "",
-            'nama_menu' =>'Tansaksi Siswa',
+            'nama_menu' =>'Transaksi Siswa',
             'route' => 'transaksi_siswa',
             'remark' => 'Transaksi bayar siswa',
         ]);
