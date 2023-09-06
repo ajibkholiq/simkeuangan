@@ -5,8 +5,8 @@
         <div class="col-lg-4">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <span class="label label-success pull-right">Total</span>
-                    <h5>Transaksi Hari Ini</h5>
+                    <span class="label label-success pull-right">Hari Ini</span>
+                    <h5>Transaksi</h5>
                 </div>
                 <div class="ibox-content">
                     <h1 style="padding: 10px 0" class="no-margins">{{ $siswa }}</h1>
