@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $keluar =  collect($pengeluaran)->pluck('pengeluaran')->toArray();
         $bulan = collect($bulan)->pluck('bulan')->toArray();
         $masuk =  collect($pemasukan)->pluck('pemasukan')->toArray();
-        return view('page.dashboard',compact(['menu','siswa','transaksi','pemasukanTahun','pengeluaranTahun','keluar','masuk','bulan','tahun']));
+        return view('page.dashboard',compact(['menu','siswa','transaksi','pemasukanTahun','pengeluaranTahun','keluar','masuk','bulan','tahun','request']));
     }
         $menu = menu::getMenu(Session::get('role'));
         $siswa = count(Siswa::all());
@@ -42,7 +42,7 @@ class DashboardController extends Controller
         $bulan = collect($bulan)->pluck('bulan')->toArray();
         $masuk =  collect($pemasukan)->pluck('pemasukan')->toArray();
         // return $pengeluaran;
-        return view('page.dashboard',compact(['menu','siswa','transaksi','pemasukanTahun','pengeluaranTahun','keluar','masuk','bulan','tahun']));
+        return view('page.dashboard',compact(['menu','siswa','transaksi','pemasukanTahun','pengeluaranTahun','keluar','masuk','bulan','tahun','request']));
     
     
 

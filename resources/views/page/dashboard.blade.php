@@ -47,7 +47,7 @@
             <div class="ibox-content">
                 <div>
                     <span class="">
-                        <h4><strong>Grafik penerimaan dan pengeluaran tahun ini</strong></h4>
+                        <h4><strong>Grafik Penerimaan dan Pengeluaran Tahun {{$request->tahun? $request->tahun : 'ini'}}</strong></h4>
                                   
                     </span>
                     <div  style="position: absolute ; right: 50px ;top :20px">
